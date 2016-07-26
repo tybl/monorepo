@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
    }
 
    //Create window
-   gWindow = SDL_CreateWindow("goon", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+   gWindow = SDL_CreateWindow("goon", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
    if (gWindow == NULL) {
       fprintf(stderr, "Window could not be created! SDL Error: %s\n", SDL_GetError());
       return -1;
