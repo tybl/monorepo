@@ -126,16 +126,86 @@ int main(int argc, char* argv[]) {
                printf("Event %d\n", __LINE__);
                break;
             case SDL_KEYDOWN:
-               printf("Event %d\n", __LINE__);
+               switch (e.key.keysym.sym) {
+                  case SDLK_0: printf("0"); break;
+                  case SDLK_1: printf("1"); break;
+                  case SDLK_2: printf("2"); break;
+                  case SDLK_3: printf("3"); break;
+                  case SDLK_4: printf("4"); break;
+                  case SDLK_5: printf("5"); break;
+                  case SDLK_6: printf("6"); break;
+                  case SDLK_7: printf("7"); break;
+                  case SDLK_8: printf("8"); break;
+                  case SDLK_9: printf("9"); break;
+                  case SDLK_a: printf("a"); break;
+                  case SDLK_b: printf("b"); break;
+                  case SDLK_c: printf("c"); break;
+                  case SDLK_d: printf("d"); break;
+                  case SDLK_e: printf("e"); break;
+                  case SDLK_f: printf("f"); break;
+                  case SDLK_g: printf("g"); break;
+                  case SDLK_h: printf("h"); break;
+                  case SDLK_i: printf("i"); break;
+                  case SDLK_j: printf("j"); break;
+                  case SDLK_k: printf("k"); break;
+                  case SDLK_l: printf("l"); break;
+                  case SDLK_m: printf("m"); break;
+                  case SDLK_n: printf("n"); break;
+                  case SDLK_o: printf("o"); break;
+                  case SDLK_p: printf("p"); break;
+                  case SDLK_q: printf("q"); break;
+                  case SDLK_r: printf("r"); break;
+                  case SDLK_s: printf("s"); break;
+                  case SDLK_t: printf("t"); break;
+                  case SDLK_u: printf("u"); break;
+                  case SDLK_v: printf("v"); break;
+                  case SDLK_w: printf("w"); break;
+                  case SDLK_x: printf("x"); break;
+                  case SDLK_y: printf("y"); break;
+                  case SDLK_z: printf("z"); break;
+                  case SDLK_BACKSLASH: printf("\\"); break;
+                  case SDLK_BACKSPACE: printf("<backspace>"); break;
+                  case SDLK_ESCAPE: printf("<escape>"); break;
+                  case SDLK_RETURN: printf("<return>"); break;
+                  case SDLK_SPACE: printf("<space>"); break;
+                  case SDLK_NUMLOCKCLEAR: printf("<numlock>"); break;
+                  case SDLK_PAGEDOWN: printf("<page down>"); break;
+                  case SDLK_PAGEUP: printf("<page up>"); break;
+                  case SDLK_PAUSE: printf("<pause>"); break;
+                  case SDLK_PERIOD: printf("."); break;
+                  case SDLK_PRINTSCREEN: printf("<print screen>"); break;
+                  case SDLK_QUOTE: printf("'"); break;
+                  case SDLK_RIGHT: printf("<right arrow>"); break;
+                  case SDLK_RIGHTBRACKET: printf("]"); break;
+                  case SDLK_RSHIFT: printf("<r shift>"); break;
+                  case SDLK_SCROLLLOCK: printf("<scroll lock>"); break;
+                  case SDLK_SEMICOLON: printf(";"); break;
+                  case SDLK_SLASH: printf("/"); break;
+                  case SDLK_AC_BACK:
+                  case SDLK_AC_BOOKMARKS:
+                  case SDLK_AC_FORWARD:
+                  case SDLK_AC_HOME:
+                  case SDLK_AC_REFRESH:
+                  case SDLK_AC_SEARCH:
+                  case SDLK_AC_STOP:
+                  case SDLK_AGAIN:
+                  case SDLK_ALTERASE:
+                  case SDLK_APPLICATION:
+                  case SDLK_AUDIOMUTE:
+                  case SDLK_AUDIONEXT:
+                  case SDLK_AUDIOPLAY:
+                  case SDLK_AUDIOPREV:
+                  case SDLK_AUDIOSTOP:
+                     break;
+               }
+               std::fflush(stdout);
                break;
             case SDL_KEYUP:
-               printf("Event %d\n", __LINE__);
                break;
             case SDL_TEXTEDITING:
                printf("Event %d\n", __LINE__);
                break;
             case SDL_TEXTINPUT:
-               printf("Event %d\n", __LINE__);
                break;
             case SDL_KEYMAPCHANGED:
                printf("Event %d\n", __LINE__);
