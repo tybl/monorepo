@@ -249,15 +249,20 @@ int main(int argc, char* argv[]) {
    SDL_EventState(SDL_APP_DIDENTERFOREGROUND, SDL_IGNORE);
    SDL_EventState(SDL_AUDIODEVICEADDED, SDL_IGNORE);
    SDL_EventState(SDL_AUDIODEVICEREMOVED, SDL_IGNORE);
+   SDL_EventState(SDL_CLIPBOARDUPDATE, SDL_IGNORE);
+   SDL_EventState(SDL_DOLLARGESTURE, SDL_IGNORE);
+   SDL_EventState(SDL_DOLLARRECORD, SDL_IGNORE);
    SDL_EventState(SDL_DROPFILE, SDL_IGNORE);
    SDL_EventState(SDL_FINGERDOWN, SDL_IGNORE);
    SDL_EventState(SDL_FINGERMOTION, SDL_IGNORE);
    SDL_EventState(SDL_FINGERUP, SDL_IGNORE);
    SDL_EventState(SDL_KEYMAPCHANGED, SDL_IGNORE);
+   SDL_EventState(SDL_KEYUP, SDL_IGNORE);
    SDL_EventState(SDL_MOUSEBUTTONDOWN, SDL_IGNORE);
    SDL_EventState(SDL_MOUSEBUTTONUP, SDL_IGNORE);
    SDL_EventState(SDL_MOUSEMOTION, SDL_IGNORE);
    SDL_EventState(SDL_MOUSEWHEEL, SDL_IGNORE);
+   SDL_EventState(SDL_MULTIGESTURE, SDL_IGNORE);
    SDL_EventState(SDL_TEXTINPUT, SDL_IGNORE);
 
    //Set texture filtering to linear
@@ -300,8 +305,6 @@ int main(int argc, char* argv[]) {
             case SDL_KEYDOWN:
                kb.ProcessEvent(e);
                break;
-            case SDL_KEYUP:
-               break;
             case SDL_TEXTEDITING:
                printf("Event %d\n", __LINE__);
                break;
@@ -342,18 +345,6 @@ int main(int argc, char* argv[]) {
                printf("Event %d\n", __LINE__);
                break;
             case SDL_CONTROLLERDEVICEREMAPPED:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_DOLLARGESTURE:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_DOLLARRECORD:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_MULTIGESTURE:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_CLIPBOARDUPDATE:
                printf("Event %d\n", __LINE__);
                break;
             case SDL_RENDER_TARGETS_RESET:
