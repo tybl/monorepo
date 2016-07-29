@@ -10,10 +10,28 @@ const int SCREEN_HEIGHT = 480;
 //The window we'll be rendering to
 static SDL_Window* gWindow = NULL;
 
+class Widget {
+   int mXPos;
+   int mYPos;
+public:
+   Widget(int xPos, int yPos) : mXPos(xPos), mYPos(yPos) { }
+   int XPos(void) const { return mXPos; }
+   int YPos(void) const { return mYPos; }
+};
+
 class Window {
    //SDL_Window *mWindow;
+   int mWidth;
+   int mHeight;
 public:
-   //Window(void) : mWindow(nullptr) { }
+   Window(void)
+      : mWidth(SCREEN_WIDTH),
+      mHeight(SCREEN_HEIGHT)
+   {
+      // Intentionally left blank
+   }
+   int Width(void) const { return mWidth; }
+   int Height(void) const { return mHeight; }
    void ProcessEvent(const SDL_Event &event) {
       switch (event.window.event) {
          case SDL_WINDOWEVENT_SHOWN:
@@ -29,6 +47,8 @@ public:
             printf("Window has been moved to (%d, %d)\n", event.window.data1, event.window.data2);
             break;
          case SDL_WINDOWEVENT_RESIZED:
+            mWidth = event.window.data1;
+            mHeight = event.window.data2;
             printf("Window has been resized to %d x %d\n", event.window.data1, event.window.data2);
             break;
          case SDL_WINDOWEVENT_SIZE_CHANGED:
@@ -213,14 +233,32 @@ int main(int argc, char* argv[]) {
    static_cast<void>(argc);
    static_cast<void>(argv);
 
+   Widget ownship(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+
    //Initialize SDL
    if (0 > SDL_Init(SDL_INIT_VIDEO)) {
       fprintf(stderr, "SDL could not initialize! SDL Error: %s\n", SDL_GetError());
       return -1;
    }
 
-   SDL_EventState(SDL_MOUSEMOTION, SDL_IGNORE);
+   SDL_EventState(SDL_APP_TERMINATING, SDL_IGNORE);
+   SDL_EventState(SDL_APP_LOWMEMORY, SDL_IGNORE);
+   SDL_EventState(SDL_APP_WILLENTERBACKGROUND, SDL_IGNORE);
+   SDL_EventState(SDL_APP_DIDENTERBACKGROUND, SDL_IGNORE);
+   SDL_EventState(SDL_APP_WILLENTERFOREGROUND, SDL_IGNORE);
+   SDL_EventState(SDL_APP_DIDENTERFOREGROUND, SDL_IGNORE);
+   SDL_EventState(SDL_AUDIODEVICEADDED, SDL_IGNORE);
+   SDL_EventState(SDL_AUDIODEVICEREMOVED, SDL_IGNORE);
+   SDL_EventState(SDL_DROPFILE, SDL_IGNORE);
+   SDL_EventState(SDL_FINGERDOWN, SDL_IGNORE);
    SDL_EventState(SDL_FINGERMOTION, SDL_IGNORE);
+   SDL_EventState(SDL_FINGERUP, SDL_IGNORE);
+   SDL_EventState(SDL_KEYMAPCHANGED, SDL_IGNORE);
+   SDL_EventState(SDL_MOUSEBUTTONDOWN, SDL_IGNORE);
+   SDL_EventState(SDL_MOUSEBUTTONUP, SDL_IGNORE);
+   SDL_EventState(SDL_MOUSEMOTION, SDL_IGNORE);
+   SDL_EventState(SDL_MOUSEWHEEL, SDL_IGNORE);
+   SDL_EventState(SDL_TEXTINPUT, SDL_IGNORE);
 
    //Set texture filtering to linear
    if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1")) {
@@ -230,6 +268,7 @@ int main(int argc, char* argv[]) {
    //Create window
    gWindow = SDL_CreateWindow("goon", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
    Window window;
+   Keyboard kb;
    if (gWindow == NULL) {
       fprintf(stderr, "Window could not be created! SDL Error: %s\n", SDL_GetError());
       return -1;
@@ -244,7 +283,6 @@ int main(int argc, char* argv[]) {
    //Initialize renderer color
    SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 0);
 
-   Keyboard kb;
    bool keep_running = true;
    while (keep_running) {
       SDL_Event e;
@@ -259,44 +297,12 @@ int main(int argc, char* argv[]) {
             case SDL_SYSWMEVENT:
                printf("Event %d\n", __LINE__);
                break;
-            case SDL_APP_TERMINATING:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_APP_LOWMEMORY:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_APP_WILLENTERBACKGROUND:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_APP_DIDENTERBACKGROUND:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_APP_WILLENTERFOREGROUND:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_APP_DIDENTERFOREGROUND:
-               printf("Event %d\n", __LINE__);
-               break;
             case SDL_KEYDOWN:
                kb.ProcessEvent(e);
                break;
             case SDL_KEYUP:
                break;
             case SDL_TEXTEDITING:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_TEXTINPUT:
-               break;
-            case SDL_KEYMAPCHANGED:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_MOUSEBUTTONDOWN:
-               printf("Mouse button down\n");
-               break;
-            case SDL_MOUSEBUTTONUP:
-               printf("Mouse button up\n");
-               break;
-            case SDL_MOUSEWHEEL:
                printf("Event %d\n", __LINE__);
                break;
             case SDL_JOYAXISMOTION:
@@ -338,12 +344,6 @@ int main(int argc, char* argv[]) {
             case SDL_CONTROLLERDEVICEREMAPPED:
                printf("Event %d\n", __LINE__);
                break;
-            case SDL_FINGERDOWN:
-               printf("Finger down\n");
-               break;
-            case SDL_FINGERUP:
-               printf("Finger up\n");
-               break;
             case SDL_DOLLARGESTURE:
                printf("Event %d\n", __LINE__);
                break;
@@ -354,15 +354,6 @@ int main(int argc, char* argv[]) {
                printf("Event %d\n", __LINE__);
                break;
             case SDL_CLIPBOARDUPDATE:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_DROPFILE:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_AUDIODEVICEADDED:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_AUDIODEVICEREMOVED:
                printf("Event %d\n", __LINE__);
                break;
             case SDL_RENDER_TARGETS_RESET:
@@ -377,14 +368,6 @@ int main(int argc, char* argv[]) {
             case SDL_LASTEVENT:
                printf("Event %d\n", __LINE__);
                break;
-#if 0
-            case SDL_MOUSEMOTION:
-               printf("Mouse motion!\n");
-               break;
-            case SDL_FINGERMOTION:
-               printf("Finger motion\n");
-               break;
-#endif
             default:
                printf("Something happened!\n");
                break;
@@ -394,6 +377,12 @@ int main(int argc, char* argv[]) {
       //Clear screen
       SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 0);
       SDL_RenderClear(gRenderer);
+
+      //Draw ship
+      SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+      SDL_RenderDrawLine(gRenderer, ownship.XPos() + 5, ownship.YPos() + 5, ownship.XPos(), ownship.YPos() - 5);
+      SDL_RenderDrawLine(gRenderer, ownship.XPos(), ownship.YPos() - 5, ownship.XPos() - 5, ownship.YPos() + 5);
+      SDL_RenderDrawLine(gRenderer, ownship.XPos() + 5, ownship.YPos() + 5, ownship.XPos() - 5, ownship.YPos() + 5);
 
       //Update screen
       SDL_RenderPresent(gRenderer);
