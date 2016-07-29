@@ -15,8 +15,8 @@ class Widget {
    int mYPos;
 public:
    Widget(int xPos, int yPos) : mXPos(xPos), mYPos(yPos) { }
-   int XPos(void) const { return mXPos; }
-   int YPos(void) const { return mYPos; }
+   int& XPos(void) { return mXPos; }
+   int& YPos(void) { return mYPos; }
 };
 
 class Window {
@@ -159,6 +159,7 @@ public:
          case SDLK_F23: printf("<F23>"); break;
          case SDLK_F24: printf("<F24>"); break;
          case SDLK_HOME: printf("<home>"); break;
+         case SDLK_INSERT: printf("<insert>"); break;
          case SDLK_KP_0: printf("0"); break;
          case SDLK_KP_1: printf("1"); break;
          case SDLK_KP_2: printf("2"); break;
@@ -229,6 +230,8 @@ public:
 //The window renderer
 static SDL_Renderer* gRenderer = NULL;
 
+int EventFilter(void *userData, SDL_Event *event);
+
 int main(int argc, char* argv[]) {
    static_cast<void>(argc);
    static_cast<void>(argv);
@@ -264,6 +267,7 @@ int main(int argc, char* argv[]) {
    SDL_EventState(SDL_MOUSEWHEEL, SDL_IGNORE);
    SDL_EventState(SDL_MULTIGESTURE, SDL_IGNORE);
    SDL_EventState(SDL_TEXTINPUT, SDL_IGNORE);
+   SDL_SetEventFilter(EventFilter, nullptr);
 
    //Set texture filtering to linear
    if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1")) {
@@ -374,6 +378,7 @@ int main(int argc, char* argv[]) {
       SDL_RenderDrawLine(gRenderer, ownship.XPos() + 5, ownship.YPos() + 5, ownship.XPos(), ownship.YPos() - 5);
       SDL_RenderDrawLine(gRenderer, ownship.XPos(), ownship.YPos() - 5, ownship.XPos() - 5, ownship.YPos() + 5);
       SDL_RenderDrawLine(gRenderer, ownship.XPos() + 5, ownship.YPos() + 5, ownship.XPos() - 5, ownship.YPos() + 5);
+      ownship.XPos() += 1;
 
       //Update screen
       SDL_RenderPresent(gRenderer);
@@ -388,4 +393,31 @@ int main(int argc, char* argv[]) {
    //Quit SDL subsystems
    SDL_Quit();
    return 0;
+}
+
+int EventFilter(void *, SDL_Event *event) {
+   int result = 0;
+   switch (event->type) {
+      case SDL_QUIT:
+      case SDL_WINDOWEVENT:
+         result = 1;
+         break;
+      case SDL_KEYDOWN:
+         switch (event->key.keysym.sym) {
+            case SDLK_DOWN:
+            case SDLK_UP:
+            case SDLK_LEFT:
+            case SDLK_RIGHT:
+               result = 1;
+               break;
+            default:
+               // Ignore all other keys
+               break;
+         }
+         break;
+      default:
+         printf("Something happened!\n");
+         break;
+   }
+   return result;
 }
