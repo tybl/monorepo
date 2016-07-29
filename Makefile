@@ -6,17 +6,17 @@ INCLUDES := -I src
 SOURCES := src/main.cpp
 
 ifndef CONFIG
-   CONFIG=Debug
+   CONFIG=Valgrind
 endif
 
-ifeq ($(CONFIG), Debug)
-   BLDDIR := build/debug
+ifeq ($(CONFIG), San)
+   BLDDIR := build/sanitize
    CFLAGS := -g3 -O0 -fsanitize=address
    LFLAGS := -g3 -O0 -fsanitize=address
 endif
 
 ifeq ($(CONFIG), Valgrind)
-   BLDDIR := build/valgrind
+   BLDDIR := build/debug
    CFLAGS := -g3 -O0
    LFLAGS := -g3 -O0
 endif
