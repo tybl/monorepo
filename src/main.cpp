@@ -3,26 +3,49 @@
 #include "Window.hpp"
 
 #include <SDL2/SDL.h>
+#include <cassert>
 #include <cstdio>
-
-class Widget {
-   int mXPos;
-   int mYPos;
-   //int mAngle;
-public:
-   Widget(int xPos, int yPos) : mXPos(xPos), mYPos(yPos) { }
-   int& XPos(void) { return mXPos; }
-   int& YPos(void) { return mYPos; }
-};
 
 //The window renderer
 static SDL_Renderer* gRenderer = NULL;
 
+class Widget {
+   int mXPos;
+   int mYPos;
+   double mAngle;
+   SDL_Texture *mTexture;
+public:
+   Widget(SDL_Renderer *renderer, int xPos, int yPos)
+      : mXPos(xPos),
+      mYPos(yPos),
+      mAngle(0),
+      mTexture(SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, 30, 30))
+   {
+      assert(nullptr != mTexture);
+      SDL_SetRenderTarget(renderer, mTexture);
+
+      SDL_Rect fill_rect = { 10, 0, 10, 20 };
+      SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+      SDL_RenderFillRect(renderer, &fill_rect);
+      fill_rect.x = 0;
+      fill_rect.y = 20;
+      fill_rect.h = 10;
+      SDL_RenderFillRect(renderer, &fill_rect);
+      fill_rect.x = 20;
+      SDL_RenderFillRect(renderer, &fill_rect);
+   }
+   int& XPos(void) { return mXPos; }
+   int& YPos(void) { return mYPos; }
+   void Render(SDL_Renderer *renderer) {
+      SDL_Rect destination = { mXPos, mYPos, 30, 30 };
+      SDL_RenderCopyEx(renderer, mTexture, nullptr, &destination, mAngle, nullptr, SDL_FLIP_NONE);
+      mAngle += 0.5;
+   }
+};
+
 int main(int argc, char* argv[]) {
    static_cast<void>(argc);
    static_cast<void>(argv);
-
-   Widget ownship(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 
    //Initialize SDL
    if (0 > SDL_Init(SDL_INIT_VIDEO)) {
@@ -46,6 +69,7 @@ int main(int argc, char* argv[]) {
       printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
       return -1;
    }
+   Widget ownship(gRenderer, 0, 0);
    //Initialize renderer color
    SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 0);
 
@@ -69,16 +93,12 @@ int main(int argc, char* argv[]) {
          } // switch
       } // while
 
+      SDL_SetRenderTarget(gRenderer, nullptr);
       //Clear screen
       SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 0);
       SDL_RenderClear(gRenderer);
 
-      //Draw ship
-      SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
-      SDL_RenderDrawLine(gRenderer, ownship.XPos() + 5, ownship.YPos() + 5, ownship.XPos(), ownship.YPos() - 5);
-      SDL_RenderDrawLine(gRenderer, ownship.XPos(), ownship.YPos() - 5, ownship.XPos() - 5, ownship.YPos() + 5);
-      SDL_RenderDrawLine(gRenderer, ownship.XPos() + 5, ownship.YPos() + 5, ownship.XPos() - 5, ownship.YPos() + 5);
-      ownship.XPos() += 1;
+      ownship.Render(gRenderer);
 
       //Update screen
       SDL_RenderPresent(gRenderer);
