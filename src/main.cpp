@@ -253,20 +253,39 @@ int main(int argc, char* argv[]) {
    SDL_EventState(SDL_AUDIODEVICEADDED, SDL_IGNORE);
    SDL_EventState(SDL_AUDIODEVICEREMOVED, SDL_IGNORE);
    SDL_EventState(SDL_CLIPBOARDUPDATE, SDL_IGNORE);
+   SDL_EventState(SDL_CONTROLLERAXISMOTION, SDL_IGNORE);
+   SDL_EventState(SDL_CONTROLLERBUTTONDOWN, SDL_IGNORE);
+   SDL_EventState(SDL_CONTROLLERBUTTONUP, SDL_IGNORE);
+   SDL_EventState(SDL_CONTROLLERDEVICEADDED, SDL_IGNORE);
+   SDL_EventState(SDL_CONTROLLERDEVICEREMAPPED, SDL_IGNORE);
+   SDL_EventState(SDL_CONTROLLERDEVICEREMOVED, SDL_IGNORE);
    SDL_EventState(SDL_DOLLARGESTURE, SDL_IGNORE);
    SDL_EventState(SDL_DOLLARRECORD, SDL_IGNORE);
    SDL_EventState(SDL_DROPFILE, SDL_IGNORE);
    SDL_EventState(SDL_FINGERDOWN, SDL_IGNORE);
    SDL_EventState(SDL_FINGERMOTION, SDL_IGNORE);
    SDL_EventState(SDL_FINGERUP, SDL_IGNORE);
+   SDL_EventState(SDL_JOYAXISMOTION, SDL_IGNORE);
+   SDL_EventState(SDL_JOYBALLMOTION, SDL_IGNORE);
+   SDL_EventState(SDL_JOYBUTTONDOWN, SDL_IGNORE);
+   SDL_EventState(SDL_JOYBUTTONUP, SDL_IGNORE);
+   SDL_EventState(SDL_JOYDEVICEADDED, SDL_IGNORE);
+   SDL_EventState(SDL_JOYDEVICEREMOVED, SDL_IGNORE);
+   SDL_EventState(SDL_JOYHATMOTION, SDL_IGNORE);
    SDL_EventState(SDL_KEYMAPCHANGED, SDL_IGNORE);
    SDL_EventState(SDL_KEYUP, SDL_IGNORE);
+   SDL_EventState(SDL_LASTEVENT, SDL_IGNORE);
    SDL_EventState(SDL_MOUSEBUTTONDOWN, SDL_IGNORE);
    SDL_EventState(SDL_MOUSEBUTTONUP, SDL_IGNORE);
    SDL_EventState(SDL_MOUSEMOTION, SDL_IGNORE);
    SDL_EventState(SDL_MOUSEWHEEL, SDL_IGNORE);
    SDL_EventState(SDL_MULTIGESTURE, SDL_IGNORE);
+   SDL_EventState(SDL_RENDER_TARGETS_RESET, SDL_IGNORE);
+   SDL_EventState(SDL_RENDER_DEVICE_RESET, SDL_IGNORE);
+   SDL_EventState(SDL_SYSWMEVENT, SDL_IGNORE);
+   SDL_EventState(SDL_TEXTEDITING, SDL_IGNORE);
    SDL_EventState(SDL_TEXTINPUT, SDL_IGNORE);
+   SDL_EventState(SDL_USEREVENT, SDL_IGNORE);
    SDL_SetEventFilter(EventFilter, nullptr);
 
    //Set texture filtering to linear
@@ -303,65 +322,8 @@ int main(int argc, char* argv[]) {
             case SDL_WINDOWEVENT:
                window.ProcessEvent(e);
                break;
-            case SDL_SYSWMEVENT:
-               printf("Event %d\n", __LINE__);
-               break;
             case SDL_KEYDOWN:
                kb.ProcessEvent(e);
-               break;
-            case SDL_TEXTEDITING:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_JOYAXISMOTION:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_JOYBALLMOTION:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_JOYHATMOTION:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_JOYBUTTONDOWN:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_JOYBUTTONUP:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_JOYDEVICEADDED:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_JOYDEVICEREMOVED:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_CONTROLLERAXISMOTION:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_CONTROLLERBUTTONDOWN:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_CONTROLLERBUTTONUP:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_CONTROLLERDEVICEADDED:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_CONTROLLERDEVICEREMOVED:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_CONTROLLERDEVICEREMAPPED:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_RENDER_TARGETS_RESET:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_RENDER_DEVICE_RESET:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_USEREVENT:
-               printf("Event %d\n", __LINE__);
-               break;
-            case SDL_LASTEVENT:
-               printf("Event %d\n", __LINE__);
                break;
             default:
                printf("Something happened!\n");
