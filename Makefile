@@ -3,7 +3,8 @@ TARGET := goon
 OBJECTS = $(SOURCES:src/%.cpp=$(BLDDIR)/%.o)
 DEPS = $(OBJECTS:.o=.d)
 INCLUDES := -I src
-SOURCES := src/main.cpp
+SOURCES := src/main.cpp \
+           src/Window.cpp
 
 ifndef CONFIG
    CONFIG=Valgrind
