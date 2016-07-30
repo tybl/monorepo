@@ -1,13 +1,8 @@
-//Using SDL, SDL_image, standard IO, and strings
-
 #include "Window.hpp"
 
 #include <SDL2/SDL.h>
 #include <stdio.h>
 #include <string>
-
-//The window we'll be rendering to
-static SDL_Window* gWindow = NULL;
 
 class Widget {
    int mXPos;
@@ -207,17 +202,11 @@ int main(int argc, char* argv[]) {
       printf( "Warning: Linear texture filtering not enabled!");
    }
 
-   //Create window
-   gWindow = SDL_CreateWindow("goon", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
    Window window;
    Keyboard kb;
-   if (gWindow == NULL) {
-      fprintf(stderr, "Window could not be created! SDL Error: %s\n", SDL_GetError());
-      return -1;
-   }
 
    //Create vsynced renderer for window
-   gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+   gRenderer = window.CreateRenderer();
    if (gRenderer == NULL) {
       printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
       return -1;
@@ -319,8 +308,6 @@ int main(int argc, char* argv[]) {
 
    //Destroy window
    SDL_DestroyRenderer(gRenderer);
-   SDL_DestroyWindow(gWindow);
-   gWindow = NULL;
    gRenderer = NULL;
 
    //Quit SDL subsystems

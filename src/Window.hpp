@@ -7,20 +7,20 @@
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
-
 class Window {
-   //SDL_Window *mWindow;
+   SDL_Window *mWindow;
    int mWidth;
    int mHeight;
 public:
-   Window(void)
-      : mWidth(SCREEN_WIDTH),
-      mHeight(SCREEN_HEIGHT)
-   {
-      // Intentionally left blank
+   Window(void);
+   ~Window(void) {
+      SDL_DestroyWindow(mWindow);
    }
    int Width(void) const { return mWidth; }
    int Height(void) const { return mHeight; }
    void ProcessEvent(const SDL_Event &event);
+   SDL_Renderer* CreateRenderer(void) {
+      return SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+   }
 };
 #endif // GOON_WINDOW_HPP
