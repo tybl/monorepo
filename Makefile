@@ -4,6 +4,7 @@ OBJECTS = $(SOURCES:src/%.cpp=$(BLDDIR)/%.o)
 DEPS = $(OBJECTS:.o=.d)
 INCLUDES := -I src
 SOURCES := src/main.cpp \
+           src/EventHandler.cpp \
            src/Window.cpp
 
 ifndef CONFIG
