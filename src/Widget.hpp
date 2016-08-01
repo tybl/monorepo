@@ -12,7 +12,10 @@ private:
 
 private:
    double mXPos;
+   double mXVelocity;
    double mYPos;
+   double mYVelocity;
    double mAngle;
+   double mAngleMomentum;
    SDL_Texture *mTexture;
 };

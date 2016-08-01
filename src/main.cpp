@@ -35,8 +35,6 @@ int main(int argc, char* argv[]) {
    }
    Widget ownship(gRenderer);
    dispatch.AddKeyboardListener([&] (SDL_Keycode key) { ownship.HandleKeyboardEvent(key); });
-   //Initialize renderer color
-   SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 0);
 
    while (dispatch.KeepRunning()) {
       dispatch.ProcessEvents();
