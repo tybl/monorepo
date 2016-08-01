@@ -1,4 +1,4 @@
-CC := clang
+CC := clang++
 TARGET := goon
 OBJECTS = $(SOURCES:src/%.cpp=$(BLDDIR)/%.o)
 DEPS = $(OBJECTS:.o=.d)
@@ -29,11 +29,11 @@ ifeq ($(CONFIG), Release)
    LFLAGS := -g0 -O3
 endif
 
-CFLAGS += -c -std=c++14 -stdlib=libc++ -Weverything -Wno-c++98-compat -pedantic -MP -MMD
+CFLAGS += -c -std=c++14 -stdlib=libc++ -Weverything -Wno-c++98-compat -Wno-padded -pedantic -MP -MMD
 LFLAGS += -lc++ -lc++abi -lSDL2
 
 $(TARGET): $(OBJECTS)
-	$(CC) $(LFLAGS) -o $@ $(OBJECTS)
+	$(CC) $(OBJECTS) $(LFLAGS) -o $@
 
 $(BLDDIR):
 	mkdir -p $(dir $(OBJECTS))
