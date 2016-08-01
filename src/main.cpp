@@ -1,23 +1,18 @@
-#include "EventHandler.hpp"
-#include "Keyboard.hpp"
+#include "Dispatcher.hpp"
 #include "Window.hpp"
 
 #include <SDL2/SDL.h>
 #include <cassert>
+#include <cmath>
 #include <cstdio>
 
 //The window renderer
 static SDL_Renderer* gRenderer = NULL;
 
-class Widget {
-   int mXPos;
-   int mYPos;
-   double mAngle;
-   SDL_Texture *mTexture;
-public:
-   Widget(SDL_Renderer *renderer, int xPos, int yPos)
-      : mXPos(xPos),
-      mYPos(yPos),
+struct Widget {
+   Widget(SDL_Renderer *renderer)
+      : mXPos(0),
+      mYPos(0),
       mAngle(0),
       mTexture(SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, 30, 30))
    {
@@ -34,13 +29,46 @@ public:
       fill_rect.x = 20;
       SDL_RenderFillRect(renderer, &fill_rect);
    }
-   int& XPos(void) { return mXPos; }
-   int& YPos(void) { return mYPos; }
+
    void Render(SDL_Renderer *renderer) {
-      SDL_Rect destination = { mXPos, mYPos, 30, 30 };
+      SDL_Rect destination = { static_cast<int>(mXPos), static_cast<int>(mYPos), 30, 30 };
       SDL_RenderCopyEx(renderer, mTexture, nullptr, &destination, mAngle, nullptr, SDL_FLIP_NONE);
-      mAngle += 0.5;
    }
+
+   void HandleKeyboardEvent(SDL_Keycode key) {
+      switch (key) {
+         case SDLK_SPACE:
+            mXPos = 0;
+            mYPos = 0;
+            break;
+         case SDLK_UP:
+            // TODO: Move ownship forward with respect to heading
+            mXPos += std::sin(mAngle * M_PI / 180.0) * 10;
+            mYPos -= std::cos(mAngle * M_PI / 180.0) * 10;
+            break;
+         case SDLK_DOWN:
+            // TODO: Figure out what ownship should do when down is pressed
+            break;
+         case SDLK_LEFT:
+            mAngle -= 5;
+            break;
+         case SDLK_RIGHT:
+            mAngle += 5;
+            break;
+         default:
+            break;
+      }
+   }
+private:
+   void MoveForward(void) {
+      mXPos += std::sin(mAngle * M_PI / 180.0) * 10;
+      mYPos += std::cos(mAngle * M_PI / 180.0) * 10;
+   }
+private:
+   double mXPos;
+   double mYPos;
+   double mAngle;
+   SDL_Texture *mTexture;
 };
 
 int main(int argc, char* argv[]) {
@@ -53,15 +81,13 @@ int main(int argc, char* argv[]) {
       return -1;
    }
 
-   SetUpEvents();
-
    //Set texture filtering to linear
    if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1")) {
       printf( "Warning: Linear texture filtering not enabled!");
    }
 
    Window window;
-   Keyboard kb;
+   Dispatcher dispatch;
 
    //Create vsynced renderer for window
    gRenderer = window.CreateRenderer();
@@ -69,29 +95,13 @@ int main(int argc, char* argv[]) {
       printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
       return -1;
    }
-   Widget ownship(gRenderer, 0, 0);
+   Widget ownship(gRenderer);
+   dispatch.AddKeyboardListener([&] (SDL_Keycode key) { ownship.HandleKeyboardEvent(key); });
    //Initialize renderer color
    SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 0);
 
-   bool keep_running = true;
-   while (keep_running) {
-      SDL_Event e;
-      while (0 != SDL_PollEvent(&e)) {
-         switch (e.type) {
-            case SDL_QUIT:
-               keep_running = false;
-               break;
-            case SDL_WINDOWEVENT:
-               window.ProcessEvent(e);
-               break;
-            case SDL_KEYDOWN:
-               kb.ProcessEvent(e);
-               break;
-            default:
-               printf("Something happened!\n");
-               break;
-         } // switch
-      } // while
+   while (dispatch.KeepRunning()) {
+      dispatch.ProcessEvents();
 
       SDL_SetRenderTarget(gRenderer, nullptr);
       //Clear screen
