@@ -5,6 +5,7 @@ DEPS = $(OBJECTS:.o=.d)
 INCLUDES := -I src
 SOURCES := src/main.cpp \
            src/Dispatcher.cpp \
+           src/Widget.cpp \
            src/Window.cpp
 
 ifndef CONFIG
