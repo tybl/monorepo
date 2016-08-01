@@ -3,6 +3,9 @@
 #include <cassert>
 #include <cmath>
 
+static const int TEXTURE_WIDTH = 30;
+static const int TEXTURE_HEIGHT = 30;
+
 Widget::Widget(SDL_Renderer *renderer)
    : mXPos(0),
    mXVelocity(0),
@@ -10,29 +13,45 @@ Widget::Widget(SDL_Renderer *renderer)
    mYVelocity(0),
    mAngle(0),
    mAngleMomentum(0),
-   mTexture(SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, 30, 30))
+   mTexture(SDL_CreateTexture(renderer,
+                              SDL_PIXELFORMAT_RGBA8888,
+                              SDL_TEXTUREACCESS_TARGET,
+                              TEXTURE_WIDTH,
+                              TEXTURE_HEIGHT))
 {
    assert(nullptr != mTexture);
    SDL_SetRenderTarget(renderer, mTexture);
 
    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
    SDL_RenderClear(renderer);
-   SDL_Rect fill_rect = { 10, 0, 10, 20 };
+   SDL_Rect fill_rect = {
+      (TEXTURE_WIDTH * 1) / 3,
+      (TEXTURE_HEIGHT * 0) / 3,
+      (TEXTURE_WIDTH * 1) / 3,
+      (TEXTURE_HEIGHT * 2) / 3
+   };
    SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
    SDL_RenderFillRect(renderer, &fill_rect);
-   fill_rect.x = 0;
-   fill_rect.y = 20;
-   fill_rect.h = 10;
+   fill_rect.x = (TEXTURE_WIDTH * 0) / 3;
+   fill_rect.y = (TEXTURE_HEIGHT * 2) / 3;
+   fill_rect.h = (TEXTURE_HEIGHT * 1) / 3;
    SDL_RenderFillRect(renderer, &fill_rect);
-   fill_rect.x = 20;
+   fill_rect.x = (TEXTURE_WIDTH * 2) / 3;
    SDL_RenderFillRect(renderer, &fill_rect);
 }
 
 void Widget::Render(SDL_Renderer *renderer) {
+   // Update position
    mAngle += mAngleMomentum;
    mXPos += mXVelocity;
    mYPos += mYVelocity;
-   SDL_Rect destination = { static_cast<int>(mXPos), static_cast<int>(mYPos), 30, 30 };
+
+   SDL_Rect destination = {
+      static_cast<int>(mXPos), // x
+      static_cast<int>(mYPos), // y
+      TEXTURE_WIDTH, // w
+      TEXTURE_HEIGHT // h
+   };
    SDL_RenderCopyEx(renderer, mTexture, nullptr, &destination, mAngle, nullptr, SDL_FLIP_NONE);
 }
 
@@ -59,6 +78,7 @@ void Widget::HandleKeyboardEvent(SDL_Keycode key) {
          break;
    }
 }
+
 void Widget::MoveForward(void) {
    mXPos += std::sin(mAngle * M_PI / 180.0) * 10;
    mYPos += std::cos(mAngle * M_PI / 180.0) * 10;
