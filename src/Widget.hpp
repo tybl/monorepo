@@ -17,5 +17,7 @@ private:
    double mYVelocity;
    double mAngle;
    double mAngleMomentum;
+   int mWindowWidth;
+   int mWindowHeight;
    SDL_Texture *mTexture;
 };

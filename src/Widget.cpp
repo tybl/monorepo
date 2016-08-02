@@ -3,8 +3,8 @@
 #include <cassert>
 #include <cmath>
 
-static const int TEXTURE_WIDTH = 30;
-static const int TEXTURE_HEIGHT = 30;
+static const int TEXTURE_WIDTH = 90;
+static const int TEXTURE_HEIGHT = 90;
 
 Widget::Widget(SDL_Renderer *renderer)
    : mXPos(0),
@@ -13,6 +13,8 @@ Widget::Widget(SDL_Renderer *renderer)
    mYVelocity(0),
    mAngle(0),
    mAngleMomentum(0),
+   mWindowWidth(640),
+   mWindowHeight(480),
    mTexture(SDL_CreateTexture(renderer,
                               SDL_PIXELFORMAT_RGBA8888,
                               SDL_TEXTUREACCESS_TARGET,
@@ -45,6 +47,14 @@ void Widget::Render(SDL_Renderer *renderer) {
    mAngle += mAngleMomentum;
    mXPos += mXVelocity;
    mYPos += mYVelocity;
+   if (mXPos > mWindowWidth / 2)
+      mXPos -= mWindowWidth;
+   else if (mXPos < mWindowWidth / -2)
+      mXPos += mWindowWidth;
+   if (mYPos > mWindowHeight / 2)
+      mYPos -= mWindowHeight;
+   else if (mYPos < mWindowHeight / -2)
+      mYPos += mWindowHeight;
 
    SDL_Rect destination = {
       static_cast<int>(mXPos), // x
@@ -52,6 +62,13 @@ void Widget::Render(SDL_Renderer *renderer) {
       TEXTURE_WIDTH, // w
       TEXTURE_HEIGHT // h
    };
+
+   SDL_RenderCopyEx(renderer, mTexture, nullptr, &destination, mAngle, nullptr, SDL_FLIP_NONE);
+   destination.x += mWindowWidth;
+   SDL_RenderCopyEx(renderer, mTexture, nullptr, &destination, mAngle, nullptr, SDL_FLIP_NONE);
+   destination.y += mWindowHeight;
+   SDL_RenderCopyEx(renderer, mTexture, nullptr, &destination, mAngle, nullptr, SDL_FLIP_NONE);
+   destination.x -= mWindowWidth;
    SDL_RenderCopyEx(renderer, mTexture, nullptr, &destination, mAngle, nullptr, SDL_FLIP_NONE);
 }
 
