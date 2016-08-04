@@ -26,20 +26,11 @@ Widget::Widget(SDL_Renderer *renderer)
 
    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
    SDL_RenderClear(renderer);
-   SDL_Rect fill_rect = {
-      (TEXTURE_WIDTH * 1) / 3,
-      (TEXTURE_HEIGHT * 0) / 3,
-      (TEXTURE_WIDTH * 1) / 3,
-      (TEXTURE_HEIGHT * 2) / 3
-   };
    SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-   SDL_RenderFillRect(renderer, &fill_rect);
-   fill_rect.x = (TEXTURE_WIDTH * 0) / 3;
-   fill_rect.y = (TEXTURE_HEIGHT * 2) / 3;
-   fill_rect.h = (TEXTURE_HEIGHT * 1) / 3;
-   SDL_RenderFillRect(renderer, &fill_rect);
-   fill_rect.x = (TEXTURE_WIDTH * 2) / 3;
-   SDL_RenderFillRect(renderer, &fill_rect);
+   SDL_RenderDrawLine(renderer, TEXTURE_WIDTH / 2, 0, TEXTURE_WIDTH, TEXTURE_HEIGHT);
+   SDL_RenderDrawLine(renderer, TEXTURE_WIDTH / 2, 0, 0, TEXTURE_HEIGHT);
+   SDL_RenderDrawLine(renderer, TEXTURE_WIDTH / 2, TEXTURE_HEIGHT * 2 / 3, TEXTURE_WIDTH, TEXTURE_HEIGHT);
+   SDL_RenderDrawLine(renderer, TEXTURE_WIDTH / 2, TEXTURE_HEIGHT * 2 / 3, 0, TEXTURE_HEIGHT);
 }
 
 void Widget::Render(SDL_Renderer *renderer) {
