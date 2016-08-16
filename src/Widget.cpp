@@ -96,6 +96,56 @@ void Widget::HandleKeyboardEvent(SDL_Keycode key) {
    }
 }
 
+void Widget::HandleWindowEvent(SDL_WindowEvent e) {
+   switch (e.event) {
+      case SDL_WINDOWEVENT_SHOWN:
+         printf("%d\n", __LINE__);
+         break;
+      case SDL_WINDOWEVENT_HIDDEN:
+         printf("%d\n", __LINE__);
+         break;
+      case SDL_WINDOWEVENT_EXPOSED:
+         // Received when window is resized
+         printf("%d\n", __LINE__);
+         break;
+      case SDL_WINDOWEVENT_MOVED:
+         printf("%d\n", __LINE__);
+         break;
+      case SDL_WINDOWEVENT_RESIZED:
+      case SDL_WINDOWEVENT_SIZE_CHANGED:
+         mWindowWidth = e.data1;
+         mWindowHeight = e.data2;
+         break;
+      case SDL_WINDOWEVENT_MINIMIZED:
+         printf("%d\n", __LINE__);
+         break;
+      case SDL_WINDOWEVENT_MAXIMIZED:
+         printf("%d\n", __LINE__);
+         break;
+      case SDL_WINDOWEVENT_RESTORED:
+         printf("%d\n", __LINE__);
+         break;
+      case SDL_WINDOWEVENT_ENTER:
+         printf("%d\n", __LINE__);
+         break;
+      case SDL_WINDOWEVENT_LEAVE:
+         printf("%d\n", __LINE__);
+         break;
+      case SDL_WINDOWEVENT_FOCUS_GAINED:
+         printf("%d\n", __LINE__);
+         break;
+      case SDL_WINDOWEVENT_FOCUS_LOST:
+         printf("%d\n", __LINE__);
+         break;
+      case SDL_WINDOWEVENT_CLOSE:
+         printf("%d\n", __LINE__);
+         break;
+      default:
+         printf("%d\n", __LINE__);
+         break;
+   }
+}
+
 void Widget::MoveForward(void) {
    mXPos += std::sin(mAngle * M_PI / 180.0) * 10;
    mYPos += std::cos(mAngle * M_PI / 180.0) * 10;

@@ -18,7 +18,9 @@ void Dispatcher::ProcessEvents(void) {
             mKeepRunning = false;
             break;
          case SDL_WINDOWEVENT:
-            //window.ProcessEvent(e);
+            for (auto f : mWindowListeners) {
+               f(e.window);
+            }
             break;
          case SDL_KEYDOWN:
             switch (e.key.keysym.sym) {
@@ -44,6 +46,10 @@ void Dispatcher::ProcessEvents(void) {
 
 void Dispatcher::AddKeyboardListener(std::function<void(SDL_Keycode)> func) {
    mKeyboardListeners.push_back(func);
+}
+
+void Dispatcher::AddWindowListener(std::function<void(SDL_WindowEvent)> func) {
+   mWindowListeners.push_back(func);
 }
 
 void Dispatcher::OptOutEvents(void) {
