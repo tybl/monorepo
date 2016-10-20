@@ -8,7 +8,6 @@
 //The window renderer
 static SDL_Renderer* gRenderer = NULL;
 
-
 int main(int argc, char* argv[]) {
    static_cast<void>(argc);
    static_cast<void>(argv);
@@ -35,6 +34,7 @@ int main(int argc, char* argv[]) {
    }
    Widget ownship(gRenderer);
    dispatch.AddKeyboardListener([&] (SDL_Keycode key) { ownship.HandleKeyboardEvent(key); });
+   dispatch.AddWindowListener([&] (SDL_WindowEvent e) { ownship.HandleWindowEvent(e); });
 
    while (dispatch.KeepRunning()) {
       dispatch.ProcessEvents();

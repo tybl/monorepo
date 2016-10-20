@@ -6,6 +6,7 @@ struct Widget {
    void Render(SDL_Renderer *renderer);
 
    void HandleKeyboardEvent(SDL_Keycode key);
+   void HandleWindowEvent(SDL_WindowEvent key);
 
 private:
    void MoveForward(void);
