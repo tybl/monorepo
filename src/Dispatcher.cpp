@@ -1,7 +1,9 @@
 #include "Dispatcher.hpp"
 
 Dispatcher::Dispatcher(void)
-   : mKeepRunning(true)
+   : mKeyboardListeners()
+   , mWindowListeners()
+   , mKeepRunning(true)
 {
    OptOutEvents();
 }
