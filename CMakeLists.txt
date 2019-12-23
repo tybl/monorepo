@@ -7,7 +7,7 @@ project(goon
 	LANGUAGES CXX)
 
 # Prepare useful modules
-set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
+set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/tools/cmake" ${CMAKE_MODULE_PATH})
 include(SetTargetMaxCompileWarnings)
 
 # Find and apply useful executables
