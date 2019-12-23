@@ -6,7 +6,7 @@
 #include <cstdio>
 
 //The window renderer
-static SDL_Renderer* gRenderer = NULL;
+static SDL_Renderer* gRenderer = nullptr;
 
 int main(int argc, char* argv[]) {
    static_cast<void>(argc);
@@ -28,7 +28,7 @@ int main(int argc, char* argv[]) {
 
    //Create vsynced renderer for window
    gRenderer = window.CreateRenderer();
-   if (gRenderer == NULL) {
+   if (gRenderer == nullptr) {
       printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
       return -1;
    }
@@ -52,7 +52,7 @@ int main(int argc, char* argv[]) {
 
    //Destroy window
    SDL_DestroyRenderer(gRenderer);
-   gRenderer = NULL;
+   gRenderer = nullptr;
 
    //Quit SDL subsystems
    SDL_Quit();
