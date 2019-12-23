@@ -13,9 +13,11 @@ class Window {
    int mHeight;
 public:
    Window(void);
+   Window(Window const&) = delete;
    ~Window(void) {
       SDL_DestroyWindow(mWindow);
    }
+   Window& operator=(Window const&) = delete;
    int Width(void) const { return mWidth; }
    int Height(void) const { return mHeight; }
    void ProcessEvent(const SDL_Event &event);
