@@ -30,7 +30,7 @@ ifeq ($(CONFIG), Release)
    LFLAGS := -g0 -O3
 endif
 
-CFLAGS += -c -std=c++14 -stdlib=libc++ -Weverything -Wno-c++98-compat -Wno-padded -pedantic -MP -MMD
+CFLAGS += -c -std=c++2a -stdlib=libc++ -Weverything -Wno-c++98-compat -Wno-padded -pedantic -MP -MMD
 LFLAGS += -lc++ -lc++abi -lSDL2
 
 $(TARGET): $(OBJECTS)
