@@ -10,6 +10,23 @@ project(goon
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 include(SetTargetMaxCompileWarnings)
 
+# Find and apply useful executables
+find_program(CLANG_TIDY_EXE NAMES clang-tidy)
+if(CLANG_TIDY_EXE)
+	message(STATUS "clang-tidy found: ${CLANG_TIDY_EXE}")
+	set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY_EXE})
+endif()
+find_program(CPPCHECK_EXE NAMES cppcheck)
+if(CPPCHECK_EXE)
+	message(STATUS "cppcheck found: ${CPPCHECK_EXE}")
+	set(CMAKE_CXX_CPPCHECK ${CPPCHECK_EXE})
+endif()
+find_program(INCLUDE_WHAT_YOU_USE_EXE NAMES include-what-you-use)
+if(INCLUDE_WHAT_YOU_USE_EXE)
+	message(STATUS "include-what-you-use found: ${INCLUDE_WHAT_YOU_USE_EXE}")
+	set(CMAKE_CXX_INCLUDE_WHAT_YOU_USE "${INCLUDE_WHAT_YOU_USE_EXE};-Xiwyu;--mapping_file=${PROJECT_SOURCE_DIR}/tools/include-what-you-use_mapping-file.imp;-Xiwyu;--quoted_includes_first;-Xiwyu;--cxx17ns;-Xiwyu;--max_line_length=120")
+endif()
+
 # Describe executable
 add_executable(goon)
 target_sources(goon
