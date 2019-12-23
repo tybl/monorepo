@@ -2,6 +2,7 @@
 
 #include <cassert>
 #include <cmath>
+#include <cstdio>
 
 static const int TEXTURE_WIDTH = 90;
 static const int TEXTURE_HEIGHT = 90;

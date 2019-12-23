@@ -1,6 +1,7 @@
 #include <Window.hpp>
 
 #include <cassert>
+#include <cstdio>
 
 Window::Window(void)
    : mWindow(SDL_CreateWindow("goon",

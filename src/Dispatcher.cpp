@@ -1,5 +1,7 @@
 #include "Dispatcher.hpp"
 
+#include <cstdio>
+
 Dispatcher::Dispatcher(void)
    : mKeyboardListeners()
    , mWindowListeners()
