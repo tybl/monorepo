@@ -1,3 +1,4 @@
+// License: The Unlicense (https://unlicense.org)
 #include "EventHandler.hpp"
 
 #include <SDL2/SDL.h>

@@ -1,3 +1,4 @@
+// License: The Unlicense (https://unlicense.org)
 #ifndef GOON_WINDOW_HPP
 #define GOON_WINDOW_HPP
 

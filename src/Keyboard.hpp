@@ -1,3 +1,4 @@
+// License: The Unlicense (https://unlicense.org)
 #ifndef GOON_KEYBOARD_HPP
 #define GOON_KEYBOARD_HPP
 

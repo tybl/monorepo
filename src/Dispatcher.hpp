@@ -1,3 +1,4 @@
+// License: The Unlicense (https://unlicense.org)
 #ifndef GOON_DISPATCHER_HPP
 #define GOON_DISPATCHER_HPP
 
