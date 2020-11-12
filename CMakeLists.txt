@@ -3,23 +3,36 @@
 ################################################################################
 cmake_minimum_required(VERSION 3.14) # FetchContent_MakeAvailable
 
-project(template
-  VERSION 0.0.0
-  DESCRIPTION "Template C++ Project using CMake"
+project(MaxRunStats
+  VERSION 0.0.1
+  DESCRIPTION "Parse TCS files into a CSV file that contains your best time for all distances"
   LANGUAGES CXX)
 
-option(BUILD_PROJECT_TESTS "Build and run tests as a subproject" OFF)
+option(BUILD_ALL_TESTS "Build and run tests as a subproject" OFF)
 
-set(IS_ROOT_PROJECT CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-if(IS_ROOT_PROJECT)
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
   include(CTest)
 endif()
 include(FetchContent)
 include(util/cmake/CompilerSettings.cmake)
 include(util/cmake/Linters.cmake)
 
-add_subdirectory(src)
+# Use doctest as unit test framework
+FetchContent_Declare(doctest
+  GIT_REPOSITORY https://github.com/onqtam/doctest.git
+  GIT_SHALLOW    TRUE
+  GIT_TAG        "2.4.1")
+FetchContent_MakeAvailable(doctest)
 
-if(IS_ROOT_PROJECT OR BUILD_PROJECT_TESTS)
+# Use pugixml to parse XML
+FetchContent_Declare(pugixml
+  GIT_REPOSITORY https://github.com/zeux/pugixml.git
+  GIT_SHALLOW    TRUE
+  GIT_TAG        "v1.10")
+FetchContent_MakeAvailable(pugixml)
+
+add_subdirectory(app)
+
+if((CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME) OR BUILD_ALL_TESTS)
   add_subdirectory(test)
 endif()
