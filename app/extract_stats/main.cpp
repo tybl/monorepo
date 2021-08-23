@@ -33,7 +33,7 @@ auto main(int argc, char const* argv[]) -> int {
         activity_start_time = std::min(activity_start_time, lap_start_time);
         auto const& track = lap.child("Track");
         for (auto const& track_point : track.children("Trackpoint")) {
-          int distance = track_point.child("DistanceMeters").text().as_int(ParseTime);
+          int distance = track_point.child("DistanceMeters").text().as_int();
           std::chrono::duration<double> elapsed_time = ParseTime(track_point.child("Time").child_value()) - activity_start_time;
           table[distance][i] = elapsed_time;
         }
