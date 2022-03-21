@@ -10,3 +10,4 @@ include(CTest)
 include(utils/cmake/external_libraries.cmake)
 
 add_subdirectory(utils/doctest)
+add_subdirectory(libs)
