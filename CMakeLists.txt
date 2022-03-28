@@ -6,11 +6,17 @@ project(pnt
 	DESCRIPTION "A collection of libraries and utilities for manipulating position, navigation, and time data"
 	LANGUAGES CXX)
 
+# Define C++ dialect
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-include(CTest)
-include(utils/cmake/external_libraries.cmake)
+# Prepare dependencies
+set(CMAKE_PREFIX_PATH deps)
+find_package(doctest)
 
+# Enable testing
+include(CTest)
 add_subdirectory(utils/doctest)
+
+# Define build
 add_subdirectory(libs)
