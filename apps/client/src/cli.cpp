@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
   //system("clear");
 
   if (argc != 2) {
-    perror("Incomplete arguments!");
+    std::cerr << "Usage: " << argv[0] << " <server>\n";
     return 1;
   }
 
