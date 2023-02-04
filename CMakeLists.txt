@@ -7,7 +7,8 @@ project(TicTacToe
 	VERSION 0.0.0
 	LANGUAGES CXX)
 
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+include(utils/cmake/CompilerSettings.cmake)
+include(utils/cmake/Linters.cmake)
 
 add_subdirectory(libs)
 add_subdirectory(apps)
