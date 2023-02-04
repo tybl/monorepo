@@ -30,12 +30,13 @@ int main(int argc, char* argv[]) {
   char serv_choice, cli_choice, nc;
   char choice_buffer[2], co_ordinates_buffer[2], toss_buffer;
 
-  system("clear");
+  //system("clear");
 
   if (argc != 2) {
     perror("Incomplete arguments!");
     return 1;
   }
+
   port_no = atoi(ptr_port);
   he = gethostbyname(argv[1]);
   if (he == NULL) {
