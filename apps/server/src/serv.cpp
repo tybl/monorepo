@@ -12,14 +12,14 @@
 #include <time.h>
 #include <unistd.h>
 
-#define PORT "9987";
+static const int port_no = 9987;
 
 using namespace std;
 
 int main(int argc, char* argv[]) {
-  int sockfd, newsockfd, port_no, bindfd, listenfd, bytes_sent, bytes_recvd;
+  int sockfd, newsockfd, bindfd, listenfd, bytes_sent, bytes_recvd;
   char sbuffer[512], cli_ip[16], sname[64], cname[64];
-  char *ptr_buff, *ptr_port;
+  char *ptr_buff;
   const char* ptr_cli_ip;
   struct sockaddr_in serv_addr, cli_addr;
   socklen_t serv_size, cli_size;
@@ -30,7 +30,6 @@ int main(int argc, char* argv[]) {
 
   system("clear");
   ptr_buff = &sbuffer[0];
-  ptr_port = (char*)&PORT;
 
   // creating sever side socket
   sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -40,7 +39,6 @@ int main(int argc, char* argv[]) {
   }
 
   memset(&serv_addr, 0, sizeof(serv_addr));
-  port_no = atoi(ptr_port);
 
   serv_addr.sin_family = AF_INET;
   serv_addr.sin_port = htons(port_no);
