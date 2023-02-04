@@ -14,7 +14,7 @@
 #include <sys/types.h>
 #include <time.h>
 
-#define PORT "9987"
+static const int port_no = 9987;
 
 using namespace std;
 
@@ -22,7 +22,6 @@ int main(int argc, char* argv[]) {
   int sockfd, newsockfd, port_no, n, connectfd, bytes_sent, bytes_recvd;
   char cbuffer[512], sname[64], cname[64];
   char* ptr = &cbuffer[0];
-  char* ptr_port = (char*)&PORT;
   struct sockaddr_in serv_addr;
   struct hostent* he;
 
@@ -37,7 +36,6 @@ int main(int argc, char* argv[]) {
     return 1;
   }
 
-  port_no = atoi(ptr_port);
   he = gethostbyname(argv[1]);
   if (he == NULL) {
     perror("No Such Host!");
