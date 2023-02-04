@@ -19,15 +19,14 @@ static const int port_no = 9987;
 using namespace std;
 
 int main(int argc, char* argv[]) {
-  int sockfd, newsockfd, port_no, n, connectfd, bytes_sent, bytes_recvd;
-  char cbuffer[512], sname[64], cname[64];
-  char* ptr = &cbuffer[0];
+  int sockfd, connectfd;
+  char sname[64], cname[64];
   struct sockaddr_in serv_addr;
   struct hostent* he;
 
   int count = 0, inp, x, y, ni, inp_true = 0, toss;
   char serv_choice, cli_choice, nc;
-  char choice_buffer[2], co_ordinates_buffer[2], toss_buffer;
+  char choice_buffer[2], co_ordinates_buffer[16], toss_buffer;
 
   //system("clear");
 
@@ -53,7 +52,7 @@ int main(int argc, char* argv[]) {
   serv_addr.sin_port = htons(port_no);
   serv_addr.sin_addr = *((struct in_addr*)he->h_addr);
 
-  connectfd = connect(sockfd, (struct sockaddr*)&serv_addr, sizeof(serv_addr));
+  connectfd = connect(sockfd, reinterpret_cast<struct sockaddr*>(&serv_addr), sizeof(serv_addr));
   if (connectfd == -1) {
     perror("Sorry. Could not connect to server.");
     return 1;
@@ -61,6 +60,8 @@ int main(int argc, char* argv[]) {
 
   cout << "Enter your name : ";
   cin >> cname;
+  ssize_t bytes_sent = 0;
+  ssize_t bytes_recvd = 0;
   do {
     static int flag = 0;
     bytes_sent = send(sockfd, &cname, sizeof(cname), 0);
@@ -122,7 +123,6 @@ int main(int argc, char* argv[]) {
         cout << endl << sname << " gets X." << endl << endl << "Lets Play!" << endl << endl;
       } else {
         cout << "\nInvalid Choice! Please Choose Again..." << endl;
-        inp_true == 0;
       }
     } while (inp_true == 0);
 
@@ -178,7 +178,7 @@ int main(int argc, char* argv[]) {
         sprintf(&co_ordinates_buffer[1], "%d", y);
         cout << endl << "Updating Matrix..." << endl;
 
-        bytes_sent = send(sockfd, &co_ordinates_buffer, sizeof(co_ordinates_buffer), 0);
+        bytes_sent = send(sockfd, &co_ordinates_buffer, 2, 0);
         if (bytes_sent == -1) {
           perror("CO-ORDINATES BUFFER could not be sent!");
           return 1;

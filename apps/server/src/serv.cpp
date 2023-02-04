@@ -16,20 +16,17 @@ static const int port_no = 9987;
 
 using namespace std;
 
-int main(int argc, char* argv[]) {
-  int sockfd, newsockfd, bindfd, listenfd, bytes_sent, bytes_recvd;
-  char sbuffer[512], cli_ip[16], sname[64], cname[64];
-  char *ptr_buff;
-  const char* ptr_cli_ip;
+int main() {
+  int sockfd, newsockfd, bindfd, listenfd;
+  char cli_ip[16], sname[64], cname[64];
   struct sockaddr_in serv_addr, cli_addr;
-  socklen_t serv_size, cli_size;
+  socklen_t cli_size;
 
   int inp_true = 0, count = 0, inp, ni, x, y, toss;
   char serv_choice, cli_choice, nc;
-  char choice_buffer[2], co_ordinates_buffer[2], toss_buffer;
+  char choice_buffer[2], co_ordinates_buffer[16];
 
   system("clear");
-  ptr_buff = &sbuffer[0];
 
   // creating sever side socket
   sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -45,7 +42,7 @@ int main(int argc, char* argv[]) {
   serv_addr.sin_addr.s_addr = INADDR_ANY;
 
   // binding socket
-  bindfd = bind(sockfd, (struct sockaddr*)&serv_addr, sizeof(serv_addr));
+  bindfd = bind(sockfd, reinterpret_cast<struct sockaddr*>(&serv_addr), sizeof(serv_addr));
   if (bindfd == -1) {
     perror("Failed to bind!");
     return 1;
@@ -62,19 +59,20 @@ int main(int argc, char* argv[]) {
     return 1;
   }
 
-  serv_size = sizeof(serv_addr);
   cli_size = sizeof(cli_addr);
-  newsockfd = accept(sockfd, (struct sockaddr*)&cli_addr, &cli_size);
+  newsockfd = accept(sockfd, reinterpret_cast<struct sockaddr*>(&cli_addr), &cli_size);
 
   if (newsockfd == -1) {
     perror("Failed to accept from client!");
     return 1;
   }
 
-  ptr_cli_ip = inet_ntop(AF_INET, &cli_addr.sin_addr, cli_ip, cli_size);
+  inet_ntop(AF_INET, &cli_addr.sin_addr, cli_ip, cli_size);
   cout << "Server received connections from " << cli_ip << endl;
 
   memset(&cname, 0, sizeof(cname));
+  ssize_t bytes_recvd = 0;
+  ssize_t bytes_sent = 0;
   do {
     static int flag = 0;
     bytes_recvd = recv(newsockfd, &cname, sizeof(cname), 0);
@@ -96,10 +94,11 @@ int main(int argc, char* argv[]) {
   cout << "Creating Game. Please wait..." << endl;
   sleep(2);
   cout << endl << "Game created!" << endl << endl << "Doing a toss...";
-  srand(time(NULL));
+
+  srand(static_cast<unsigned int>(time(NULL)));
   toss = rand() % 2;
   sleep(1);
-  sprintf(&toss_buffer, "%d", toss);
+  char toss_buffer = (rand() % 2) ? '0' : '1';
   bytes_sent = send(newsockfd, &toss_buffer, sizeof(toss_buffer), 0);
   if (bytes_sent == -1) {
     perror("TOSS BUFFER not sent!");
@@ -123,7 +122,6 @@ int main(int argc, char* argv[]) {
         cout << endl << cname << " gets X." << endl << endl << "Lets Play!" << endl << endl;
       } else {
         cout << "\nInvalid Choice! Please Choose Again..." << endl;
-        inp_true == 0;
       }
     } while (inp_true == 0);
 
@@ -179,7 +177,7 @@ int main(int argc, char* argv[]) {
         sprintf(&co_ordinates_buffer[1], "%d", y);
         cout << endl << "Updating Matrix..." << endl;
 
-        bytes_sent = send(newsockfd, &co_ordinates_buffer, sizeof(co_ordinates_buffer), 0);
+        bytes_sent = send(newsockfd, &co_ordinates_buffer, 2, 0);
         if (bytes_sent == -1) {
           perror("CO-ORDINATES BUFFER not sent!");
           return 1;
