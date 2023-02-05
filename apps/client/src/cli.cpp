@@ -1,3 +1,4 @@
+#include "socket.hpp"
 #include "tictactoe.hpp"
 
 #include <cstdio>
@@ -14,49 +15,15 @@
 #include <sys/types.h>
 #include <time.h>
 
-static const int port_no = 9987;
-
 using namespace std;
 
-int main(int argc, char* argv[]) {
-  int sockfd, connectfd;
+int main() {
+  client_socket cs("127.0.0.1", "9987");
   char sname[64], cname[64];
-  struct sockaddr_in serv_addr;
-  struct hostent* he;
 
   int count = 0, inp, x, y, ni, inp_true = 0, toss;
   char serv_choice, cli_choice, nc;
   char choice_buffer[2], co_ordinates_buffer[16], toss_buffer;
-
-  //system("clear");
-
-  if (argc != 2) {
-    std::cerr << "Usage: " << argv[0] << " <server>\n";
-    return 1;
-  }
-
-  he = gethostbyname(argv[1]);
-  if (he == NULL) {
-    perror("No Such Host!");
-    return 1;
-  }
-
-  sockfd = socket(AF_INET, SOCK_STREAM, 0);
-  if (sockfd == -1) {
-    perror("Sorry. Socket could not be created!");
-    return 1;
-  }
-
-  memset(&serv_addr, 0, sizeof(serv_addr));
-  serv_addr.sin_family = AF_INET;
-  serv_addr.sin_port = htons(port_no);
-  serv_addr.sin_addr = *((struct in_addr*)he->h_addr);
-
-  connectfd = connect(sockfd, reinterpret_cast<struct sockaddr*>(&serv_addr), sizeof(serv_addr));
-  if (connectfd == -1) {
-    perror("Sorry. Could not connect to server.");
-    return 1;
-  }
 
   cout << "Enter your name : ";
   cin >> cname;
@@ -64,7 +31,7 @@ int main(int argc, char* argv[]) {
   ssize_t bytes_recvd = 0;
   do {
     static int flag = 0;
-    bytes_sent = send(sockfd, &cname, sizeof(cname), 0);
+    bytes_sent = cs.send(&cname, sizeof(cname));
     if (bytes_sent == -1 && flag == 0) {
       cout << "PLAYER DATA NOT SENT!" << endl << "Trying Again...";
       continue;
@@ -73,7 +40,7 @@ int main(int argc, char* argv[]) {
 
       flag = 1;
       memset(&sname, 0, sizeof(sname));
-      bytes_recvd = recv(sockfd, &sname, sizeof(sname), 0);
+      bytes_recvd = cs.recv(&sname, sizeof(sname));
       if (bytes_recvd == -1)
         cout << "COULD NOT ACQUIRE PLAYER INFORMATION!" << endl << "Trying Again..." << endl;
       else
@@ -85,7 +52,7 @@ int main(int argc, char* argv[]) {
   sleep(2);
   cout << endl << "Game created!" << endl << endl << "Doing a toss...";
 
-  bytes_recvd = recv(sockfd, &toss_buffer, sizeof(toss_buffer), 0);
+  bytes_recvd = cs.recv(&toss_buffer, sizeof(toss_buffer));
   if (bytes_recvd == -1) {
     perror("TOSS BUFFER not received");
     return 1;
@@ -96,7 +63,7 @@ int main(int argc, char* argv[]) {
     cout << endl << sname << " WON the toss." << endl;
     cout << sname << " is choosing. Please wait..." << endl << endl;
     memset(&choice_buffer, 0, sizeof(choice_buffer));
-    bytes_recvd = recv(sockfd, &choice_buffer, sizeof(choice_buffer), 0);
+    bytes_recvd = cs.recv(&choice_buffer, sizeof(choice_buffer));
     if (bytes_recvd == -1) {
       perror("CHOICE BUFFER not received!");
       return 1;
@@ -130,7 +97,7 @@ int main(int argc, char* argv[]) {
     choice_buffer[0] = serv_choice;
     choice_buffer[1] = cli_choice;
 
-    bytes_sent = send(sockfd, &choice_buffer, sizeof(choice_buffer), 0);
+    bytes_sent = cs.send(&choice_buffer, sizeof(choice_buffer));
     if (bytes_sent == -1) {
       perror("CHOICE BUFFER could not be sent.");
       return 1;
@@ -156,7 +123,7 @@ int main(int argc, char* argv[]) {
 
     if (inp % 2 != 0) {
       cout << endl << sname << "'s turn. Please wait..." << endl;
-      bytes_recvd = recv(sockfd, &co_ordinates_buffer, sizeof(co_ordinates_buffer), 0);
+      bytes_recvd = cs.recv(&co_ordinates_buffer, sizeof(co_ordinates_buffer));
       if (bytes_recvd == -1) {
         perror("CO-ORDINATES BUFFER not recieved!");
         return 1;
@@ -178,7 +145,7 @@ int main(int argc, char* argv[]) {
         sprintf(&co_ordinates_buffer[1], "%d", y);
         cout << endl << "Updating Matrix..." << endl;
 
-        bytes_sent = send(sockfd, &co_ordinates_buffer, 2, 0);
+        bytes_sent = cs.send(&co_ordinates_buffer, 2);
         if (bytes_sent == -1) {
           perror("CO-ORDINATES BUFFER could not be sent!");
           return 1;
@@ -209,6 +176,5 @@ int main(int argc, char* argv[]) {
     cout << endl << "Game ends in a draw." << endl;
 
   cout << endl << "Thank You for playing Tic-tac-Toe" << endl;
-  close(sockfd);
   return 0;
 }
