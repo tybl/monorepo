@@ -9,3 +9,10 @@ target_sources(toe
     src/cli.cpp
     src/socket.cpp
 )
+
+add_executable(toe2)
+target_link_libraries(toe2 PRIVATE compiler_settings ttt)
+target_sources(toe2
+  PRIVATE
+    src/main.cpp
+)
