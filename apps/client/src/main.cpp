@@ -8,19 +8,22 @@ struct game_connector {
 
 game_connector::~game_connector() {}
 
+#include <iostream>
 #include <vector>
 
 class test_connector
   : public game_connector
 {
-  std::size_t m_iteration;
+  std::size_t m_input_iteration;
+  std::size_t m_output_iteration;
   std::vector<std::string> m_input;
   std::vector<std::string> m_expected_output;
 
 public:
   test_connector(std::vector<std::string> const& input,
                  std::vector<std::string> const& expected_output)
-    : m_iteration(0)
+    : m_input_iteration(0)
+    , m_output_iteration(0)
     , m_input(input)
     , m_expected_output(expected_output)
   { }
@@ -29,10 +32,16 @@ public:
   }
 
   void sendto(std::string const& data) override {
+    if (data != m_expected_output.at(m_output_iteration)) {
+      std::cerr << "sendto() called with different value than expected:\n"
+                << "\tExpected: " << m_expected_output.at(m_output_iteration)
+                << "\n\tReceived: " << data << std::endl;
+    }
+    m_output_iteration++;
   }
 
   std::string recvfrom() override {
-    return m_input.at(m_iteration);
+    return m_input.at(m_input_iteration++);
   }
 };
 
@@ -70,6 +79,10 @@ public:
     : m_connector(conn) { }
 
   void run() {
+    auto input = m_connector.recvfrom();
+    m_connector.sendto("output1");
+    input = m_connector.recvfrom();
+    m_connector.sendto("output2");
     // if address is provided
     //    sendto(address, "game_id")
     // while(true)
@@ -86,7 +99,7 @@ public:
 };
 
 int main() {
-  test_connector conn({},{});
+  test_connector conn({"input1", "input2"},{"output1", "output2"});
   game my_game(conn);
   my_game.run();
 }
