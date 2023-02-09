@@ -88,7 +88,7 @@ else()
     target_compile_options(compiler_settings INTERFACE -Wlifetime)
   endif()
   # -Weffc++ can be difficult to please, enable at your own risk
-  check_cxx_compiler_flag(-Weffc++ HAS_COMPILER_WARNING_EFFCPLUSPLUS)
+  #check_cxx_compiler_flag(-Weffc++ HAS_COMPILER_WARNING_EFFCPLUSPLUS)
   if(${HAS_COMPILER_WARNING_EFFCPLUSPLUS})
     target_compile_options(compiler_settings INTERFACE -Weffc++)
   endif()
