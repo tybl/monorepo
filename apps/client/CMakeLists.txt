@@ -14,5 +14,8 @@ add_executable(toe2)
 target_link_libraries(toe2 PRIVATE compiler_settings fmt ttt)
 target_sources(toe2
   PRIVATE
+    src/game_connector.cpp
+    src/game.cpp
+    src/test_connector.cpp
     src/main.cpp
 )
