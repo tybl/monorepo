@@ -3,17 +3,19 @@
 
 #include "move.hpp"
 
+#include <array>
+
 namespace ttt {
 
 class board {
-  char m_board[3][3] = {0};
+  std::array<std::array<char,3>,3> m_board;
 
 public:
   void display() const;
 
-  void apply(move m);
+  void apply(move p_move);
 
-  auto has_winner() const -> bool;
+  [[nodiscard]] auto has_winner() const -> bool;
 
 }; // class board
 

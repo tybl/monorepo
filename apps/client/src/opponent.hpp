@@ -5,8 +5,8 @@
 
 struct opponent {
   virtual ~opponent() = 0;
-  virtual void sendto(std::string const& data) = 0;
-  virtual std::string recvfrom() = 0;
+  virtual void sendto(std::string const& p_data) = 0;
+  virtual auto recvfrom() -> std::string = 0;
 };
 
 #endif // TYBL_TICTACTOE_OPPONENT_HPP

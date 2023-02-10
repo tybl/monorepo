@@ -4,18 +4,18 @@
 namespace ttt {
 
 class move {
-  int m_row;
-  int m_col;
+  unsigned int m_row;
+  unsigned int m_col;
   char m_player;
 
 public:
-  move(int row, int col, char player);
+  move(unsigned int p_row, unsigned int p_col, char p_player);
 
-  auto row() const -> int;
+  [[nodiscard]] auto row() const -> unsigned int;
 
-  auto col() const -> int;
+  [[nodiscard]] auto col() const -> unsigned int;
 
-  auto player() const -> char;
+  [[nodiscard]] auto player() const -> char;
 
 }; // class move
 

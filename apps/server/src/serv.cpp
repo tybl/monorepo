@@ -3,23 +3,27 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <ctime>
 #include <iostream>
 
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <sys/types.h>
-#include <time.h>
 #include <unistd.h>
 
 static const int port_no = 9987;
 
-using namespace std;
-
-int main() {
-  int sockfd, newsockfd, bindfd, listenfd;
-  char cli_ip[16], sname[64], cname[64];
-  struct sockaddr_in serv_addr, cli_addr;
+auto main() -> int {
+  int sockfd = 0;
+  int newsockfd = 0;
+  int bindfd = 0;
+  int listenfd = 0;
+  char cli_ip[16];
+  char sname[64];
+  char cname[64];
+  sockaddr_in serv_addr;
+  sockaddr_in cli_addr;
   socklen_t cli_size;
 
   int inp_true = 0, count = 0, inp, ni, x, y, toss;
@@ -49,9 +53,9 @@ int main() {
   }
 
   // listening for incoming connections
-  cout << "Enter your Name : ";
-  cin >> sname;
-  cout << "Server created!" << endl << "Waiting for a Player..." << endl;
+  std::cout << "Enter your Name : ";
+  std::cin >> sname;
+  std::cout << "Server created!" << std::endl << "Waiting for a Player..." << std::endl;
 
   listenfd = listen(sockfd, 5);
   if (listenfd == -1) {
@@ -68,7 +72,7 @@ int main() {
   }
 
   inet_ntop(AF_INET, &cli_addr.sin_addr, cli_ip, cli_size);
-  cout << "Server received connections from " << cli_ip << endl;
+  std::cout << "Server received connections from " << cli_ip << std::endl;
 
   memset(&cname, 0, sizeof(cname));
   ssize_t bytes_recvd = 0;
@@ -78,22 +82,22 @@ int main() {
     bytes_recvd = recv(newsockfd, &cname, sizeof(cname), 0);
     if (bytes_recvd == -1 && flag == 0) {
       memset(&cname, 0, sizeof(cname));
-      cout << "Could not ACQUIRE Player Information!" << endl << "Trying again..." << endl;
+      std::cout << "Could not ACQUIRE Player Information!" << std::endl << "Trying again..." << std::endl;
       continue;
     } else {
       flag = 1;
       bytes_sent = send(newsockfd, &sname, sizeof(sname), 0);
       if (bytes_sent == -1)
-        cout << "Could not SEND Player Data!"
-             << "Trying Again..." << endl;
+        std::cout << "Could not SEND Player Data!"
+             << "Trying Again..." << std::endl;
       else
-        cout << cname << " has joined the game." << endl;
+        std::cout << cname << " has joined the game." << std::endl;
     }
   } while (bytes_recvd == -1 || bytes_sent == -1);
 
-  cout << "Creating Game. Please wait..." << endl;
+  std::cout << "Creating Game. Please wait..." << std::endl;
   sleep(2);
-  cout << endl << "Game created!" << endl << endl << "Doing a toss...";
+  std::cout << std::endl << "Game created!" << std::endl << std::endl << "Doing a toss...";
 
   srand(static_cast<unsigned int>(time(NULL)));
   toss = rand() % 2;
@@ -106,22 +110,22 @@ int main() {
   }
 
   if (toss == 0) {
-    cout << endl << "You WON the toss!" << endl;
+    std::cout << std::endl << "You WON the toss!" << std::endl;
     do {
-      cout << sname << " Enter Your Choice (X or O): ";
-      cin >> serv_choice;
+      std::cout << sname << " Enter Your Choice (X or O): ";
+      std::cin >> serv_choice;
       if (serv_choice == 'X' || serv_choice == 'x') {
         serv_choice = 'X';
         cli_choice = 'O';
         inp_true = 1;
-        cout << endl << cname << " gets O." << endl << endl << "Lets Play!" << endl << endl;
+        std::cout << std::endl << cname << " gets O." << std::endl << std::endl << "Lets Play!" << std::endl << std::endl;
       } else if (serv_choice == 'O' || serv_choice == 'o' || serv_choice == '0') {
         serv_choice = 'O';
         cli_choice = 'X';
         inp_true = 1;
-        cout << endl << cname << " gets X." << endl << endl << "Lets Play!" << endl << endl;
+        std::cout << std::endl << cname << " gets X." << std::endl << std::endl << "Lets Play!" << std::endl << std::endl;
       } else {
-        cout << "\nInvalid Choice! Please Choose Again..." << endl;
+        std::cout << "\nInvalid Choice! Please Choose Again..." << std::endl;
       }
     } while (inp_true == 0);
 
@@ -135,8 +139,8 @@ int main() {
       return 1;
     }
   } else {
-    cout << endl << cname << " WON the toss." << endl;
-    cout << cname << " is choosing. Please wait..." << endl << endl;
+    std::cout << std::endl << cname << " WON the toss." << std::endl;
+    std::cout << cname << " is choosing. Please wait..." << std::endl << std::endl;
 
     memset(&choice_buffer, 0, sizeof(choice_buffer));
     bytes_recvd = recv(newsockfd, &choice_buffer, sizeof(choice_buffer), 0);
@@ -146,21 +150,21 @@ int main() {
     } else {
       serv_choice = choice_buffer[0];
       cli_choice = choice_buffer[1];
-      cout << sname << " has chosen " << serv_choice << endl << endl << "You will play with " << cli_choice << endl;
-      cout << endl << "Lets Play!" << endl << endl;
+      std::cout << sname << " has chosen " << serv_choice << std::endl << std::endl << "You will play with " << cli_choice << std::endl;
+      std::cout << std::endl << "Lets Play!" << std::endl << std::endl;
     }
   }
 
   if (serv_choice == 'X') {
     inp = 1;
-    cout << "You  will play first." << endl << endl;
+    std::cout << "You  will play first." << std::endl << std::endl;
   } else {
     inp = 2;
-    cout << cname << " will play first." << endl << endl;
+    std::cout << cname << " will play first." << std::endl << std::endl;
   }
 
   init();
-  cout << endl << "Starting Game..." << endl;
+  std::cout << std::endl << "Starting Game..." << std::endl;
   sleep(3);
   display();
 
@@ -168,14 +172,14 @@ int main() {
     memset(&co_ordinates_buffer, 0, sizeof(co_ordinates_buffer));
 
     if (inp % 2 != 0) {
-      cout << endl << "Your turn. Enter co-ordinates separated by a space : ";
-      cin >> x >> y;
+      std::cout << std::endl << "Your turn. Enter co-ordinates separated by a space : ";
+      std::cin >> x >> y;
       ni = input(serv_choice, x, y);
       if (ni == 0) {
         inp++;
         sprintf(&co_ordinates_buffer[0], "%d", x);
         sprintf(&co_ordinates_buffer[1], "%d", y);
-        cout << endl << "Updating Matrix..." << endl;
+        std::cout << std::endl << "Updating Matrix..." << std::endl;
 
         bytes_sent = send(newsockfd, &co_ordinates_buffer, 2, 0);
         if (bytes_sent == -1) {
@@ -184,7 +188,7 @@ int main() {
         }
       }
     } else {
-      cout << endl << cname << "'s turn. Please wait..." << endl;
+      std::cout << std::endl << cname << "'s turn. Please wait..." << std::endl;
       bytes_recvd = recv(newsockfd, &co_ordinates_buffer, sizeof(co_ordinates_buffer), 0);
       if (bytes_recvd == -1) {
         perror("CO-ORDINATES BUFFER not recieved!");
@@ -195,7 +199,7 @@ int main() {
       ni = input(cli_choice, x, y);
       if (ni == 0) {
         inp++;
-        cout << endl << cname << " has played. Updating Matrix..." << endl;
+        std::cout << std::endl << cname << " has played. Updating Matrix..." << std::endl;
       }
     }
 
@@ -209,19 +213,19 @@ int main() {
       if (nc == 'f')
         continue;
       else if (serv_choice == nc) {
-        cout << endl << "Congrats! You have won!!!" << endl << cname << " lost." << endl;
+        std::cout << std::endl << "Congrats! You have won!!!" << std::endl << cname << " lost." << std::endl;
         break;
       } else if (cli_choice == nc) {
-        cout << endl << "You loose." << endl << cname << " has won." << endl;
+        std::cout << std::endl << "You loose." << std::endl << cname << " has won." << std::endl;
         break;
       }
     }
   }
 
-  if (nc == 'f')
-    cout << endl << "Game ends in a draw." << endl;
-
-  cout << endl << "Thank You for playing Tic-tac-Toe" << endl;
+  if (nc == 'f') {
+    std::cout << std::endl << "Game ends in a draw." << std::endl;
+  }
+  std::cout << std::endl << "Thank You for playing Tic-tac-Toe" << std::endl;
   close(newsockfd);
   close(sockfd);
   return 0;

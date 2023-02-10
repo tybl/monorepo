@@ -1,13 +1,13 @@
 #include "ttt/move.hpp"
 
-ttt::move::move(int row, int col, char player)
-  : m_row(row)
-  , m_col(col)
-  , m_player(player) {
-  if (0 > m_row || m_row > 2) {
+ttt::move::move(unsigned int p_row, unsigned int p_col, char p_player)
+  : m_row(p_row)
+  , m_col(p_col)
+  , m_player(p_player) {
+  if (2 < m_row) {
     throw "something";
   }
-  if (0 > m_col || m_col > 2) {
+  if (2 < m_col) {
     throw "something";
   }
   if (m_player != 'X' && m_player != 'O') {
@@ -15,8 +15,8 @@ ttt::move::move(int row, int col, char player)
   }
 }
 
-auto ttt::move::row() const -> int { return m_row; }
+auto ttt::move::row() const -> unsigned int { return m_row; }
 
-auto ttt::move::col() const -> int { return m_col; }
+auto ttt::move::col() const -> unsigned int { return m_col; }
 
 auto ttt::move::player() const -> char { return m_player; }
