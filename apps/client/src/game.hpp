@@ -1,14 +1,14 @@
 #ifndef TYBL_TICTACTOE_GAME_HPP
 #define TYBL_TICTACTOE_GAME_HPP
 
-#include "game_connector.hpp"
+#include "opponent.hpp"
 #include "ttt/move.hpp"
 
 class game {
-  game_connector& m_connector;
+  opponent& m_connector;
 
 public:
-  explicit game(game_connector& conn);
+  explicit game(opponent& conn);
 
   void run();
 

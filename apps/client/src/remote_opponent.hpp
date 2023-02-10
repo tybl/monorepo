@@ -1,12 +1,12 @@
-#include "game_connector.hpp"
+#include "opponent.hpp"
 
 #include <unistd.h>
 
-class network_connector : public game_connector {
+class remote_opponent : public opponent {
   int m_socket;
 
 public:
-  ~network_connector() override { close(m_socket); }
+  ~remote_opponent() override { close(m_socket); }
 
   void sendto(std::string const&) override {
     // ssize_t retval = sendto(m_socket, const void buf[.len], size_t len, int flags, const struct sockaddr *dest_addr,

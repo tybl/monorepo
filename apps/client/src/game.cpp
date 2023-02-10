@@ -1,6 +1,6 @@
 #include "game.hpp"
 
-game::game(game_connector& conn)
+game::game(opponent& conn)
   : m_connector(conn) {}
 
 void game::run() {
