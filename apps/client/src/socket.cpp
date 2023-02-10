@@ -16,13 +16,9 @@ client_socket::client_socket(std::string const& address, std::string const& serv
 
 client_socket::~client_socket() { ::close(m_socket); }
 
-auto client_socket::send(const void* msg, size_t len) -> ssize_t {
-  return ::send(m_socket, msg, len, 0);
-}
+auto client_socket::send(const void* msg, size_t len) -> ssize_t { return ::send(m_socket, msg, len, 0); }
 
-auto client_socket::recv(void* buf, size_t len) -> ssize_t {
-  return ::recv(m_socket, buf, len, 0);
-}
+auto client_socket::recv(void* buf, size_t len) -> ssize_t { return ::recv(m_socket, buf, len, 0); }
 
 auto client_socket::find_server(std::string const& address, std::string const& service) -> int {
   addrinfo hints{};

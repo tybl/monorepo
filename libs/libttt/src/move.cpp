@@ -1,9 +1,9 @@
 #include "ttt/move.hpp"
 
 ttt::move::move(int row, int col, char player)
-    : m_row(row)
-    , m_col(col)
-    , m_player(player) {
+  : m_row(row)
+  , m_col(col)
+  , m_player(player) {
   if (0 > m_row || m_row > 2) {
     throw "something";
   }

@@ -71,7 +71,9 @@ int main() {
     } else {
       serv_choice = choice_buffer[0];
       cli_choice = choice_buffer[1];
-      std::cout << sname << " has chosen " << serv_choice << std::endl << std::endl << "You will play with " << cli_choice << std::endl;
+      std::cout << sname << " has chosen " << serv_choice << std::endl
+                << std::endl
+                << "You will play with " << cli_choice << std::endl;
       std::cout << std::endl << "Lets Play!" << std::endl << std::endl;
     }
   } else {
@@ -83,12 +85,20 @@ int main() {
         serv_choice = 'O';
         cli_choice = 'X';
         inp_true = 1;
-        std::cout << std::endl << sname << " gets O." << std::endl << std::endl << "Lets Play!" << std::endl << std::endl;
+        std::cout << std::endl
+                  << sname << " gets O." << std::endl
+                  << std::endl
+                  << "Lets Play!" << std::endl
+                  << std::endl;
       } else if (cli_choice == 'O' || cli_choice == 'o' || cli_choice == '0') {
         serv_choice = 'X';
         cli_choice = 'O';
         inp_true = 1;
-        std::cout << std::endl << sname << " gets X." << std::endl << std::endl << "Lets Play!" << std::endl << std::endl;
+        std::cout << std::endl
+                  << sname << " gets X." << std::endl
+                  << std::endl
+                  << "Lets Play!" << std::endl
+                  << std::endl;
       } else {
         std::cout << "\nInvalid Choice! Please Choose Again..." << std::endl;
       }

@@ -1,7 +1,7 @@
 #include "game.hpp"
 
 game::game(game_connector& conn)
-: m_connector(conn) { }
+  : m_connector(conn) {}
 
 void game::run() {
   auto input = m_connector.recvfrom();
@@ -21,6 +21,4 @@ void game::run() {
   //       my_move = make_move(game)
   //       sendto(game.remote_ip, my_move)
 }
-ttt::move game::make_move() {
-  return ttt::move(0,0,'O');
-}
+ttt::move game::make_move() { return ttt::move(0, 0, 'O'); }
