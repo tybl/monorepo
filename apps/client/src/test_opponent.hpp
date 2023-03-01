@@ -15,7 +15,13 @@ class test_opponent : public opponent {
 public:
   test_opponent(std::vector<std::string> p_input, std::vector<std::string> p_expected_output);
 
+  test_opponent(test_opponent &&) = default;
+  test_opponent(test_opponent const&) = default;
+
   ~test_opponent() override;
+
+  auto operator=(test_opponent &&) -> test_opponent& = default;
+  auto operator=(test_opponent const&) -> test_opponent& = default;
 
   void sendto(std::string const& p_data) override;
 
