@@ -11,6 +11,7 @@ include(FetchContent)
 include(utils/cmake/CompilerSettings.cmake)
 include(utils/cmake/Linters.cmake)
 
+# NixOS hack
 if(CMAKE_EXPORT_COMPILE_COMMANDS)
   set(CMAKE_CXX_STANDARD_INCLUDE_DIRECTORIES ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES})
 endif()
