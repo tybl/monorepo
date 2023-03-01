@@ -11,6 +11,10 @@ include(FetchContent)
 include(utils/cmake/CompilerSettings.cmake)
 include(utils/cmake/Linters.cmake)
 
+if(CMAKE_EXPORT_COMPILE_COMMANDS)
+  set(CMAKE_CXX_STANDARD_INCLUDE_DIRECTORIES ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES})
+endif()
+
 FetchContent_Declare(fmt
   GIT_REPOSITORY https://github.com/fmtlib/fmt.git
   GIT_SHALLOW    TRUE
