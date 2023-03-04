@@ -1,5 +1,7 @@
 #include "game.hpp"
 
+#include "ttt/player.hpp"
+
 game::game(opponent& p_conn)
   : m_connector(p_conn) {}
 
@@ -22,4 +24,4 @@ void game::run() {
   //       sendto(game.remote_ip, my_move)
 }
 
-auto game::make_move() -> ttt::move { return {0, 0, 'O'}; }
+auto game::make_move() -> ttt::move { return {0, 0, static_cast<ttt::player>('O')}; }
