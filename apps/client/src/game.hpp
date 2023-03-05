@@ -13,7 +13,7 @@ public:
   void run();
 
 private:
-  auto make_move() -> ttt::move;
+  static auto make_move() -> ttt::move;
 }; // class game
 
 #endif // TYBL_TICTACTOE_GAME_HPP

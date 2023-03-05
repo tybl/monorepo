@@ -1,3 +1,5 @@
+// License: The Unlicense (https://unlicense.org)
+#pragma once
 #ifndef TYBL_TICTACTOE_TESTOPPONENT_HPP
 #define TYBL_TICTACTOE_TESTOPPONENT_HPP
 

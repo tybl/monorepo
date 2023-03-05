@@ -6,18 +6,18 @@
 
 #include <unistd.h>
 
-int main() {
+auto main() -> int {
   client_socket cs("127.0.0.1", "9987");
   char sname[64];
   char cname[64];
 
   int count = 0;
-  int inp;
-  int x;
-  int y;
-  int ni;
+  int inp = 0;
+  int x = 0;
+  int y = 0;
+  int ni = 0;
   int inp_true = 0;
-  int toss;
+  int toss = 0;
   char serv_choice;
   char cli_choice;
   char nc;
@@ -35,16 +35,16 @@ int main() {
     if (bytes_sent == -1 && flag == 0) {
       std::cout << "PLAYER DATA NOT SENT!" << std::endl << "Trying Again...";
       continue;
-    } else {
-      cli_choice = 'X';
+    }
+    cli_choice = 'X';
 
-      flag = 1;
-      std::memset(&sname, 0, sizeof(sname));
-      bytes_recvd = cs.recv(&sname, sizeof(sname));
-      if (bytes_recvd == -1)
-        std::cout << "COULD NOT ACQUIRE PLAYER INFORMATION!" << std::endl << "Trying Again..." << std::endl;
-      else
-        std::cout << "You have joined " << sname << " for a game of Tic-Tac-Toe." << std::endl;
+    flag = 1;
+    std::memset(&sname, 0, sizeof(sname));
+    bytes_recvd = cs.recv(&sname, sizeof(sname));
+    if (bytes_recvd == -1) {
+      std::cout << "COULD NOT ACQUIRE PLAYER INFORMATION!" << std::endl << "Trying Again..." << std::endl;
+    } else {
+      std::cout << "You have joined " << sname << " for a game of Tic-Tac-Toe." << std::endl;
     }
   } while (bytes_sent == -1 || bytes_recvd == -1);
 
@@ -68,14 +68,13 @@ int main() {
     if (bytes_recvd == -1) {
       perror("CHOICE BUFFER not received!");
       return 1;
-    } else {
-      serv_choice = choice_buffer[0];
-      cli_choice = choice_buffer[1];
-      std::cout << sname << " has chosen " << serv_choice << std::endl
-                << std::endl
-                << "You will play with " << cli_choice << std::endl;
-      std::cout << std::endl << "Lets Play!" << std::endl << std::endl;
     }
+    serv_choice = choice_buffer[0];
+    cli_choice = choice_buffer[1];
+    std::cout << sname << " has chosen " << serv_choice << std::endl
+              << std::endl
+              << "You will play with " << cli_choice << std::endl;
+    std::cout << std::endl << "Lets Play!" << std::endl << std::endl;
   } else {
     std::cout << std::endl << "You won the TOSS!" << std::endl;
     do {
@@ -171,20 +170,23 @@ int main() {
 
     if (count >= 5) {
       nc = check();
-      if (nc == 'f')
+      if (nc == 'f') {
         continue;
-      else if (serv_choice == nc) {
+      } 
+      if (serv_choice == nc) {
         std::cout << std::endl << "You loose." << std::endl << sname << " has won." << std::endl;
         break;
-      } else if (cli_choice == nc) {
+      }
+      if (cli_choice == nc) {
         std::cout << std::endl << "Congrats! You have won!!!" << std::endl << sname << " lost." << std::endl;
         break;
       }
     }
   }
 
-  if (nc == 'f')
+  if (nc == 'f') {
     std::cout << std::endl << "Game ends in a draw." << std::endl;
+  }
 
   std::cout << std::endl << "Thank You for playing Tic-tac-Toe" << std::endl;
   return 0;

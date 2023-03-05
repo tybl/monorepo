@@ -5,6 +5,7 @@
 #include <cstring>
 #include <ctime>
 #include <iostream>
+#include <thread>
 
 #include <arpa/inet.h>
 #include <netinet/in.h>
@@ -13,6 +14,8 @@
 #include <unistd.h>
 
 static const int port_no = 9987;
+
+// B A TTT L E
 
 auto main() -> int {
   int sockfd = 0;
@@ -84,24 +87,23 @@ auto main() -> int {
       memset(&cname, 0, sizeof(cname));
       std::cout << "Could not ACQUIRE Player Information!" << std::endl << "Trying again..." << std::endl;
       continue;
+    }
+    flag = 1;
+    bytes_sent = send(newsockfd, &sname, sizeof(sname), 0);
+    if (bytes_sent == -1) {
+      std::cout << "Could not SEND Player Data!" << "Trying Again..." << std::endl;
     } else {
-      flag = 1;
-      bytes_sent = send(newsockfd, &sname, sizeof(sname), 0);
-      if (bytes_sent == -1)
-        std::cout << "Could not SEND Player Data!"
-             << "Trying Again..." << std::endl;
-      else
-        std::cout << cname << " has joined the game." << std::endl;
+      std::cout << cname << " has joined the game." << std::endl;
     }
   } while (bytes_recvd == -1 || bytes_sent == -1);
 
   std::cout << "Creating Game. Please wait..." << std::endl;
-  sleep(2);
+  std::this_thread::sleep_for(std::chrono::seconds(2));
   std::cout << std::endl << "Game created!" << std::endl << std::endl << "Doing a toss...";
 
-  srand(static_cast<unsigned int>(time(NULL)));
+  srand(static_cast<unsigned int>(time(nullptr)));
   toss = rand() % 2;
-  sleep(1);
+  std::this_thread::sleep_for(std::chrono::seconds(1));
   char toss_buffer = (rand() % 2) ? '0' : '1';
   bytes_sent = send(newsockfd, &toss_buffer, sizeof(toss_buffer), 0);
   if (bytes_sent == -1) {
@@ -165,7 +167,7 @@ auto main() -> int {
 
   init();
   std::cout << std::endl << "Starting Game..." << std::endl;
-  sleep(3);
+  std::this_thread::sleep_for(std::chrono::seconds(3));
   display();
 
   while (count < 9) {
@@ -204,18 +206,20 @@ auto main() -> int {
     }
 
     count++;
-    sleep(2);
+    std::this_thread::sleep_for(std::chrono::seconds(2));
     system("clear");
     display();
 
     if (count >= 5) {
       nc = check();
-      if (nc == 'f')
+      if (nc == 'f') {
         continue;
-      else if (serv_choice == nc) {
+      }
+      if (serv_choice == nc) {
         std::cout << std::endl << "Congrats! You have won!!!" << std::endl << cname << " lost." << std::endl;
         break;
-      } else if (cli_choice == nc) {
+      }
+      if (cli_choice == nc) {
         std::cout << std::endl << "You loose." << std::endl << cname << " has won." << std::endl;
         break;
       }

@@ -2,7 +2,9 @@
 # License: The Unlicense (https://unlicense.org)
 ################################################################################
 
-add_subdirectory(cli)
-#add_subdirectory(client)
-#add_subdirectory(server)
-add_subdirectory(toe)
+add_executable(toe)
+target_link_libraries(toe PRIVATE compiler_settings ttt)
+target_sources(toe
+  PRIVATE
+    src/main.cpp
+)
