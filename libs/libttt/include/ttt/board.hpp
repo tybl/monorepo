@@ -7,6 +7,7 @@
 #include "player.hpp"
 
 #include <array>
+#include <cstdint>
 #include <optional>
 
 namespace ttt {
@@ -26,6 +27,10 @@ public:
   [[nodiscard]] auto is_winner(player p_player) const -> bool;
 
   [[nodiscard]] auto get_winner() const -> std::optional<player>;
+
+  [[nodiscard]] auto encode(ttt::player p_player) const -> uint16_t;
+
+  void decode(ttt::player p_player, uint16_t p_value);
 
 }; // class board
 
