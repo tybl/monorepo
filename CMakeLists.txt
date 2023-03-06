@@ -7,6 +7,7 @@ project(TicTacToe
 	VERSION 0.0.0
 	LANGUAGES CXX)
 
+include(CTest)
 include(FetchContent)
 include(utils/cmake/CompilerSettings.cmake)
 include(utils/cmake/Linters.cmake)
@@ -16,6 +17,11 @@ if(CMAKE_EXPORT_COMPILE_COMMANDS)
   set(CMAKE_CXX_STANDARD_INCLUDE_DIRECTORIES ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES})
 endif()
 
+FetchContent_Declare(doctest
+  GIT_REPOSITORY https://github.com/doctest/doctest.git
+  GIT_SHALLOW    TRUE
+  GIT_TAG        8fdfd113dcb4ad1a31705ff8ddb13a21a505bad8)
+FetchContent_MakeAvailable(doctest)
 FetchContent_Declare(fmt
   GIT_REPOSITORY https://github.com/fmtlib/fmt.git
   GIT_SHALLOW    TRUE
@@ -27,5 +33,6 @@ FetchContent_Declare(nlohmann_json
   GIT_TAG        bc889afb4c5bf1c0d8ee29ef35eaaf4c8bef8a5d)
 FetchContent_MakeAvailable(nlohmann_json)
 
+add_subdirectory(utils/doctest)
 add_subdirectory(libs)
 add_subdirectory(apps)
