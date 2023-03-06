@@ -5,21 +5,12 @@
 //  {
 //    "request": "abcdef1234",
 //    "player": "X",
-//    "board": [
-//      [
-//        " ",
-//        " ",
-//        " "
-//      ], [
-//        " ",
-//        "O",
-//        " "
-//      ], [
-//        "X",
-//        " ",
-//        "O"
-//      ]
-//    ]
+//    "locations": [ {
+//        "ip": "192.168.86.80",
+//        "port": 5432
+//      }
+//    ],
+//    "board": 12345 // decimal value of 9 digit base 3 number representing the board
 //  }
 //  {
 //    "response": "abcdef1234",
