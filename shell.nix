@@ -8,6 +8,7 @@ pkgs.mkShell {
     pkgs.boost.dev
     pkgs.fmt_9
     pkgs.doctest
+    #pkgs.llvmPackages_15.libclang
     pkgs.nlohmann_json
   ];
 }
