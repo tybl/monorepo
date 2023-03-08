@@ -5,10 +5,10 @@ pkgs.mkShell {
     pkgs.gcc
   ];
   nativeBuildInputs = [
-    pkgs.boost.dev
-    pkgs.fmt_9
+    pkgs.boost180.dev
+    pkgs.clang-tools_15
     pkgs.doctest
-    #pkgs.llvmPackages_15.libclang
+    pkgs.fmt_9
     pkgs.nlohmann_json
   ];
 }
