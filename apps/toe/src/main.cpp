@@ -1,14 +1,18 @@
+#include "ttt/player.hpp"
 #include "udp_socket.hpp"
 
-#include <boost/asio.hpp>
+#include "ttt/board.hpp"
+
+//#include <boost/asio.hpp>
+#include <boost/asio/ip/udp.hpp>
 #include <exception>
 #include <nlohmann/json.hpp>
 
 #include <iostream>
+#include <optional>
 
 //  {
 //    "request": "abcdef1234",
-//    "player": "X",
 //    "locations": [ {
 //        "ip": "192.168.86.80",
 //        "port": 5432
@@ -27,6 +31,38 @@
 //    ]
 //  }
 
+struct position {
+  uint16_t row;
+  uint16_t col;
+};
+
+auto get_utility_of_move(ttt::board const& p_board, ttt::player p_turn, position p_pos) -> float {
+  for (uint16_t row = 0; row < 3; ++row) {
+    for (uint16_t col = 0; col < 3; ++col) {
+    }
+  }
+  return 0.0;
+}
+
+auto search_optimal_move(ttt::board const& p_board, ttt::player p_turn) -> std::optional<position> {
+  if (p_board.has_winner()) { return std::nullopt; }
+  for (uint16_t row = 0; row < 3; ++row) {
+    for (uint16_t col = 0; col < 3; ++col) {
+    }
+  }
+  return std::nullopt;
+}
+
+auto determine_response(nlohmann::json const& p_request) -> nlohmann::json {
+  auto board_value = p_request["board"].get<uint16_t>();
+  ttt::board brd;
+  brd.decode(ttt::player::EX, board_value);
+  brd.display();
+  auto pos = search_optimal_move(brd, ttt::player::EX);
+  std::cout << board_value << std::endl;
+  return p_request;
+}
+
 class server {
   using socket = boost::asio::ip::udp::socket;
   using endpoint = boost::asio::ip::udp::endpoint;
@@ -35,7 +71,7 @@ class server {
   socket m_socket;
   endpoint m_endpoint;
   static constexpr size_t MAX_LEN = 1024;
-  std::array<char, MAX_LEN> m_data;
+  std::array<char, MAX_LEN> m_data = {};
 public:
 
   server(io_context& p_context, uint16_t p_port)
@@ -64,6 +100,13 @@ public:
 }; // class server
 
 auto main() -> int {
+  // Get port no from argv
+  // Player value is only needed for human interaction...
+  // Create server and listen for connections
+  const std::string input = R"({ "board": 12345 })";
+  determine_response(nlohmann::json::parse(input));
+
+
   try {
     boost::asio::io_context context;
     const uint16_t port_no = 1234;
