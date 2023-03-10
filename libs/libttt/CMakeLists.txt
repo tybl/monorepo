@@ -16,5 +16,5 @@ target_include_directories(test_libttt PUBLIC include)
 target_link_libraries(test_libttt PRIVATE compiler_settings fmt test_base ttt)
 target_sources(test_libttt
   PRIVATE
-        src/test_board.cpp)
+        test/board.cpp)
 add_test(NAME libttt_test COMMAND test_libttt)
