@@ -64,6 +64,14 @@ auto ttt::board::is_winner(ttt::cell::value p_player) const -> bool {
          (m_board[2] == p_player && m_board[4] == p_player && m_board[6] == p_player);
 }
 
+auto ttt::board::get_cell(ttt::cell::position p_pos) const -> cell::value {
+  return m_board.at(p_pos.index());
+}
+
+auto ttt::board::is_empty(ttt::cell::position p_pos) const -> bool {
+  return ttt::cell::value::Empty == get_cell(p_pos);
+}
+
 auto ttt::board::encode(ttt::cell::value p_player) const -> uint16_t {
   uint16_t result = 0;
   for (size_t row = 0; row < 3; ++row) {
