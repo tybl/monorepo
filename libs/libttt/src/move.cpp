@@ -14,8 +14,10 @@ ttt::move::move(unsigned int p_row, unsigned int p_col, ttt::cell::value p_value
   }
 }
 
-auto ttt::move::row() const -> unsigned int { return m_pos.row(); }
-
 auto ttt::move::col() const -> unsigned int { return m_pos.col(); }
+
+auto ttt::move::pos() const -> cell::position { return m_pos; }
+
+auto ttt::move::row() const -> unsigned int { return m_pos.row(); }
 
 auto ttt::move::value() const -> ttt::cell::value { return m_value; }

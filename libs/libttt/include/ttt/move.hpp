@@ -12,11 +12,14 @@ class move {
   cell::value m_value;
 
 public:
+
   move(unsigned int p_row, unsigned int p_col, cell::value p_value);
 
-  [[nodiscard]] auto row() const -> unsigned int;
-
   [[nodiscard]] auto col() const -> unsigned int;
+
+  [[nodiscard]] auto pos() const -> cell::position;
+
+  [[nodiscard]] auto row() const -> unsigned int;
 
   [[nodiscard]] auto value() const -> ttt::cell::value;
 
