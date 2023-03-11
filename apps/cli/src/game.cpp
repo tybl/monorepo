@@ -1,7 +1,7 @@
 // License: The Unlicense (https://unlicense.org)
 #include "game.hpp"
 
-#include "ttt/cell_value.hpp"
+#include "ttt/cell.hpp"
 
 #include <iostream>
 
@@ -18,5 +18,5 @@ auto game::request_move() -> ttt::move {
   unsigned int col = 0;
   char plaha = ' ';
   std::cin >> plaha >> row >> col;
-  return {row, col, static_cast<ttt::cell_value>(plaha)};
+  return {row, col, static_cast<ttt::cell::value>(plaha)};
 }

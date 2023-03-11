@@ -1,4 +1,4 @@
-#include "ttt/cell_value.hpp"
+#include "ttt/cell.hpp"
 #include "udp_socket.hpp"
 
 #include "ttt/board.hpp"
@@ -31,12 +31,7 @@
 //    ]
 //  }
 
-struct position {
-  uint16_t row;
-  uint16_t col;
-};
-
-auto get_utility_of_move(ttt::board const& p_board, ttt::cell_value p_turn, position p_pos) -> float {
+auto get_utility_of_move(ttt::board const& p_board, ttt::cell::value p_turn, ttt::cell::position p_pos) -> float {
   for (uint16_t row = 0; row < 3; ++row) {
     for (uint16_t col = 0; col < 3; ++col) {
     }
@@ -44,7 +39,7 @@ auto get_utility_of_move(ttt::board const& p_board, ttt::cell_value p_turn, posi
   return 0.0;
 }
 
-auto search_optimal_move(ttt::board const& p_board, ttt::cell_value p_turn) -> std::optional<position> {
+auto search_optimal_move(ttt::board const& p_board, ttt::cell::value p_turn) -> std::optional<ttt::cell::position> {
   if (p_board.has_winner()) { return std::nullopt; }
   for (uint16_t row = 0; row < 3; ++row) {
     for (uint16_t col = 0; col < 3; ++col) {
@@ -55,9 +50,9 @@ auto search_optimal_move(ttt::board const& p_board, ttt::cell_value p_turn) -> s
 
 auto determine_response(nlohmann::json const& p_request) -> nlohmann::json {
   auto board_value = p_request["board"].get<uint16_t>();
-  auto brd = ttt::board::decode(ttt::cell_value::EX, board_value);
+  auto brd = ttt::board::decode(ttt::cell::value::EX, board_value);
   brd.display();
-  auto pos = search_optimal_move(brd, ttt::cell_value::EX);
+  auto pos = search_optimal_move(brd, ttt::cell::value::EX);
   std::cout << board_value << std::endl;
   return p_request;
 }
