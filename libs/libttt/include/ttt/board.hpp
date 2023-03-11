@@ -33,7 +33,7 @@ public:
 
   [[nodiscard]] auto encode(ttt::player p_player) const -> uint16_t;
 
-  void decode(ttt::player p_player, uint16_t p_value);
+  static auto decode(ttt::player p_player, uint16_t p_value) -> board;
 
 private:
   static auto position_to_index(move p_move) -> size_t {

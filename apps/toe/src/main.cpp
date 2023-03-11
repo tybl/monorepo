@@ -55,8 +55,7 @@ auto search_optimal_move(ttt::board const& p_board, ttt::player p_turn) -> std::
 
 auto determine_response(nlohmann::json const& p_request) -> nlohmann::json {
   auto board_value = p_request["board"].get<uint16_t>();
-  ttt::board brd;
-  brd.decode(ttt::player::EX, board_value);
+  auto brd = ttt::board::decode(ttt::player::EX, board_value);
   brd.display();
   auto pos = search_optimal_move(brd, ttt::player::EX);
   std::cout << board_value << std::endl;

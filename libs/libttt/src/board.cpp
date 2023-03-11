@@ -72,13 +72,15 @@ auto ttt::board::encode(ttt::player p_player) const -> uint16_t {
   return result;
 }
 
-void ttt::board::decode(ttt::player p_player, uint16_t p_value) {
+auto ttt::board::decode(ttt::player p_player, uint16_t p_value) -> ttt::board {
+  ttt::board result;
   const ttt::player opponent = (ttt::player::EX == p_player) ? ttt::player::OH : ttt::player::EX;
   for (size_t row = 2; row < 3; --row) {
     for (size_t col = 2; col < 3; --col) {
       auto cell = p_value % 3;
       p_value /= 3;
-      m_board.at(row*3+col) = (0 != cell) ? ((1 == cell) ? p_player : opponent) : ttt::player::Empty;
+      result.m_board.at(row*3+col) = (0 != cell) ? ((1 == cell) ? p_player : opponent) : ttt::player::Empty;
     }
   }
+  return result;
 }
