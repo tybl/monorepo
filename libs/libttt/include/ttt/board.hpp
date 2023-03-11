@@ -3,8 +3,8 @@
 #ifndef TYBL_TICTACTOE_LIBTTT_BOARD_HPP
 #define TYBL_TICTACTOE_LIBTTT_BOARD_HPP
 
+#include "cell_value.hpp"
 #include "move.hpp"
-#include "player.hpp"
 
 #include <array>
 #include <cstdint>
@@ -16,7 +16,7 @@ class board {
   static constexpr uint16_t NUM_ROWS = 3;
   static constexpr uint16_t NUM_COLS = 3;
   static constexpr auto NUM_CELLS = static_cast<size_t>(NUM_ROWS * NUM_COLS);
-  std::array<player, NUM_CELLS> m_board;
+  std::array<cell_value, NUM_CELLS> m_board;
 
 public:
   board();
@@ -27,13 +27,13 @@ public:
 
   [[nodiscard]] auto has_winner() const -> bool;
 
-  [[nodiscard]] auto is_winner(player p_player) const -> bool;
+  [[nodiscard]] auto is_winner(cell_value p_player) const -> bool;
 
-  [[nodiscard]] auto get_winner() const -> std::optional<player>;
+  [[nodiscard]] auto get_winner() const -> std::optional<cell_value>;
 
-  [[nodiscard]] auto encode(ttt::player p_player) const -> uint16_t;
+  [[nodiscard]] auto encode(ttt::cell_value p_player) const -> uint16_t;
 
-  static auto decode(ttt::player p_player, uint16_t p_value) -> board;
+  static auto decode(ttt::cell_value p_player, uint16_t p_value) -> board;
 
 private:
   static auto position_to_index(move p_move) -> size_t {

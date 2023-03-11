@@ -3,23 +3,23 @@
 #ifndef TYBL_TICTACTOE_LIBTTT_MOVE_HPP
 #define TYBL_TICTACTOE_LIBTTT_MOVE_HPP
 
-#include "player.hpp"
+#include "cell_value.hpp"
 
 namespace ttt {
 
 class move {
   unsigned int m_row;
   unsigned int m_col;
-  player m_player;
+  cell_value m_value;
 
 public:
-  move(unsigned int p_row, unsigned int p_col, player p_player);
+  move(unsigned int p_row, unsigned int p_col, cell_value p_value);
 
   [[nodiscard]] auto row() const -> unsigned int;
 
   [[nodiscard]] auto col() const -> unsigned int;
 
-  [[nodiscard]] auto player_id() const -> player;
+  [[nodiscard]] auto value() const -> ttt::cell_value;
 
 }; // class move
 
