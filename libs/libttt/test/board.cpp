@@ -11,3 +11,9 @@ TEST_CASE("encode/decode") {
   auto encoded_board = my_b.encode(ttt::player::EX);
   CHECK_EQ(board_value, encoded_board);
 }
+
+TEST_CASE("apply move") {
+  auto board_a = ttt::board::decode(ttt::player::EX, 0);
+  ttt::move mov(0,0,ttt::player::EX);
+  auto board_b = board_a.apply(mov);
+}

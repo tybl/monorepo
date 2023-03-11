@@ -23,7 +23,7 @@ public:
 
   void display() const;
 
-  void apply(move p_move);
+  [[nodiscard]] auto apply(move p_move) const -> board;
 
   [[nodiscard]] auto has_winner() const -> bool;
 

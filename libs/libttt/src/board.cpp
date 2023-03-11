@@ -36,7 +36,11 @@ void ttt::board::display() const {
              static_cast<char>(m_board[8]));
 }
 
-void ttt::board::apply(move p_move) { m_board.at(position_to_index(p_move)) = p_move.player_id(); }
+auto ttt::board::apply(move p_move) const -> board {
+  ttt::board board_copy(*this);
+  board_copy.m_board.at(position_to_index(p_move)) = p_move.player_id();
+  return board_copy;
+}
 
 auto ttt::board::has_winner() const -> bool {
   return (m_board[0] != player::Empty && m_board[0] == m_board[1] && m_board[1] == m_board[2]) ||
