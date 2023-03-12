@@ -64,6 +64,19 @@ auto ttt::board::is_winner(ttt::cell::value p_player) const -> bool {
          (m_board[2] == p_player && m_board[4] == p_player && m_board[6] == p_player);
 }
 
+auto ttt::board::is_tie() const -> bool {
+  return !has_winner() &&
+  m_board[0] != cell::value::Empty &&
+  m_board[1] != cell::value::Empty &&
+  m_board[2] != cell::value::Empty &&
+  m_board[3] != cell::value::Empty &&
+  m_board[4] != cell::value::Empty &&
+  m_board[5] != cell::value::Empty &&
+  m_board[6] != cell::value::Empty &&
+  m_board[7] != cell::value::Empty &&
+  m_board[8] != cell::value::Empty;
+}
+
 auto ttt::board::get_cell(ttt::cell::position p_pos) const -> cell::value {
   return m_board.at(p_pos.index());
 }

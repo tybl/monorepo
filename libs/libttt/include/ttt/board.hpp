@@ -29,6 +29,8 @@ public:
 
   [[nodiscard]] auto is_winner(cell::value p_player) const -> bool;
 
+  [[nodiscard]] auto is_tie() const -> bool;
+
   [[nodiscard]] auto get_winner() const -> std::optional<cell::value>;
 
   [[nodiscard]] auto get_cell(ttt::cell::position p_pos) const -> cell::value;
