@@ -30,7 +30,7 @@
 //    ]
 //  }
 
-auto search_optimal_move(ttt::board const& p_board, ttt::cell::value p_turn) -> std::optional<ttt::cell::position> {
+auto search_optimal_move(ttt::board const& p_board, ttt::cell::value /*p_turn*/) -> std::optional<ttt::cell::position> {
   if (p_board.has_winner()) { return std::nullopt; }
   for (uint16_t row = 0; row < 3; ++row) {
     for (uint16_t col = 0; col < 3; ++col) {

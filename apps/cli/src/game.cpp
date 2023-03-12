@@ -14,8 +14,8 @@ void game::run() {
 }
 
 auto game::request_move() -> ttt::move {
-  unsigned int row = 0;
-  unsigned int col = 0;
+  uint16_t row = 0;
+  uint16_t col = 0;
   char plaha = ' ';
   std::cin >> plaha >> row >> col;
   return {row, col, static_cast<ttt::cell::value>(plaha)};

@@ -20,7 +20,7 @@ public:
 
   [[nodiscard]] auto col() const -> uint16_t { return m_col; }
 
-  [[nodiscard]] auto index() const -> std::size_t { return m_row * 3 + m_col; }
+  [[nodiscard]] auto index() const -> std::size_t { return static_cast<std::size_t>(m_row * 3 + m_col); }
 
 }; // struct position
 

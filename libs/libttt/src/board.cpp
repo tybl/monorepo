@@ -38,7 +38,7 @@ void ttt::board::display() const {
 
 auto ttt::board::apply(move p_move) const -> board {
   ttt::board board_copy(*this);
-  board_copy.m_board.at(position_to_index(p_move)) = p_move.value();
+  board_copy.m_board.at(p_move.pos().index()) = p_move.value();
   return board_copy;
 }
 

@@ -13,13 +13,13 @@ class move {
 
 public:
 
-  move(unsigned int p_row, unsigned int p_col, cell::value p_value);
+  move(uint16_t p_row, uint16_t p_col, cell::value p_value);
 
-  [[nodiscard]] auto col() const -> unsigned int;
+  [[nodiscard]] auto col() const -> uint16_t;
 
   [[nodiscard]] auto pos() const -> cell::position;
 
-  [[nodiscard]] auto row() const -> unsigned int;
+  [[nodiscard]] auto row() const -> uint16_t;
 
   [[nodiscard]] auto value() const -> ttt::cell::value;
 

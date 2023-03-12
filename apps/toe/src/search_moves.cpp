@@ -72,7 +72,7 @@ auto get_best_move(ttt::board const& p_board, ttt::cell::value p_turn) -> std::o
   if (p_board.has_winner()) { return result; }
   for (uint16_t row = 0; row < 3; ++row) {
     for (uint16_t col = 0; col < 3; ++col) {
-      ttt::move attempt(row, col, p_turn);
+      const ttt::move attempt(row, col, p_turn);
       if (p_board.is_empty(attempt.pos())) {
         auto val = get_minimax_value(p_board, attempt, true);
         if (best_value < val) {

@@ -41,10 +41,6 @@ public:
 
   static auto decode(ttt::cell::value p_player, uint16_t p_value) -> board;
 
-private:
-  static auto position_to_index(move p_move) -> size_t {
-    return p_move.row() * 3 + p_move.col();
-  }
 }; // class board
 
 } // namespace ttt
