@@ -26,14 +26,6 @@ auto get_expected_value(ttt::board const& p_board, ttt::move p_move) -> float {
 }
 
 auto get_minimax_value(ttt::board const& p_board, ttt::move p_move, bool p_do_maximize) -> float {
-#if 0
-  if (p_do_maximize) {
-    std::cout << "get_*max*_value(\"" << static_cast<char>(p_move.value()) << "\" @ (" << p_move.pos().row() << ", " << p_move.pos().col() << ")\n";
-  } else {
-    std::cout << "get_*min*_value(\"" << static_cast<char>(p_move.value()) << "\" @ (" << p_move.pos().row() << ", " << p_move.pos().col() << ")\n";
-  }
-  p_board.display();
-#endif
   auto curr_board = p_board.apply(p_move);
   if (curr_board.has_winner()) {
     return 1.0;
@@ -111,11 +103,14 @@ TEST_CASE("get_minimax_value()") {
   brd = brd.apply({1,1,ttt::cell::value::OH});
   brd = brd.apply({1,2,ttt::cell::value::OH});
   brd = brd.apply({2,0,ttt::cell::value::EX});
-  std::cout << "Bad move: " << get_minimax_value(brd, {2,1,ttt::cell::value::OH}, true) << std::endl;
-  std::cout << "Good move: " << get_minimax_value(brd, {2,2,ttt::cell::value::OH}, true) << std::endl;
+  auto result = get_minimax_value(brd, {2,1,ttt::cell::value::OH}, true);
+  CHECK_EQ(0.0, result);
+  result = get_minimax_value(brd, {2,2,ttt::cell::value::OH}, true);
+  CHECK_EQ(1.0, result);
+
 }
 
-TEST_CASE("get_best_move()") {
+TEST_CASE("get_best_move() between two simple options") {
   ttt::board brd;
   brd = brd.apply({0,0,ttt::cell::value::OH});
   brd = brd.apply({0,1,ttt::cell::value::EX});
@@ -125,9 +120,7 @@ TEST_CASE("get_best_move()") {
   brd = brd.apply({1,2,ttt::cell::value::OH});
   brd = brd.apply({2,0,ttt::cell::value::EX});
   auto best_move = get_best_move(brd, ttt::cell::value::OH);
-  CHECK(best_move.has_value());
-  if (best_move.has_value()) {
-    CHECK_EQ(best_move->row(),2);
-    CHECK_EQ(best_move->col(),2);
-  }
+  REQUIRE(best_move.has_value());
+  CHECK_EQ(best_move->row(),2);
+  CHECK_EQ(best_move->col(),2);
 }

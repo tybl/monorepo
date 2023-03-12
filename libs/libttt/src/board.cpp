@@ -1,9 +1,12 @@
 // License: The Unlicense (https://unlicense.org)
 #include "ttt/board.hpp"
+
 #include "ttt/cell.hpp"
 
-#include <cstdint>
 #include <fmt/format.h>
+
+#include <algorithm>
+#include <cstdint>
 
 ttt::board::board()
   : m_board({
@@ -20,20 +23,15 @@ ttt::board::board()
 {}
 
 void ttt::board::display() const {
-  fmt::print(" {:1} | {:1} | {:1}\n",
-             static_cast<char>(m_board[0]),
-             static_cast<char>(m_board[1]),
-             static_cast<char>(m_board[2]));
-  fmt::print("---|---|---\n");
-  fmt::print(" {:1} | {:1} | {:1}\n",
-             static_cast<char>(m_board[3]),
-             static_cast<char>(m_board[4]),
-             static_cast<char>(m_board[5]));
-  fmt::print("---|---|---\n");
-  fmt::print(" {:1} | {:1} | {:1}\n",
-             static_cast<char>(m_board[6]),
-             static_cast<char>(m_board[7]),
-             static_cast<char>(m_board[8]));
+  for (uint16_t row = 0; row < NUM_ROWS; ++row) {
+    if (0 != row) {
+      fmt::print("---|---|---\n");
+    }
+    fmt::print(" {:1} | {:1} | {:1}\n",
+               static_cast<char>(m_board.at(row * NUM_COLS + 0)),
+               static_cast<char>(m_board.at(row * NUM_COLS + 1)),
+               static_cast<char>(m_board.at(row * NUM_COLS + 2)));
+  }
 }
 
 auto ttt::board::apply(move p_move) const -> board {
@@ -65,16 +63,7 @@ auto ttt::board::is_winner(ttt::cell::value p_player) const -> bool {
 }
 
 auto ttt::board::is_tie() const -> bool {
-  return !has_winner() &&
-  m_board[0] != cell::value::Empty &&
-  m_board[1] != cell::value::Empty &&
-  m_board[2] != cell::value::Empty &&
-  m_board[3] != cell::value::Empty &&
-  m_board[4] != cell::value::Empty &&
-  m_board[5] != cell::value::Empty &&
-  m_board[6] != cell::value::Empty &&
-  m_board[7] != cell::value::Empty &&
-  m_board[8] != cell::value::Empty;
+  return !has_winner() && std::all_of(m_board.begin(), m_board.end(), [](cell::value p_val){ return p_val != cell::value::Empty; });
 }
 
 auto ttt::board::get_cell(ttt::cell::position p_pos) const -> cell::value {

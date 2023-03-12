@@ -2,7 +2,6 @@
 
 #include "ttt/board.hpp"
 
-//#include <boost/asio.hpp>
 #include <boost/asio/ip/udp.hpp>
 #include <exception>
 #include <nlohmann/json.hpp>
