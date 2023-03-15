@@ -12,6 +12,7 @@ target_link_libraries(toe
 target_sources(toe
   PRIVATE
     src/main.cpp
+    src/server.cpp
 )
 
 add_executable(test_search)

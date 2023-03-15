@@ -1,8 +1,7 @@
+#include "server.hpp"
+#include "ttt/board.hpp"
 #include "ttt/cell.hpp"
 
-#include "ttt/board.hpp"
-
-#include <boost/asio/ip/udp.hpp>
 #include <exception>
 #include <nlohmann/json.hpp>
 
@@ -47,49 +46,12 @@ auto determine_response(nlohmann::json const& p_request) -> nlohmann::json {
   return p_request;
 }
 
-class server {
-  using socket = boost::asio::ip::udp::socket;
-  using endpoint = boost::asio::ip::udp::endpoint;
-  using io_context = boost::asio::io_context;
-
-  socket m_socket;
-  endpoint m_endpoint;
-  static constexpr size_t MAX_LEN = 1024;
-  std::array<char, MAX_LEN> m_data = {};
-public:
-
-  server(io_context& p_context, uint16_t p_port)
-    : m_socket(p_context, endpoint(boost::asio::ip::udp::v4(), p_port))
-  {
-    do_receive();
-  }
-
-  void do_receive() {
-    m_socket.async_receive_from(boost::asio::buffer(m_data, MAX_LEN), m_endpoint,
-                                [this](std::error_code p_ec, size_t p_num_bytes_rcvd) {
-                                  if (!p_ec && p_num_bytes_rcvd > 0) {
-                                    do_send(p_num_bytes_rcvd);
-                                  } else {
-                                    do_receive();
-                                  }
-                                });
-  }
-
-  void do_send(size_t p_len) {
-    m_socket.async_send_to(boost::asio::buffer(m_data, p_len), m_endpoint,
-                           [this](std::error_code /*ec*/, size_t /*num_bytes_rcvd*/) {
-                             do_receive();
-                           });
-  }
-}; // class server
-
 auto main() -> int {
   // Get port no from argv
   // Player value is only needed for human interaction...
   // Create server and listen for connections
   const std::string input = R"({ "board": 12345 })";
   determine_response(nlohmann::json::parse(input));
-
 
   try {
     boost::asio::io_context context;
