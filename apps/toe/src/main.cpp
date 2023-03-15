@@ -1,12 +1,12 @@
 #include "server.hpp"
 #include "ttt/board.hpp"
 #include "ttt/cell.hpp"
+#include "ttt/get_best_move.hpp"
 
 #include <exception>
 #include <nlohmann/json.hpp>
 
 #include <iostream>
-#include <optional>
 
 //  {
 //    "request": "abcdef1234",
@@ -28,20 +28,11 @@
 //    ]
 //  }
 
-auto search_optimal_move(ttt::board const& p_board, ttt::cell::value /*p_turn*/) -> std::optional<ttt::cell::position> {
-  if (p_board.has_winner()) { return std::nullopt; }
-  for (uint16_t row = 0; row < 3; ++row) {
-    for (uint16_t col = 0; col < 3; ++col) {
-    }
-  }
-  return std::nullopt;
-}
-
 auto determine_response(nlohmann::json const& p_request) -> nlohmann::json {
   auto board_value = p_request["board"].get<uint16_t>();
   auto brd = ttt::board::decode(ttt::cell::value::EX, board_value);
   brd.display();
-  auto pos = search_optimal_move(brd, ttt::cell::value::EX);
+  auto mov = ttt::get_best_move(brd, ttt::cell::value::EX);
   std::cout << board_value << std::endl;
   return p_request;
 }
