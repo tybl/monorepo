@@ -6,6 +6,7 @@
 // TODO(tybl): Replace Eigen with liblynel
 //#include <Eigen/Dense>
 
+#include <algorithm>
 #include <cmath>
 #include <limits>
 

@@ -3,6 +3,7 @@
 #ifndef TYBL_TICTACTOE_LIBTTT_CELL_HPP
 #define TYBL_TICTACTOE_LIBTTT_CELL_HPP
 
+#include <cstddef>
 #include <cstdint>
 
 namespace ttt {
