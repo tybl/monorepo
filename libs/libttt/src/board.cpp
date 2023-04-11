@@ -6,7 +6,6 @@
 #include <fmt/format.h>
 
 #include <algorithm>
-#include <cstdint>
 
 ttt::board::board()
   : m_board({

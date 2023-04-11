@@ -3,9 +3,6 @@
 #ifndef TYBL_STATS_DISTRIBUTION_HPP
 #define TYBL_STATS_DISTRIBUTION_HPP
 
-// TODO(tybl): Replace Eigen with liblynel
-//#include <Eigen/Dense>
-
 #include <algorithm>
 #include <cmath>
 #include <limits>
@@ -54,39 +51,6 @@ public:
   }
 
 }; // class distribution
-
-#if 0
-// TODO(tybl): Class name is not descriptive
-template <size_t N>
-class dist {
-  static_assert(0 < N, "");
-
-  // types:
-  using value_type = double;
-  using vector_type = Eigen::Matrix<value_type, N, 1>;
-  using matrix_type = Eigen::Matrix<value_type, N, N>;
-  using size_type = std::size_t;
-
-  // member variables:
-  size_type m_count{0UL};
-  vector_type m_means{vector_type::Zero()};
-  matrix_type m_covars{matrix_type::Zero()};
-
-public:
-  constexpr auto insert(Eigen::Matrix<double, N, 1> const& p_xs) -> void {
-    m_count += 1;
-    vector_type deltas = p_xs - m_means;
-    m_means += deltas / m_count;
-    matrix_type covar_deltas = (p_xs - m_means) * deltas.transpose() - m_covars;
-    m_covars += covar_deltas / m_count;
-  }
-
-  constexpr auto means() const -> vector_type const& { return m_means; }
-
-  constexpr auto covariance() const -> matrix_type const& { return m_covars; }
-
-}; // class dist
-#endif
 
 } // namespace tybl::stats
 
