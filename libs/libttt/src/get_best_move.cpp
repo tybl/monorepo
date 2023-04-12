@@ -13,7 +13,8 @@ auto ttt::get_minimax_value(ttt::board const& p_board, ttt::move p_move, bool p_
   if (curr_board.is_tie()) {
     return 0.0;
   }
-  const ttt::cell::value player = (ttt::cell::value::EX == p_move.value()) ? ttt::cell::value::OH : ttt::cell::value::EX;
+  const ttt::cell::value player =
+      (ttt::cell::value::EX == p_move.value()) ? ttt::cell::value::OH : ttt::cell::value::EX;
   if (p_do_maximize) {
     float result = -1.0;
     for (uint16_t row = 0; row < 3; ++row) {
@@ -41,7 +42,9 @@ auto ttt::get_minimax_value(ttt::board const& p_board, ttt::move p_move, bool p_
 auto ttt::get_best_move(ttt::board const& p_board, ttt::cell::value p_turn) -> std::optional<ttt::cell::position> {
   std::optional<ttt::cell::position> result = std::nullopt;
   float best_value = -1.0;
-  if (p_board.has_winner()) { return result; }
+  if (p_board.has_winner()) {
+    return result;
+  }
   for (uint16_t row = 0; row < 3; ++row) {
     for (uint16_t col = 0; col < 3; ++col) {
       const ttt::move attempt(row, col, p_turn);

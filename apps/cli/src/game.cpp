@@ -6,7 +6,7 @@
 #include <iostream>
 
 void game::run() {
-  while(!m_board.has_winner()) {
+  while (!m_board.has_winner()) {
     m_board.display();
     m_board = m_board.apply(request_move());
   }

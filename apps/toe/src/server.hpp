@@ -23,4 +23,5 @@ public:
   void do_send(size_t p_len);
 
 }; // class server
+
 #endif // TYBL_TICTACTOE_TOE_SERVER_HPP

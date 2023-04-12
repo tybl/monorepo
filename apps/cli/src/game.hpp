@@ -8,6 +8,7 @@
 
 class game {
   ttt::board m_board;
+
 public:
   game() = default;
 

@@ -9,25 +9,23 @@
 
 ttt::board::board()
   : m_board({
-              cell::value::Empty,
-    cell::value::Empty,
-    cell::value::Empty,
-    cell::value::Empty,
-    cell::value::Empty,
-    cell::value::Empty,
-    cell::value::Empty,
-    cell::value::Empty,
-    cell::value::Empty,
-    })
-{}
+        cell::value::Empty,
+        cell::value::Empty,
+        cell::value::Empty,
+        cell::value::Empty,
+        cell::value::Empty,
+        cell::value::Empty,
+        cell::value::Empty,
+        cell::value::Empty,
+        cell::value::Empty,
+    }) {}
 
 void ttt::board::display() const {
   for (uint16_t row = 0; row < NUM_ROWS; ++row) {
     if (0 != row) {
       fmt::print("---|---|---\n");
     }
-    fmt::print(" {:1} | {:1} | {:1}\n",
-               static_cast<char>(m_board.at(row * NUM_COLS + 0)),
+    fmt::print(" {:1} | {:1} | {:1}\n", static_cast<char>(m_board.at(row * NUM_COLS + 0)),
                static_cast<char>(m_board.at(static_cast<unsigned>(row * NUM_COLS + 1))),
                static_cast<char>(m_board.at(static_cast<unsigned>(row * NUM_COLS + 2))));
   }
@@ -62,12 +60,11 @@ auto ttt::board::is_winner(ttt::cell::value p_player) const -> bool {
 }
 
 auto ttt::board::is_tie() const -> bool {
-  return !has_winner() && std::all_of(m_board.begin(), m_board.end(), [](cell::value p_val){ return p_val != cell::value::Empty; });
+  return !has_winner() &&
+         std::all_of(m_board.begin(), m_board.end(), [](cell::value p_val) { return p_val != cell::value::Empty; });
 }
 
-auto ttt::board::get_cell(ttt::cell::position p_pos) const -> cell::value {
-  return m_board.at(p_pos.index());
-}
+auto ttt::board::get_cell(ttt::cell::position p_pos) const -> cell::value { return m_board.at(p_pos.index()); }
 
 auto ttt::board::is_empty(ttt::cell::position p_pos) const -> bool {
   return ttt::cell::value::Empty == get_cell(p_pos);
@@ -77,7 +74,7 @@ auto ttt::board::encode(ttt::cell::value p_player) const -> uint16_t {
   uint16_t result = 0;
   for (size_t row = 0; row < 3; ++row) {
     for (size_t col = 0; col < 3; ++col) {
-      auto cell = m_board.at(row*3+col);
+      auto cell = m_board.at(row * 3 + col);
       const uint16_t digit = (cell != cell::value::Empty) ? ((cell == p_player) ? 1 : 2) : 0;
       result = static_cast<uint16_t>(result * 3) + digit;
     }
@@ -92,7 +89,7 @@ auto ttt::board::decode(ttt::cell::value p_player, uint16_t p_value) -> ttt::boa
     for (size_t col = 2; col < 3; --col) {
       auto cell = p_value % 3;
       p_value /= 3;
-      result.m_board.at(row*3+col) = (0 != cell) ? ((1 == cell) ? p_player : opponent) : ttt::cell::value::Empty;
+      result.m_board.at(row * 3 + col) = (0 != cell) ? ((1 == cell) ? p_player : opponent) : ttt::cell::value::Empty;
     }
   }
   return result;

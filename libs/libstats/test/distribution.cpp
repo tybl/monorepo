@@ -8,7 +8,6 @@
 #include <iostream>
 #include <random>
 
-
 TEST_CASE("cent example") {
   tybl::stats::distribution<int> dist;
   auto input = {5, 5, 10, 10, 10}; // NOLINT(*-magic-numbers)
@@ -37,9 +36,8 @@ TEST_CASE("team height") {
     team_a_dist += team_a.at(i);
     team_b_dist += team_b.at(i);
   }
-  CHECK(1.914 == team_a_dist.mean()); // NOLINT(*-magic-numbers)
-  CHECK(1.914 == team_b_dist.mean()); // NOLINT(*-magic-numbers)
+  CHECK(1.914 == team_a_dist.mean());                        // NOLINT(*-magic-numbers)
+  CHECK(1.914 == team_b_dist.mean());                        // NOLINT(*-magic-numbers)
   CHECK(doctest::Approx(0.014104) == team_a_dist.pop_var()); // NOLINT(*-magic-numbers)
   CHECK(doctest::Approx(0.001304) == team_b_dist.pop_var()); // NOLINT(*-magic-numbers)
 }
-
