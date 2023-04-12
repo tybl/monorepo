@@ -28,8 +28,8 @@ void ttt::board::display() const {
     }
     fmt::print(" {:1} | {:1} | {:1}\n",
                static_cast<char>(m_board.at(row * NUM_COLS + 0)),
-               static_cast<char>(m_board.at(row * NUM_COLS + 1)),
-               static_cast<char>(m_board.at(row * NUM_COLS + 2)));
+               static_cast<char>(m_board.at(static_cast<unsigned>(row * NUM_COLS + 1))),
+               static_cast<char>(m_board.at(static_cast<unsigned>(row * NUM_COLS + 2))));
   }
 }
 

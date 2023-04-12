@@ -24,7 +24,7 @@ auto main() -> int {
 
     boost::asio::io_context context;
     const uint16_t port_no = 1234;
-    server serve(context, port_no);
+    const server serve(context, port_no);
     context.run();
   } catch (std::exception& p_ex) {
     std::cerr << "Exception: " << p_ex.what() << "\n";

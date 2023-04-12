@@ -25,11 +25,11 @@ public:
 
   [[nodiscard]] auto apply(move p_move) const -> board;
 
-  [[nodiscard]] auto has_winner() const -> bool;
+  [[gnu::pure, nodiscard]] auto has_winner() const -> bool;
 
-  [[nodiscard]] auto is_winner(cell::value p_player) const -> bool;
+  [[gnu::pure, nodiscard]] auto is_winner(cell::value p_player) const -> bool;
 
-  [[nodiscard]] auto is_tie() const -> bool;
+  [[gnu::pure, nodiscard]] auto is_tie() const -> bool;
 
   [[nodiscard]] auto get_winner() const -> std::optional<cell::value>;
 
@@ -37,7 +37,7 @@ public:
 
   [[nodiscard]] auto is_empty(ttt::cell::position p_pos) const -> bool;
 
-  [[nodiscard]] auto encode(ttt::cell::value p_player) const -> uint16_t;
+  [[gnu::pure, nodiscard]] auto encode(ttt::cell::value p_player) const -> uint16_t;
 
   static auto decode(ttt::cell::value p_player, uint16_t p_value) -> board;
 
