@@ -9,8 +9,7 @@ target_sources(ttt
   PRIVATE
         src/board.cpp
         src/get_best_move.cpp
-        src/move.cpp
-        src/tictactoe.cpp)
+        src/move.cpp)
 
 add_executable(test_libttt)
 target_include_directories(test_libttt PUBLIC include)
