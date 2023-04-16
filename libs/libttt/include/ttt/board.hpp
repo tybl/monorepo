@@ -44,4 +44,5 @@ public:
 }; // class board
 
 } // namespace ttt
+
 #endif // TYBL_TICTACTOE_LIBTTT_BOARD_HPP

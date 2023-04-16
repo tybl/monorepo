@@ -14,11 +14,11 @@ class move {
 public:
   move(uint16_t p_row, uint16_t p_col, cell::value p_value);
 
-  [[nodiscard]] auto col() const -> uint16_t;
+  //[[nodiscard]] auto col() const -> uint16_t;
 
   [[nodiscard]] auto pos() const -> cell::position;
 
-  [[nodiscard]] auto row() const -> uint16_t;
+  //[[nodiscard]] auto row() const -> uint16_t;
 
   [[nodiscard]] auto value() const -> ttt::cell::value;
 
