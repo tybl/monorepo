@@ -3,6 +3,7 @@ pkgs.mkShell {
   buildInputs = [
     pkgs.cmake
     pkgs.gcc
+    pkgs.jetbrains.clion
   ];
   nativeBuildInputs = [
     pkgs.boost180.dev
