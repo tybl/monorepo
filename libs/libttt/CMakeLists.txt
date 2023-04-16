@@ -8,6 +8,7 @@ target_link_libraries(ttt PRIVATE compiler_settings fmt)
 target_sources(ttt
         PRIVATE
         src/board.cpp
+        src/cell.cpp
         src/get_best_move.cpp
         src/move.cpp)
 

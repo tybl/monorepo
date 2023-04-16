@@ -15,15 +15,13 @@ struct cell {
     uint16_t m_col;
 
   public:
-    position(uint16_t p_row, uint16_t p_col)
-      : m_row(p_row)
-      , m_col(p_col) {}
+    position(uint16_t p_row, uint16_t p_col);
 
-    [[nodiscard]] auto row() const -> uint16_t { return m_row; }
+    [[nodiscard]] auto row() const -> uint16_t;
 
-    [[nodiscard]] auto col() const -> uint16_t { return m_col; }
+    [[nodiscard]] auto col() const -> uint16_t;
 
-    [[nodiscard]] auto index() const -> std::size_t { return static_cast<std::size_t>(m_row * 3 + m_col); }
+    [[nodiscard]] auto index() const -> std::size_t;
 
   }; // struct position
 
