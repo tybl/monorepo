@@ -15,7 +15,8 @@ public:
   void run();
 
 private:
-  static auto request_move() -> ttt::move;
+  static auto request_move(std::string const& p_name) -> ttt::move;
+  void display_board() const;
 }; // class game
 
 #endif // TYBL_TICTACTOE_GAME_HPP
