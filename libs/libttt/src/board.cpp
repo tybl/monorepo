@@ -7,18 +7,7 @@
 
 #include <algorithm>
 
-ttt::board::board()
-  : m_board({
-        cell::value::Empty,
-        cell::value::Empty,
-        cell::value::Empty,
-        cell::value::Empty,
-        cell::value::Empty,
-        cell::value::Empty,
-        cell::value::Empty,
-        cell::value::Empty,
-        cell::value::Empty,
-    }) {}
+ttt::board::board() = default;
 
 void ttt::board::display() const {
   for (uint16_t row = 0; row < NUM_ROWS; ++row) {
@@ -38,15 +27,15 @@ auto ttt::board::apply(move p_move) const -> board {
 }
 
 auto ttt::board::has_winner() const -> bool {
-  using enum ttt::cell::value;
-  return (m_board[0] != Empty && m_board[0] == m_board[1] && m_board[1] == m_board[2]) ||
-         (m_board[3] != Empty && m_board[3] == m_board[4] && m_board[4] == m_board[5]) ||
-         (m_board[6] != Empty && m_board[6] == m_board[7] && m_board[7] == m_board[8]) ||
-         (m_board[0] != Empty && m_board[0] == m_board[3] && m_board[3] == m_board[6]) ||
-         (m_board[1] != Empty && m_board[1] == m_board[4] && m_board[4] == m_board[7]) ||
-         (m_board[2] != Empty && m_board[2] == m_board[5] && m_board[5] == m_board[8]) ||
-         (m_board[0] != Empty && m_board[0] == m_board[4] && m_board[4] == m_board[8]) ||
-         (m_board[2] != Empty && m_board[2] == m_board[4] && m_board[4] == m_board[6]);
+  //using enum ttt::cell::value;
+  return (m_board[0] != cell::value::Empty && m_board[0] == m_board[1] && m_board[1] == m_board[2]) ||
+         (m_board[3] != cell::value::Empty && m_board[3] == m_board[4] && m_board[4] == m_board[5]) ||
+         (m_board[6] != cell::value::Empty && m_board[6] == m_board[7] && m_board[7] == m_board[8]) ||
+         (m_board[0] != cell::value::Empty && m_board[0] == m_board[3] && m_board[3] == m_board[6]) ||
+         (m_board[1] != cell::value::Empty && m_board[1] == m_board[4] && m_board[4] == m_board[7]) ||
+         (m_board[2] != cell::value::Empty && m_board[2] == m_board[5] && m_board[5] == m_board[8]) ||
+         (m_board[0] != cell::value::Empty && m_board[0] == m_board[4] && m_board[4] == m_board[8]) ||
+         (m_board[2] != cell::value::Empty && m_board[2] == m_board[4] && m_board[4] == m_board[6]);
 }
 
 auto ttt::board::is_winner(ttt::cell::value p_player) const -> bool {
@@ -84,14 +73,14 @@ auto ttt::board::encode(ttt::cell::value p_player) const -> uint16_t {
 }
 
 auto ttt::board::decode(ttt::cell::value p_player, uint16_t p_value) -> ttt::board {
-  using enum ttt::cell::value;
+  //using enum ttt::cell::value;
   ttt::board result;
-  const ttt::cell::value opponent = (EX == p_player) ? OH : EX;
+  const ttt::cell::value opponent = (cell::value::EX == p_player) ? cell::value::OH : cell::value::EX;
   for (size_t row = 2; row < 3; --row) {
     for (size_t col = 2; col < 3; --col) {
       auto cell = p_value % 3;
       p_value /= 3;
-      result.m_board.at(row * 3 + col) = (0 != cell) ? ((1 == cell) ? p_player : opponent) : Empty;
+      result.m_board.at(row * 3 + col) = (0 != cell) ? ((1 == cell) ? p_player : opponent) : cell::value::Empty;
     }
   }
   return result;
