@@ -1,6 +1,7 @@
 // License: The Unlicense (https://unlicense.org)
 #include "ttt/board.hpp"
 
+#include "ttt/bad_move.hpp"
 #include "ttt/cell.hpp"
 
 #include <fmt/format.h>
@@ -21,6 +22,9 @@ void ttt::board::display() const {
 }
 
 auto ttt::board::apply(move p_move) const -> board {
+  if (!is_empty(p_move.pos())) {
+    throw bad_move("Position filled");
+  }
   ttt::board board_copy(*this);
   board_copy.m_board.at(p_move.pos().index()) = p_move.value();
   return board_copy;
