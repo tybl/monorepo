@@ -9,6 +9,7 @@
 #include <array>
 #include <cstdint>
 #include <optional>
+#include <vector>
 
 namespace ttt {
 
@@ -16,6 +17,7 @@ class board {
   static constexpr uint16_t NUM_ROWS = 3;
   static constexpr uint16_t NUM_COLS = 3;
   static constexpr auto NUM_CELLS = static_cast<size_t>(NUM_ROWS * NUM_COLS);
+  std::vector<move> m_history;
   std::array<cell::value, NUM_CELLS> m_board = {
       cell::value::Empty,
       cell::value::Empty,
@@ -44,6 +46,8 @@ public:
   [[nodiscard]] auto get_winner() const -> std::optional<cell::value>;
 
   [[nodiscard]] auto get_cell(ttt::cell::position p_pos) const -> cell::value;
+
+  auto get_next_turn() const -> cell::value;
 
   [[nodiscard]] auto is_empty(ttt::cell::position p_pos) const -> bool;
 

@@ -25,8 +25,12 @@ auto ttt::board::apply(move p_move) const -> board {
   if (!is_empty(p_move.pos())) {
     throw bad_move("Position filled");
   }
+  if (p_move.value() != get_next_turn()) {
+    throw bad_move("Wrong turn");
+  }
   ttt::board board_copy(*this);
   board_copy.m_board.at(p_move.pos().index()) = p_move.value();
+  board_copy.m_history.push_back(p_move);
   return board_copy;
 }
 
@@ -59,6 +63,13 @@ auto ttt::board::is_tie() const -> bool {
 }
 
 auto ttt::board::get_cell(ttt::cell::position p_pos) const -> cell::value { return m_board.at(p_pos.index()); }
+
+auto ttt::board::get_next_turn() const -> ttt::cell::value {
+  if (m_history.empty()) {
+    return cell::value::EX;
+  }
+  return (cell::value::EX == m_history.back().value()) ? cell::value::OH : cell::value::EX;
+}
 
 auto ttt::board::is_empty(ttt::cell::position p_pos) const -> bool {
   return ttt::cell::value::Empty == get_cell(p_pos);
