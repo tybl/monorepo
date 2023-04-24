@@ -12,6 +12,8 @@ class move {
   cell::value m_value;
 
 public:
+  move(cell::position p_pos, cell::value p_value);
+
   move(uint16_t p_row, uint16_t p_col, cell::value p_value);
 
   //[[nodiscard]] auto col() const -> uint16_t;
