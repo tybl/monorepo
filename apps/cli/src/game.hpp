@@ -6,6 +6,8 @@
 #include "ttt/board.hpp"
 #include "ttt/move.hpp"
 
+#include <string>
+
 class game {
   ttt::board m_board;
 
