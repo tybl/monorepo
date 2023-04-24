@@ -15,6 +15,8 @@ struct cell {
     uint16_t m_col;
 
   public:
+    explicit position(uint16_t p_index);
+
     position(uint16_t p_row, uint16_t p_col);
 
     [[nodiscard]] auto row() const -> uint16_t;

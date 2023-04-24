@@ -6,6 +6,14 @@
 
 namespace ttt {
 
+cell::position::position(uint16_t p_index)
+  : m_row(p_index / 3)
+  , m_col(p_index % 3) {
+  if (8 < p_index) {
+    throw bad_move(fmt::format("p_index must have a value of less than 9. It had a value of {}", p_index));
+  }
+}
+
 cell::position::position(uint16_t p_row, uint16_t p_col)
   : m_row(p_row)
   , m_col(p_col) {

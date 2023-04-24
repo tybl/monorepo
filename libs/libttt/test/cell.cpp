@@ -20,3 +20,17 @@ TEST_CASE("Limit the range of ttt::cell::position's row and columns") {
   CHECK_THROWS_AS(ttt::cell::position(0,-1), ttt::bad_move);
   CHECK_THROWS_AS(ttt::cell::position(-1,0), ttt::bad_move);
 }
+
+TEST_CASE("Limit the range of ttt::cell::position's index") {
+  CHECK_THROWS_AS(ttt::cell::position(-1), ttt::bad_move);
+  CHECK_NOTHROW(ttt::cell::position(0));
+  CHECK_NOTHROW(ttt::cell::position(1));
+  CHECK_NOTHROW(ttt::cell::position(2));
+  CHECK_NOTHROW(ttt::cell::position(3));
+  CHECK_NOTHROW(ttt::cell::position(4));
+  CHECK_NOTHROW(ttt::cell::position(5));
+  CHECK_NOTHROW(ttt::cell::position(6));
+  CHECK_NOTHROW(ttt::cell::position(7));
+  CHECK_NOTHROW(ttt::cell::position(8));
+  CHECK_THROWS_AS(ttt::cell::position(9), ttt::bad_move);
+}
