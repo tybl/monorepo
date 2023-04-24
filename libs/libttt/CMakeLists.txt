@@ -9,7 +9,6 @@ target_sources(ttt
         PRIVATE
         src/board.cpp
         src/cell.cpp
-        src/get_best_move.cpp
         src/move.cpp)
 
 add_executable(test_libttt)
@@ -18,6 +17,5 @@ target_link_libraries(test_libttt PRIVATE compiler_settings fmt test_base ttt)
 target_sources(test_libttt
         PRIVATE
         test/board.cpp
-        test/cell.cpp
-        test/get_best_move.cpp)
+        test/cell.cpp)
 add_test(NAME libttt_test COMMAND test_libttt)

@@ -1,11 +1,11 @@
-#include "ttt/get_best_move.hpp"
+#include "tttai/get_best_move.hpp"
 
 #include "ttt/board.hpp"
 #include "ttt/cell.hpp"
 
 #include <optional>
 
-auto ttt::get_minimax_value(ttt::board const& p_board, ttt::move p_move, bool p_do_maximize) -> float {
+auto tttai::get_minimax_value(ttt::board const& p_board, ttt::move p_move, bool p_do_maximize) -> float {
   auto curr_board = p_board.apply(p_move);
   if (curr_board.has_winner()) {
     return 1.0;
@@ -39,7 +39,7 @@ auto ttt::get_minimax_value(ttt::board const& p_board, ttt::move p_move, bool p_
   return result;
 }
 
-auto ttt::get_best_move(ttt::board const& p_board, ttt::cell::value p_turn) -> std::optional<ttt::cell::position> {
+auto tttai::get_best_move(ttt::board const& p_board, ttt::cell::value p_turn) -> std::optional<ttt::cell::position> {
   std::optional<ttt::cell::position> result = std::nullopt;
   float best_value = -1.0;
   if (p_board.has_winner()) {

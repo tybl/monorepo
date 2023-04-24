@@ -8,7 +8,8 @@ target_link_libraries(toe
         compiler_settings
         fmt
         nlohmann_json
-        ttt)
+        ttt
+        tttai)
 target_sources(toe
         PRIVATE
         src/main.cpp

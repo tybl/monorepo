@@ -4,3 +4,4 @@
 
 add_subdirectory(libstats)
 add_subdirectory(libttt)
+add_subdirectory(libtttai)
