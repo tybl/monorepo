@@ -171,3 +171,47 @@ TEST_CASE("X|X|O  #|O|#  X|#|#") {
   CHECK_EQ(best_move->row(), 1);
   CHECK_EQ(best_move->col(), 0);
 }
+
+// The following test cases came from watching Monika beat the AI.
+TEST_CASE("AI: #|#|#  #|#|#  #|X|#") {
+  ttt::board brd;
+  brd = brd.apply({2, 1, ttt::cell::value::EX});
+  auto best_move = tttai::get_best_move(brd);
+  REQUIRE(best_move.has_value());
+  CHECK_EQ(best_move->row(), 0);
+  CHECK_EQ(best_move->col(), 0);
+}
+
+TEST_CASE("M: O|#|#  #|#|#  #|X|#") {
+  ttt::board brd;
+  brd = brd.apply({2, 1, ttt::cell::value::EX});
+  brd = brd.apply({0, 0, ttt::cell::value::OH});
+  auto best_move = tttai::get_best_move(brd);
+  REQUIRE(best_move.has_value());
+  CHECK_EQ(best_move->row(), 0);
+  CHECK_EQ(best_move->col(), 2);
+}
+
+TEST_CASE("AI: O|#|X  #|#|#  #|X|#") {
+  ttt::board brd;
+  brd = brd.apply({2, 1, ttt::cell::value::EX});
+  brd = brd.apply({0, 0, ttt::cell::value::OH});
+  brd = brd.apply({0, 2, ttt::cell::value::EX});
+  auto best_move = tttai::get_best_move(brd);
+  REQUIRE(best_move.has_value());
+  CHECK_EQ(best_move->row(), 1);
+  CHECK_EQ(best_move->col(), 0); // TODO: This cannot be right. It leads to the next test case.
+}
+
+TEST_CASE("M: O|#|X  O|#|#  #|X|#") {
+  ttt::board brd;
+  brd = brd.apply({2, 1, ttt::cell::value::EX});
+  brd = brd.apply({0, 0, ttt::cell::value::OH});
+  brd = brd.apply({0, 2, ttt::cell::value::EX});
+  brd = brd.apply({1, 0, ttt::cell::value::OH});
+  auto best_move = tttai::get_best_move(brd);
+  REQUIRE(best_move.has_value());
+  CHECK_EQ(best_move->row(), 2);
+  CHECK_EQ(best_move->col(), 0);
+  // This is the slickest move to set up two possible wins.
+}
