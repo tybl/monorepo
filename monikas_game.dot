@@ -1,81 +1,79 @@
 digraph G {
-  Empty [shape=none label=<
-    <table>
-      <tr><td></td><td></td><td></td></tr>
-      <tr><td></td><td></td><td></td></tr>
-      <tr><td></td><td></td><td></td></tr>
-    </table>>];
-  M1 [shape=none label=<
-    <table>
-      <tr><td></td><td></td><td></td></tr>
-      <tr><td></td><td></td><td></td></tr>
-      <tr><td></td><td>X</td><td></td></tr>
-    </table>>];
-  AI2 [shape=none label=<
-    <table>
-      <tr><td>O</td><td></td><td></td></tr>
-      <tr><td></td><td></td><td></td></tr>
-      <tr><td></td><td>X</td><td></td></tr>
-    </table>>];
-  M3 [shape=none label=<
-    <table>
-      <tr><td>O</td><td></td><td>X</td></tr>
-      <tr><td></td><td></td><td></td></tr>
-      <tr><td></td><td>X</td><td></td></tr>
-    </table>>];
-  AI4 [shape=none label=<
-    <table>
-      <tr><td>O</td><td></td><td>X</td></tr>
-      <tr><td>O</td><td></td><td></td></tr>
-      <tr><td></td><td>X</td><td></td></tr>
-    </table>>];
-  M5 [shape=none label=<
-    <table>
-      <tr><td>O</td><td></td><td>X</td></tr>
-      <tr><td>O</td><td></td><td></td></tr>
-      <tr><td>X</td><td>X</td><td></td></tr>
-    </table>>];
-  AI6 [shape=none label=<
-    <table>
-      <tr><td>O</td><td></td><td>X</td></tr>
-      <tr><td>O</td><td>O</td><td></td></tr>
-      <tr><td>X</td><td>X</td><td></td></tr>
-    </table>>];
-  H61 [shape=none label=<
-    <table>
-      <tr><td>O</td><td>O</td><td>X</td></tr>
-      <tr><td>O</td><td></td><td></td></tr>
-      <tr><td>X</td><td>X</td><td></td></tr>
-    </table>>];
-  H65 [shape=none label=<
-    <table>
-      <tr><td>O</td><td></td><td>X</td></tr>
-      <tr><td>O</td><td></td><td>O</td></tr>
-      <tr><td>X</td><td>X</td><td></td></tr>
-    </table>>];
-  H68 [shape=none label=<
-    <table>
-      <tr><td>O</td><td></td><td>X</td></tr>
-      <tr><td>O</td><td></td><td></td></tr>
-      <tr><td>X</td><td>X</td><td>O</td></tr>
-    </table>>];
-  M7 [shape=none label=<
-    <table>
-      <tr><td>O</td><td></td><td>X</td></tr>
-      <tr><td>O</td><td>O</td><td></td></tr>
-      <tr><td>X</td><td>X</td><td>X</td></tr>
-    </table>>];
-  H71 [shape=none label=<
-    <table>
-      <tr><td>O</td><td>X</td><td>X</td></tr>
-      <tr><td>O</td><td>O</td><td></td></tr>
-      <tr><td>X</td><td>X</td><td></td></tr>
-    </table>>];
-  H75 [shape=none label=<
-    <table>
-      <tr><td>O</td><td></td><td>X</td></tr>
-      <tr><td>O</td><td>O</td><td>X</td></tr>
-      <tr><td>X</td><td>X</td><td></td></tr>
-    </table>>];
-  Empty -> M1 -> AI2 -> M3 -> AI4 -> M5 -> AI6 -> { M7 H71 H75 };
+  Empty [fontname="mono" fontcolor="black" shape=none label="___\n___\n___"];
+  M7 [fontname="mono" fontcolor="black" shape=none label="___\n___\n_X_"];
+  Empty -> M7;
+  A70 [fontname="mono" fontcolor="red" shape=none label="O__\n___\n_X_"];
+  M7 -> A70;
+  M702 [fontname="mono" fontcolor="black" shape=none label="O_X\n___\n_X_\n3"];
+  A70 -> M702;
+  a7021 [fontname="mono" fontcolor="pink" shape=none label="OOX\n___\n_X_\n-3"];
+  M702 -> a7021;
+  m70216 [fontname="mono" fontcolor="grey" shape=none label="OOX\n___\nXX_\n3"];
+  a7021 -> m70216;
+  a702163 [fontname="mono" fontcolor="pink" shape=none label="OOX\nO__\nXX_\n-3"];
+  m70216 -> a702163;
+  m7021634 [fontname="mono" fontcolor="grey" shape=none label="OOX\nOX_\nXX_\n3"];
+  a702163 -> m7021634;
+  a702164 [fontname="mono" fontcolor="pink" shape=none label="OOX\n_O_\nXX_\n-3"];
+  m70216 -> a702164;
+  m7021648 [fontname="mono" fontcolor="grey" shape=none label="OOX\n_O_\nXXX\n3"];
+  a702164 ->m7021648;
+  a702165 [fontname="mono" fontcolor="pink" shape=none label="OOX\n__O\nXX_\n-3"];
+  m70216 -> a702165;
+  m7021654 [fontname="mono" fontcolor="grey" shape=none label="OOX\n_XO\nXX_\n3"];
+  a702165 -> m7021654;
+  a702168 [fontname="mono" fontcolor="pink" shape=none label="OOX\n___\nXXO\n-3"];
+  m70216 -> a702168;
+  m7021684 [fontname="mono" fontcolor="grey" shape=none label="OOX\n_X_\nXXO\n3"];
+  a702168 -> m7021684;
+
+  A7023 [fontname="mono" fontcolor="red" shape=none label="O_X\nO__\n_X_\n-3"];
+  M702 -> A7023;
+  M70236 [fontname="mono" fontcolor="black" shape=none label="O_X\nO__\nXX_\n3"];
+  A7023 -> M70236;
+  a702361 [fontname="mono" fontcolor="pink" shape=none label="OOX\nO__\nXX_\n-3"];
+  M70236 -> a702361 [label="-3"];
+  m7023614 [fontname="mono" fontcolor="grey" shape=none label="OOX\nOX_\nXX_\n3"];
+  a702361 -> m7023614 [label="3"];
+  A702364 [fontname="mono" fontcolor="red" shape=none label="O_X\nOO_\nXX_\n-3"];
+  M70236 -> A702364 [label="-3"];
+  M7023648 [fontname="mono" fontcolor="black" shape=none label="O_X\nOO_\nXXX\n3"];
+  A702364 -> M7023648 [label="3"];
+  a702365 [fontname="mono" fontcolor="pink" shape=none label="O_X\nO_O\nXX_\n-3"];
+  M70236 -> a702365 [label="-3"];
+  m7023654 [fontname="mono" fontcolor="grey" shape=none label="O_X\nOXO\nXX_\n3"];
+  a702365 -> m7023654 [label="3"];
+  a702368 [fontname="mono" fontcolor="pink" shape=none label="O_X\nO__\nXXO\n-3"];
+  M70236 -> a702368 [label="-3"];
+  m7023684 [fontname="mono" fontcolor="grey" shape=none label="O_X\nOX_\nXXO\n3"];
+  a702368 -> m7023684 [label="3"];
+
+  a7024 [fontname="mono" fontcolor="pink" shape=none label="O_X\n_O_\n_X_"];
+  M702 -> a7024;
+  m70241 [fontname="mono" fontcolor="grey" shape=none label="OXX\n_O_\n_X_"];
+  a7024 -> m70241;
+  a702413 [fontname="mono" fontcolor="pink" shape=none label="OXX\nOO_\n_X_"];
+  m70241 -> a702413;
+  a702415 [fontname="mono" fontcolor="pink" shape=none label="OXX\n_OO\n_X_"];
+  m70241 -> a702415;
+  a702416 [fontname="mono" fontcolor="pink" shape=none label="OXX\n_O_\nOX_"];
+  m70241 -> a702416;
+  a702418 [fontname="mono" fontcolor="pink" shape=none label="OXX\n_O_\n_XO"];
+  m70241 -> a702418 [label="4"];
+  m70243 [fontname="mono" fontcolor="grey" shape=none label="O_X\nXO_\n_X_"];
+  a7024 -> m70243;
+  a702431 [fontname="mono" fontcolor="pink" shape=none label="OOX\nXO_\n_X_"];
+  m70243 -> a702431;
+  a702435 [fontname="mono" fontcolor="pink" shape=none label="O_X\nXOO\n_X_"];
+  m70243 -> a702435;
+  a702436 [fontname="mono" fontcolor="pink" shape=none label="O_X\nXO_\nOX_"];
+  m70243 -> a702436;
+  a702438 [fontname="mono" fontcolor="pink" shape=none label="O_X\nXO_\n_XO"];
+  m70243 -> a702438 [label="4"];
+  m70245 [fontname="mono" fontcolor="grey" shape=none label="O_X\n_OX\n_X_"];
+  a7024 -> m70245;
+  m70246 [fontname="mono" fontcolor="grey" shape=none label="O_X\n_O_\nXX_"];
+  a7024 -> m70246;
+  m70248 [fontname="mono" fontcolor="grey" shape=none label="O_X\n_O_\n_XX"];
+  a7024 -> m70248;
 }
