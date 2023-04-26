@@ -3,6 +3,7 @@ pkgs.mkShell {
   buildInputs = [
     pkgs.cmake
     pkgs.gcc
+    pkgs.graphviz
     pkgs.jetbrains.clion
   ];
   nativeBuildInputs = [

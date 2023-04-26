@@ -1,0 +1,81 @@
+digraph G {
+  Empty [shape=none label=<
+    <table>
+      <tr><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td></tr>
+    </table>>];
+  M1 [shape=none label=<
+    <table>
+      <tr><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td></tr>
+      <tr><td></td><td>X</td><td></td></tr>
+    </table>>];
+  AI2 [shape=none label=<
+    <table>
+      <tr><td>O</td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td></tr>
+      <tr><td></td><td>X</td><td></td></tr>
+    </table>>];
+  M3 [shape=none label=<
+    <table>
+      <tr><td>O</td><td></td><td>X</td></tr>
+      <tr><td></td><td></td><td></td></tr>
+      <tr><td></td><td>X</td><td></td></tr>
+    </table>>];
+  AI4 [shape=none label=<
+    <table>
+      <tr><td>O</td><td></td><td>X</td></tr>
+      <tr><td>O</td><td></td><td></td></tr>
+      <tr><td></td><td>X</td><td></td></tr>
+    </table>>];
+  M5 [shape=none label=<
+    <table>
+      <tr><td>O</td><td></td><td>X</td></tr>
+      <tr><td>O</td><td></td><td></td></tr>
+      <tr><td>X</td><td>X</td><td></td></tr>
+    </table>>];
+  AI6 [shape=none label=<
+    <table>
+      <tr><td>O</td><td></td><td>X</td></tr>
+      <tr><td>O</td><td>O</td><td></td></tr>
+      <tr><td>X</td><td>X</td><td></td></tr>
+    </table>>];
+  H61 [shape=none label=<
+    <table>
+      <tr><td>O</td><td>O</td><td>X</td></tr>
+      <tr><td>O</td><td></td><td></td></tr>
+      <tr><td>X</td><td>X</td><td></td></tr>
+    </table>>];
+  H65 [shape=none label=<
+    <table>
+      <tr><td>O</td><td></td><td>X</td></tr>
+      <tr><td>O</td><td></td><td>O</td></tr>
+      <tr><td>X</td><td>X</td><td></td></tr>
+    </table>>];
+  H68 [shape=none label=<
+    <table>
+      <tr><td>O</td><td></td><td>X</td></tr>
+      <tr><td>O</td><td></td><td></td></tr>
+      <tr><td>X</td><td>X</td><td>O</td></tr>
+    </table>>];
+  M7 [shape=none label=<
+    <table>
+      <tr><td>O</td><td></td><td>X</td></tr>
+      <tr><td>O</td><td>O</td><td></td></tr>
+      <tr><td>X</td><td>X</td><td>X</td></tr>
+    </table>>];
+  H71 [shape=none label=<
+    <table>
+      <tr><td>O</td><td>X</td><td>X</td></tr>
+      <tr><td>O</td><td>O</td><td></td></tr>
+      <tr><td>X</td><td>X</td><td></td></tr>
+    </table>>];
+  H75 [shape=none label=<
+    <table>
+      <tr><td>O</td><td></td><td>X</td></tr>
+      <tr><td>O</td><td>O</td><td>X</td></tr>
+      <tr><td>X</td><td>X</td><td></td></tr>
+    </table>>];
+  Empty -> M1 -> AI2 -> M3 -> AI4 -> M5 -> AI6 -> { M7 H71 H75 };
+}

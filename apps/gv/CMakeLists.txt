@@ -1,0 +1,10 @@
+add_executable(gv)
+target_link_libraries(gv
+        PRIVATE
+        compiler_settings
+        fmt
+        ttt)
+target_sources(gv
+        PRIVATE
+        src/main.cpp
+        )
