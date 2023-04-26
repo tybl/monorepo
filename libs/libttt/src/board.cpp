@@ -7,6 +7,7 @@
 #include <fmt/format.h>
 
 #include <algorithm>
+#include <iostream>
 
 ttt::board::board() = default;
 
@@ -32,6 +33,10 @@ auto ttt::board::apply(move p_move) const -> board {
   board_copy.m_board.at(p_move.pos().index()) = p_move.value();
   board_copy.m_history.push_back(p_move);
   return board_copy;
+}
+
+auto ttt::board::has_ended() const -> bool {
+  return has_winner() || std::all_of(m_board.begin(), m_board.end(), [](cell::value p_val){ return p_val != cell::value::Empty; });
 }
 
 auto ttt::board::has_winner() const -> bool {
@@ -75,6 +80,21 @@ auto ttt::board::is_empty(ttt::cell::position p_pos) const -> bool {
   return ttt::cell::value::Empty == get_cell(p_pos);
 }
 
+auto ttt::board::to_string() const -> std::string {
+  std::string result;
+  //for (auto mov : m_history) {
+  //result.append(fmt::format("({},{}): {}\n", mov.pos().row(), mov.pos().col(), static_cast<char>(mov.value())));
+  //}
+  for (uint16_t row = 0; row < NUM_ROWS; ++row) {
+    if (0 != row) {
+      result.append(fmt::format("---|---|---\n"));
+    }
+    result.append(fmt::format(" {:1} | {:1} | {:1}\n", static_cast<char>(m_board.at(row * NUM_COLS + 0)),
+                              static_cast<char>(m_board.at(static_cast<unsigned>(row * NUM_COLS + 1))),
+                              static_cast<char>(m_board.at(static_cast<unsigned>(row * NUM_COLS + 2)))));
+  }
+  return result;
+}
 auto ttt::board::encode(ttt::cell::value p_player) const -> uint16_t {
   uint16_t result = 0;
   for (size_t row = 0; row < 3; ++row) {

@@ -37,6 +37,8 @@ public:
 
   [[nodiscard]] auto apply(move p_move) const -> board;
 
+  auto has_ended() const -> bool;
+
   [[gnu::pure, nodiscard]] auto has_winner() const -> bool;
 
   [[gnu::pure, nodiscard]] auto is_winner(cell::value p_player) const -> bool;
@@ -50,6 +52,12 @@ public:
   auto get_next_turn() const -> cell::value;
 
   [[nodiscard]] auto is_empty(ttt::cell::position p_pos) const -> bool;
+
+  [[nodiscard]] auto last_move() const -> move { return m_history.back(); }
+
+  [[nodiscard]] auto num_moves() const -> size_t { return m_history.size(); }
+
+  auto to_string() const -> std::string;
 
   [[gnu::pure, nodiscard]] auto encode(ttt::cell::value p_player) const -> uint16_t;
 
