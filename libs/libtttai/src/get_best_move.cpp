@@ -20,7 +20,7 @@ static auto score_game(ttt::board const& p_board) -> float {
   return 0;
 }
 
-auto minimax(ttt::board const& p_board, ttt::cell::value p_player) -> float {
+auto minimax(ttt::board const& p_board) -> float {
   auto result = std::numeric_limits<float>::infinity();
   const auto turn = p_board.get_next_turn();
   for (uint16_t i = 0; i < 9; ++i) {
@@ -31,7 +31,7 @@ auto minimax(ttt::board const& p_board, ttt::cell::value p_player) -> float {
         auto utility = score_game(n_board);
         return utility;
       }
-      auto val = -1 * minimax(n_board, p_player);
+      auto val = -1 * minimax(n_board);
       result = std::min(result, val);
     }
   }
@@ -53,7 +53,7 @@ auto get_best_move(ttt::board const& p_board) -> std::optional<ttt::cell::positi
       if (n_board.is_winner(turn) || n_board.is_tie()) {
         return pos;
       }
-      auto val = -1 * minimax(n_board, turn);
+      auto val = -1 * minimax(n_board);
       if (best_value < val) {
         best_value = val;
         result = pos;

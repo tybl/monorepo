@@ -12,7 +12,7 @@ namespace tttai {
 
 auto get_best_move(ttt::board const& p_board) -> std::optional<ttt::cell::position>;
 
-auto get_minimax_value(ttt::board const& p_board, ttt::move p_move, bool p_do_maximize) -> float;
+auto minimax(ttt::board const& p_board) -> float;
 
 } // namespace tttai
 
