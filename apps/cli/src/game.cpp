@@ -2,6 +2,7 @@
 #include "game.hpp"
 
 #include "ttt/cell.hpp"
+#include "tttai/get_best_move.hpp"
 
 #include <iostream>
 #include <string>
@@ -12,13 +13,21 @@ void game::run() {
   std::cin >> name;
   std::cout << "Thank you, " << name << ". For this game, you will be 'X' and start first.\n";
   display_board();
-  while (!m_board.has_winner()) {
-    auto player_move = request_move(name);
-    //m_board.display();
+  while (!m_board.has_ended()) {
     m_board = m_board.apply(request_move(name));
     display_board();
+    auto mov = tttai::get_best_move(m_board);
+    if (mov.has_value()) {
+      std::cout << "I will now take a turn and place my piece on row " << mov->row() << ", column " << mov->col() << ".\n";
+      m_board = m_board.apply({*mov, ttt::cell::value::OH});
+      display_board();
+    }
   }
-  m_board.display();
+  if (m_board.is_winner(ttt::cell::value::EX)) {
+    std::cout << "You won! Great job, " << name << "! I hope you have a nice day!\n";
+  } else if (m_board.is_tie()) {
+    std::cout << "It's a tie! Great job, " << name << "! That was tough! I hope you have a nice day!\n";
+  }
 }
 
 auto game::request_move(std::string const& p_name) -> ttt::move {

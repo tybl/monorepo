@@ -3,7 +3,7 @@
 ################################################################################
 
 add_executable(cli)
-target_link_libraries(cli PRIVATE compiler_settings ttt)
+target_link_libraries(cli PRIVATE compiler_settings ttt tttai)
 target_sources(cli
         PRIVATE
         src/game.cpp
