@@ -4,8 +4,9 @@
 #include "ttt/board.hpp"
 #include "ttt/cell.hpp"
 
-//#include <iostream>
+#include <limits>
 #include <optional>
+#include <stdexcept>
 
 namespace tttai {
 
