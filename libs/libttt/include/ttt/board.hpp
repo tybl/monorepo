@@ -60,9 +60,18 @@ public:
 
   auto to_string() const -> std::string;
 
+  auto to_dot_string() const -> std::string;
+
   [[gnu::pure, nodiscard]] auto encode(ttt::cell::value p_player) const -> uint16_t;
 
   static auto decode(ttt::cell::value p_player, uint16_t p_value) -> board;
+
+private:
+  auto dot_node_name() const -> std::string;
+  auto dot_node_fontcolor() const -> std::string;
+  auto dot_node_label() const -> std::string;
+  auto dot_node_shape() const -> std::string;
+  auto dot_cell(uint16_t row, uint16_t col) const -> char;
 
 }; // class board
 

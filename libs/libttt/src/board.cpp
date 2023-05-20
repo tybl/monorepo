@@ -80,6 +80,11 @@ auto ttt::board::is_empty(ttt::cell::position p_pos) const -> bool {
   return ttt::cell::value::Empty == get_cell(p_pos);
 }
 
+auto ttt::board::to_dot_string() const -> std::string {
+  return fmt::format(R"({} [fontname="mono" fontcolor="{}" {}label="{}"];)",
+                     dot_node_name(), dot_node_fontcolor(), dot_node_shape(), dot_node_label());
+}
+
 auto ttt::board::to_string() const -> std::string {
   std::string result;
   //for (auto mov : m_history) {
@@ -95,6 +100,7 @@ auto ttt::board::to_string() const -> std::string {
   }
   return result;
 }
+
 auto ttt::board::encode(ttt::cell::value p_player) const -> uint16_t {
   uint16_t result = 0;
   for (size_t row = 0; row < 3; ++row) {
@@ -106,6 +112,7 @@ auto ttt::board::encode(ttt::cell::value p_player) const -> uint16_t {
   }
   return result;
 }
+
 
 auto ttt::board::decode(ttt::cell::value p_player, uint16_t p_value) -> ttt::board {
   //using enum ttt::cell::value;
@@ -119,4 +126,39 @@ auto ttt::board::decode(ttt::cell::value p_player, uint16_t p_value) -> ttt::boa
     }
   }
   return result;
+}
+
+auto ttt::board::dot_node_name() const -> std::string {
+  if (m_history.empty()) {
+    return "Empty";
+  }
+  std::string result("m");
+  for (auto const& m : m_history) {
+    result += std::to_string(m.pos().index());
+  }
+  return result;
+}
+
+auto ttt::board::dot_node_fontcolor() const -> std::string {
+  return "black";
+}
+
+auto ttt::board::dot_node_shape() const -> std::string {
+  return has_ended() ? "" : "shape=none ";
+}
+
+auto ttt::board::dot_node_label() const -> std::string {
+  std::string result;
+  for (uint16_t row = 0; row < NUM_ROWS; ++row) {
+    if (0 != row) {
+      result.append("\\n");
+    }
+    result.append(fmt::format("{:1}{:1}{:1}", dot_cell(row,0), dot_cell(row, 1), dot_cell(row, 2)));
+  }
+  return result;
+}
+
+auto ttt::board::dot_cell(uint16_t row, uint16_t col) const -> char {
+  auto val = m_board.at(static_cast<unsigned>(row * NUM_COLS + col));
+  return (ttt::cell::value::Empty == val) ? '_' : static_cast<char>(val);
 }
