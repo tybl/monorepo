@@ -173,13 +173,16 @@ TEST_CASE("X|X|O  #|O|#  X|#|#") {
 }
 
 // The following test cases came from watching Monika beat the AI.
+// I think this first test case is where the problem starts. The AI
+// should respond by taking the center position, when instead it
+// took the top left position.
 TEST_CASE("AI: #|#|#  #|#|#  #|X|#") {
   ttt::board brd;
   brd = brd.apply({2, 1, ttt::cell::value::EX});
   auto best_move = tttai::get_best_move(brd);
   REQUIRE(best_move.has_value());
-  CHECK_EQ(best_move->row(), 0);
-  CHECK_EQ(best_move->col(), 0);
+  CHECK_EQ(best_move->row(), 1);
+  CHECK_EQ(best_move->col(), 1);
 }
 
 TEST_CASE("M: O|#|#  #|#|#  #|X|#") {
@@ -200,7 +203,7 @@ TEST_CASE("AI: O|#|X  #|#|#  #|X|#") {
   auto best_move = tttai::get_best_move(brd);
   REQUIRE(best_move.has_value());
   CHECK_EQ(best_move->row(), 1);
-  CHECK_EQ(best_move->col(), 0); // TODO: This cannot be right. It leads to the next test case.
+  CHECK_EQ(best_move->col(), 0);
 }
 
 TEST_CASE("M: O|#|X  O|#|#  #|X|#") {

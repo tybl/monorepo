@@ -4,7 +4,7 @@
 #include "ttt/bad_move.hpp"
 #include "ttt/cell.hpp"
 
-#include <fmt/format.h>
+#include <fmt/core.h>
 
 #include <algorithm>
 #include <iostream>
