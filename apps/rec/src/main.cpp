@@ -69,18 +69,18 @@ auto main(int argc, char* argv[]) -> int {
   auto recommendations = receng.get_possibilities(required_letter, optional_letters);
   for (auto const& word : recommendations) {
     std::cout << word << std::endl;
-    std::cout << "Try \""<< word << "\". Was it accepted? (y/n) ";
-    std::cin >> required_letter;
-    if ('y' == required_letter) {
-      correct_word_list.push_back(word);
-    }
+    //std::cout << "Try \""<< word << "\". Was it accepted? (y/n) ";
+    //std::cin >> required_letter;
+    //if ('y' == required_letter) {
+    //  correct_word_list.push_back(word);
+    //}
   }
-  std::ofstream output("inputs/confirmed_words.txt", std::ios_base::app);
-  for (auto const& word : correct_word_list) {
-    if (output.good()) {
-      output << word << std::endl;
-    }
-  }
+  //std::ofstream output("inputs/confirmed_words.txt", std::ios_base::app);
+  //for (auto const& word : correct_word_list) {
+  //  if (output.good()) {
+  //    output << word << std::endl;
+  //  }
+  //}
 }
 
 // vim: ts=2 sts=2 sw=2 et
