@@ -3,5 +3,7 @@ pkgs.mkShell {
   buildInputs = [
     pkgs.cmake
   ];
-  nativeBuildInputs = [ ];
+  nativeBuildInputs = [
+    pkgs.tomlplusplus
+  ];
 }
