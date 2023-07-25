@@ -14,6 +14,7 @@ if(PROJECT_IS_TOP_LEVEL)
 endif()
 
 add_library(util)
+add_library(libutil::util ALIAS util)
 target_include_directories(util PUBLIC include)
 target_sources(util
 	PRIVATE

@@ -3,7 +3,7 @@
 #include <pwd.h>
 #include <unistd.h>
 
-namespace tybl::util::config {
+namespace tybl::util {
 
 auto get_home_path() -> std::filesystem::path {
   char const* home_path = nullptr;
@@ -25,4 +25,4 @@ auto get_config_path(std::string const& app_name) -> std::filesystem::path {
   return result;
 }
 
-} // namespace tybl::util::config
+} // namespace tybl::util
