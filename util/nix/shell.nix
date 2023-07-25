@@ -4,5 +4,7 @@ pkgs.mkShell {
     pkgs.clang-tools_16
     pkgs.cmake
   ];
-  nativeBuildInputs = [ ];
+  nativeBuildInputs = [
+    pkgs.doctest
+  ];
 }
