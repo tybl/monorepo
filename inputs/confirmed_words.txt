@@ -269,9 +269,12 @@ gild
 gilded
 gill
 gilled
+gilt
 give
 glide
 glided
+glint
+glinting
 gold
 gone
 goodie
@@ -293,6 +296,7 @@ helm
 hemlock
 hill
 hilly
+hilt
 hitting
 hole
 home
@@ -346,6 +350,8 @@ lied
 liege
 lien
 lifeline
+lilt
+lilting
 lily
 line
 lined
@@ -481,6 +487,7 @@ rant
 rapid
 rapidly
 ribbon
+right
 rill
 ripply
 road
@@ -506,15 +513,19 @@ tatty
 teeny
 tentative
 thin
+thing
 thinning
 thrill
 thrilling
 tiling
 till
 tilling
+tilt
+tilting
 tine
 tinny
 tiny
+tithing
 toil
 toon
 tornado
