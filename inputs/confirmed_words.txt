@@ -31,8 +31,11 @@ allele
 alley
 ally
 ambition
+amenity
+amity
 anion
 anon
+anytime
 apogee
 arctic
 ardor
@@ -224,6 +227,7 @@ enmity
 ennoble
 entice
 enticed
+entity
 evade
 evaded
 even
@@ -272,6 +276,8 @@ gold
 gone
 goodie
 googol
+grit
+gritting
 hall
 halve
 harm
@@ -287,6 +293,7 @@ helm
 hemlock
 hill
 hilly
+hitting
 hole
 home
 hooch
@@ -303,6 +310,7 @@ igloo
 illogic
 illy
 immortal
+inanity
 incite
 incited
 indecency
@@ -363,6 +371,7 @@ maraca
 marm
 maroon
 marry
+matey
 meany
 meaty
 mecca
@@ -389,6 +398,7 @@ narco
 narrow
 nary
 native
+natty
 nave
 nene
 neon
@@ -492,9 +502,16 @@ tacit
 tact
 tail
 tailor
+tatty
 teeny
 tentative
+thin
+thinning
+thrill
+thrilling
+tiling
 till
+tilling
 tine
 tinny
 tiny
@@ -506,6 +523,8 @@ trail
 trait
 traitor
 trial
+trill
+trilling
 trim
 trimmed
 trophy
