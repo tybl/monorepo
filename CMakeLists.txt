@@ -7,14 +7,10 @@ project(BeeKiller
 	VERSION 0.0.0
 	LANGUAGES CXX)
 
-include(CTest)
 include(util/cmake/CompilerSettings.cmake)
 include(util/cmake/Linters.cmake)
 
-find_package(doctest REQUIRED)
 find_package(fmt REQUIRED)
-
-add_subdirectory(util/doctest)
 
 add_executable(prune)
 target_link_libraries(prune PRIVATE compiler_settings fmt)
