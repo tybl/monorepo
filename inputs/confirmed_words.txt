@@ -217,6 +217,7 @@ egging
 eject
 ejected
 eking
+eleven
 elide
 elided
 emcee
@@ -232,11 +233,13 @@ evade
 evaded
 even
 evened
+evenly
 evict
 evictee
 evident
 evoke
 evoking
+evolve
 eyelid
 fact
 fate
@@ -270,6 +273,7 @@ gilded
 gill
 gilled
 gilt
+girth
 give
 glide
 glided
@@ -355,6 +359,7 @@ lilting
 lily
 line
 lined
+lint
 lion
 live
 lively
@@ -363,7 +368,12 @@ loco
 logic
 loin
 lone
+lonely
 loon
+loony
+love
+lovely
+lune
 macaroon
 mace
 macho
@@ -412,6 +422,7 @@ netty
 network
 nice
 nifty
+night
 nine
 ninety
 ninny
@@ -424,6 +435,9 @@ none
 nonillion
 noob
 noon
+novel
+novelly
+null
 object
 objected
 odor
@@ -437,10 +451,12 @@ ollie
 omit
 onion
 online
+only
 onto
 orca
 oven
 ovine
+ovule
 pace
 pact
 page
@@ -488,6 +504,7 @@ rapid
 rapidly
 ribbon
 right
+righting
 rill
 ripply
 road
@@ -523,6 +540,7 @@ tilling
 tilt
 tilting
 tine
+tingling
 tinny
 tiny
 tithing
@@ -534,6 +552,7 @@ trail
 trait
 traitor
 trial
+trig
 trill
 trilling
 trim
@@ -545,6 +564,8 @@ turn
 turnaround
 udon
 undo
+unlevel
+unlovely
 unto
 uproar
 vacate
@@ -568,6 +589,8 @@ vice
 vile
 villa
 vine
+vole
+volley
 wanna
 warn
 wash
@@ -582,3 +605,4 @@ yield
 yielded
 yoga
 yogi
+yule
