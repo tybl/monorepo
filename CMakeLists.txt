@@ -28,7 +28,8 @@ if(PROJECT_IS_TOP_LEVEL)
 	target_sources(test_libutil
 		PRIVATE
 		test/util/crc32.cpp
-		test/util/main.cpp)
+		test/util/main.cpp
+		test/util/string_contains.cpp)
 
 	add_test(NAME libutil_test COMMAND test_libutil)
 endif()
