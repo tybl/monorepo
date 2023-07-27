@@ -8,12 +8,18 @@ project(BeeKiller
 	LANGUAGES CXX)
 
 include(CTest)
-include(utils/cmake/CompilerSettings.cmake)
-include(utils/cmake/Linters.cmake)
+include(util/cmake/CompilerSettings.cmake)
+include(util/cmake/Linters.cmake)
 
 find_package(doctest REQUIRED)
 find_package(fmt REQUIRED)
 
-add_subdirectory(utils/doctest)
-#add_subdirectory(libs)
-add_subdirectory(apps)
+add_subdirectory(util/doctest)
+
+add_executable(prune)
+target_link_libraries(prune PRIVATE compiler_settings fmt)
+target_sources(prune PRIVATE src/prune.cpp)
+
+add_executable(rec)
+target_link_libraries(rec PRIVATE compiler_settings fmt)
+target_sources(rec PRIVATE src/rec.cpp)
