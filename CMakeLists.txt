@@ -26,4 +26,11 @@ target_sources(argcplusplus
 
 if(PROJECT_IS_TOP_LEVEL)
 	# TODO(tybl): Create unit tests
+	add_executable(test_argcplusplus)
+	target_link_libraries(test_argcplusplus PRIVATE argcplusplus doctest::doctest)
+	target_sources(test_argcplusplus
+		PRIVATE
+			test/argc++/main.cpp
+			test/argc++/test_help.cpp)
+	add_test(NAME argcplusplus_test COMMAND test_argcplusplus)
 endif()
