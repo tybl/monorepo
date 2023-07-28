@@ -10,21 +10,22 @@ project(argcplusplus
 	LANGUAGES CXX)
 
 if(PROJECT_IS_TOP_LEVEL)
-	find_package(doctest REQUIRED)
 	include(CTest)
+	find_package(doctest REQUIRED)
 endif()
+find_package(fmt REQUIRED)
 
 add_library(argcplusplus)
 target_compile_features(argcplusplus PUBLIC cxx_std_20)
 target_include_directories(argcplusplus PUBLIC include)
+target_link_libraries(argcplusplus PUBLIC fmt::fmt)
 target_sources(argcplusplus
 	PUBLIC
 		include/argc++/Application.hpp
 		include/argc++/Argument.hpp
 	PRIVATE
 		src/argc++/Application.cpp
-		src/argc++/Argument.cpp
-)
+		src/argc++/Argument.cpp)
 
 if(PROJECT_IS_TOP_LEVEL)
 	# TODO(tybl): Create unit tests
@@ -33,6 +34,7 @@ if(PROJECT_IS_TOP_LEVEL)
 	target_sources(test_argcplusplus
 		PRIVATE
 			test/argc++/main.cpp
-			test/argc++/test_help.cpp)
+			test/argc++/test_help.cpp
+			test/argc++/test_version.cpp)
 	add_test(NAME argcplusplus_test COMMAND test_argcplusplus)
 endif()

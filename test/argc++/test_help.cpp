@@ -1,4 +1,5 @@
 // License: The Unlicense (https://unlicense.org)
+// vim:et:ts=2:sw=2
 
 #include "argc++/Application.hpp"
 
@@ -7,10 +8,10 @@
 #include <stdexcept>
 
 // If '-h' is provided anywhere on the command line,
-// parm shall throw an exception containing the help message.
+// argc++ shall throw an exception containing the help message.
 
 // If '--help' is provided anywhere on the command line,
-// parm shall throw an exception containing the help message.
+// argc++ shall throw an exception containing the help message.
 
 TEST_CASE("test_help --help") {
 
@@ -19,8 +20,8 @@ TEST_CASE("test_help --help") {
       "Usage: app [options]\n"
       "\n"
       "Optional arguments:\n"
-      "-h, --help     Print this message and exit\n"
-      "-v, --verbose  Enable verbose logging\n";
+      "-h, --help, Print this message and exit\n"
+      "--version, Print version information and exit\n";
   tybl::argcpp::Application app("app", "1.0.0");
 
   const int argc = 2;
@@ -29,7 +30,7 @@ TEST_CASE("test_help --help") {
     try {
       app.run(argc, argv);
     } catch (std::runtime_error& err) {
-      CHECK(expected_help_msg == err.what());
+      CHECK_EQ(expected_help_msg, err.what());
       caught_exception = true;
     }
     CHECK(caught_exception);
@@ -40,7 +41,7 @@ TEST_CASE("test_help --help") {
     try {
       app.run(argc, argv);
     } catch (std::runtime_error& err) {
-      CHECK(expected_help_msg == err.what());
+      CHECK_EQ(expected_help_msg, err.what());
       caught_exception = true;
     }
     CHECK(caught_exception);

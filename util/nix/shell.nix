@@ -6,5 +6,6 @@ pkgs.mkShell {
   ];
   nativeBuildInputs = [
     pkgs.doctest
+    pkgs.fmt
   ];
 }
