@@ -1,13 +1,10 @@
 // License: The Unlicense (https://unlicense.org)
 #pragma once
-#ifndef TYBL_PARM_PARAMETER_HPP
-#define TYBL_PARM_PARAMETER_HPP
 
-#include <numeric>
 #include <string>
 #include <vector>
 
-namespace parm {
+namespace tybl::argcpp {
 
 class argument {
   friend class Application;
@@ -31,6 +28,4 @@ private:
 
 }; // class argument
 
-} // namespace parm
-
-#endif // TYBL_PARM_PARAMETER_HPP
+} // namespace tybl::argcpp

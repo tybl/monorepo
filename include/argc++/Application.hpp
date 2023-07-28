@@ -1,7 +1,5 @@
 // License: The Unlicense (https://unlicense.org)
 #pragma once
-#ifndef TYBL_PARM_APPLICATION_HPP
-#define TYBL_PARM_APPLICATION_HPP
 
 #include "Argument.hpp"
 
@@ -11,7 +9,7 @@
 #include <string>
 #include <string_view>
 
-namespace parm {
+namespace tybl::argcpp {
 
 class Application {
   std::string m_name;        // For printing usage
@@ -54,6 +52,4 @@ auto Application::add_argument(Args&&... p_args) -> argument& {
   return *arg_it;
 }
 
-} // namespace parm
-
-#endif // TYBL_PARM_APPLICATION_HPP
+} // namespace tybl::argcpp

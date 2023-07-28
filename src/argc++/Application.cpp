@@ -7,11 +7,12 @@
 #include <algorithm>
 #include <list>
 #include <map>
+#include <numeric>
 #include <span>
 #include <string>
 #include <utility>
 
-namespace parm {
+namespace tybl::argcpp {
 
 Application::Application(std::string p_name, std::string p_version)
   : m_name(std::move(p_name))
@@ -51,4 +52,4 @@ void Application::index_argument(list_iterator p_argument_iterator) {
   }
 }
 
-} // namespace parm
+} // namespace tybl::argcpp

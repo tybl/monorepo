@@ -1,7 +1,9 @@
 // License: The Unlicense (https://unlicense.org)
 #include "argc++/Argument.hpp"
 
-namespace parm {
+#include <numeric>
+
+namespace tybl::argcpp {
 
 // For printing usage
 auto argument::help(std::string_view p_help) -> argument& {
@@ -15,5 +17,4 @@ auto argument::help(std::string_view p_help) -> argument& {
   });
 }
 
-} // namespace parm
-
+} // namespace tybl::argcpp
