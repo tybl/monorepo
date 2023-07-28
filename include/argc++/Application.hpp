@@ -3,7 +3,7 @@
 #ifndef TYBL_PARM_APPLICATION_HPP
 #define TYBL_PARM_APPLICATION_HPP
 
-#include "Parameter.hpp"
+#include "Argument.hpp"
 
 #include <list>
 #include <map>

@@ -2,7 +2,7 @@
 // vim:et:ts=2:sw=2
 #include "argc++/Application.hpp"
 
-#include "argc++/Parameter.hpp"
+#include "argc++/Argument.hpp"
 
 #include <algorithm>
 #include <list>

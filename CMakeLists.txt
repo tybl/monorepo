@@ -20,9 +20,10 @@ target_include_directories(argcplusplus PUBLIC include)
 target_sources(argcplusplus
 	PUBLIC
 		include/argc++/Application.hpp
-		include/argc++/Parameter.hpp
+		include/argc++/Argument.hpp
 	PRIVATE
 		src/argc++/Application.cpp
+		src/argc++/Argument.cpp
 )
 
 if(PROJECT_IS_TOP_LEVEL)
