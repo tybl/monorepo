@@ -18,10 +18,10 @@ add_library(argcplusplus)
 target_include_directories(argcplusplus PUBLIC include)
 target_sources(argcplusplus
 	PUBLIC
-		include/parm/Application.hpp
-		include/parm/Parameter.hpp
+		include/argc++/Application.hpp
+		include/argc++/Parameter.hpp
 	PRIVATE
-		src/parm/Application.cpp
+		src/argc++/Application.cpp
 )
 
 if(PROJECT_IS_TOP_LEVEL)
