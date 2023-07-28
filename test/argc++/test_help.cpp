@@ -23,7 +23,7 @@ TEST_CASE("test_help --help") {
       "-v, --verbose  Enable verbose logging\n";
   parm::Application app("app", "1.0.0");
 
-  int argc = 2;
+  const int argc = 2;
   SUBCASE("'-h' alone results in help message") {
     const char* argv[] = {"app", "-h", nullptr};
     try {

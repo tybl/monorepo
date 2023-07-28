@@ -1,4 +1,5 @@
 // License: The Unlicense (https://unlicense.org)
+// vim:et:ts=2:sw=2
 #include "argc++/Application.hpp"
 
 #include "argc++/Parameter.hpp"
@@ -6,6 +7,7 @@
 #include <algorithm>
 #include <list>
 #include <map>
+#include <span>
 #include <string>
 #include <utility>
 
@@ -18,14 +20,15 @@ Application::Application(std::string p_name, std::string p_version)
   add_argument("-v", "--version").help("prints version information and exits");
 }
 
-auto Application::run(int /*unused*/, char const** /*unused*/) -> int {
+auto Application::run(int p_argc, char const** p_argv) -> int {
+  parse_arguments(std::span(p_argv, static_cast<size_t>(p_argc)));
   // TODO(tybl):
   // 1. Parse arguments
   // 2. Invoke commands
   return 0;
 }
 
-void Application::parse_arguments(std::vector<std::string> const& /*p_args*/) {
+void Application::parse_arguments(std::span<char const*> const& /*p_args*/) {
   // TODO(tybl):
   // 1. Ignore first argument, as it is the name that invoked the program
   // 2. For each of the argument_strings in p_args,

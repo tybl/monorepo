@@ -15,6 +15,7 @@ if(PROJECT_IS_TOP_LEVEL)
 endif()
 
 add_library(argcplusplus)
+target_compile_features(argcplusplus PUBLIC cxx_std_20)
 target_include_directories(argcplusplus PUBLIC include)
 target_sources(argcplusplus
 	PUBLIC

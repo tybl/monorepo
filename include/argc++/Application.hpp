@@ -7,6 +7,7 @@
 
 #include <list>
 #include <map>
+#include <span>
 #include <string>
 #include <string_view>
 
@@ -20,10 +21,10 @@ class Application {
 
   // std::list prevents iterators from being invalidated
   using list_iterator = std::list<argument>::iterator;
+
   std::list<argument> m_arguments;
 
-  // std::map or std::unordered_map could be used
-  // TODO(tybl): Investigate performance characteristics of either
+  // TODO(tybl): Investigate performance characteristics compared to std::unordered_map
   std::map<std::string_view, list_iterator> m_argument_map;
 
 public:
@@ -33,10 +34,10 @@ public:
   template <typename... Args>
   auto add_argument(Args&&... p_args) -> argument&;
 
-  static auto run(int /*unused*/, char const** /*unused*/) -> int;
+  auto run(int p_argc, char const** p_argv) -> int;
 
 private:
-  void parse_arguments(std::vector<std::string> const& /*p_args*/);
+  void parse_arguments(std::span<char const*> const& /*p_args*/);
 
   // For printing usage
   [[nodiscard]] auto longest_argument_length() const -> size_t;
