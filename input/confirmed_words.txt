@@ -37,6 +37,7 @@ anion
 anon
 anytime
 apogee
+appetite
 arctic
 ardor
 aria
@@ -71,6 +72,7 @@ bait
 banana
 band
 baobab
+baptize
 bard
 barn
 baron
@@ -81,6 +83,7 @@ beatific
 beech
 beeline
 been
+beep
 billion
 bind
 bird
@@ -229,6 +232,7 @@ ennoble
 entice
 enticed
 entity
+epee
 evade
 evaded
 even
@@ -471,10 +475,14 @@ parlay
 parry
 payee
 peace
+peat
 peptic
+petit
+petite
 piccata
 piece
 pillar
+pizza
 poor
 poppa
 poppy
@@ -526,9 +534,12 @@ tacit
 tact
 tail
 tailor
+tape
 tatty
 teeny
+teepee
 tentative
+tepee
 thin
 thing
 thinning
