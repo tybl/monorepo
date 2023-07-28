@@ -20,7 +20,8 @@ target_include_directories(util PUBLIC include)
 target_sources(util
 	PRIVATE
 		src/util/crc32.cpp
-		src/util/get_config_path.cpp)
+		src/util/get_config_path.cpp
+		src/util/get_home_path.cpp)
 
 if(PROJECT_IS_TOP_LEVEL)
 	add_executable(test_libutil)
