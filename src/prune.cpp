@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <fstream>
 #include <iostream>
+#include <span>
 #include <string>
 
 static constexpr size_t MIN_WORD_LEN = 4;
@@ -16,11 +17,12 @@ auto is_allowed(std::string p_word) {
 }
 
 auto main(int argc, char* argv[]) -> int {
-  if (2 > argc) {
+  auto args = std::span(argv, static_cast<size_t>(argc));
+  if (2 > args.size()) {
     // TODO(tybl): Print help
     return -1;
   }
-  std::ifstream input(argv[1]);
+  std::ifstream input(args.back());
   while (input.good()) {
     std::string word;
     input >> word;

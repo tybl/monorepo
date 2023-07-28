@@ -17,6 +17,9 @@ public:
   auto get_possibilities(char p_required_letter, std::string p_optional_letters) -> std::vector<std::string> {
     p_required_letter = static_cast<char>(std::tolower(p_required_letter));
     std::vector<std::string> result(m_word_list);
+#ifdef __cpp_lib_string_contains
+#warning "Replace 'p_word.find(p_required_letter) == std::string::npos' with 'p_word.contains(p_required_letter)'"
+#endif
     result.erase(std::remove_if(result.begin(), result.end(), [p_required_letter](std::string const& p_word){ return p_word.find(p_required_letter) == std::string::npos; }), result.end());
     p_optional_letters.push_back(p_required_letter);
     std::transform(p_optional_letters.begin(), p_optional_letters.end(), p_optional_letters.begin(), [](char p_letter){ return std::tolower(p_letter); });
@@ -28,6 +31,9 @@ public:
       return std::any_of(p_word.begin(),
                          p_word.end(),
                          [p_optional_letters](char p_letter){
+#ifdef __cpp_lib_string_contains
+#warning "Replace 'p_optional_letters.find(p_letter) == std::string::npos' with 'p_optional_letters.contains(p_letter)'"
+#endif
         return p_optional_letters.find(p_letter) == std::string::npos;
       });
     }), result.end());
