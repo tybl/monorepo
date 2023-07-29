@@ -12,13 +12,15 @@ find_package(tomlplusplus REQUIRED)
 
 include(FetchContent)
 
-FetchContent_Declare(
-	libutil
-	GIT_REPOSITORY gitea@bitute.lan:tybl/libutil.git
-	GIT_TAG        main
-	GIT_SHALLOW    TRUE
-)
-FetchContent_MakeAvailable(libutil)
+if(PROJECT_IS_TOP_LEVEL)
+	FetchContent_Declare(
+		libutil
+		GIT_REPOSITORY gitea@bitute.lan:tybl/libutil.git
+		GIT_TAG        main
+		GIT_SHALLOW    TRUE
+	)
+	FetchContent_MakeAvailable(libutil)
+endif()
 
 add_executable(jrny)
 target_compile_features(jrny PRIVATE cxx_std_20) # std::span
