@@ -12,10 +12,10 @@ option(BUILD_ALL_TESTS "Build and run tests as a subproject" OFF)
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
   include(CTest)
+  include(util/cmake/CompilerSettings.cmake)
+  include(util/cmake/Linters.cmake)
 endif()
 include(FetchContent)
-include(util/cmake/CompilerSettings.cmake)
-include(util/cmake/Linters.cmake)
 
 # Use doctest as unit test framework
 FetchContent_Declare(doctest
