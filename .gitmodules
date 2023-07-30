@@ -1,0 +1,36 @@
+[submodule "apps/solver"]
+	path = apps/solver
+	url = git@github.com:tybl/solver.git
+[submodule "apps/MaxRunStats"]
+	path = apps/MaxRunStats
+	url = git@github.com:tybl/MaxRunStats.git
+[submodule "apps/goon"]
+	path = apps/goon
+	url = git@github.com:tybl/goon.git
+[submodule "apps/sbee"]
+	path = apps/sbee
+	url = git@github.com:tybl/sbee.git
+[submodule "apps/ogre"]
+	path = apps/ogre
+	url = git@github.com:tybl/ogre.git
+[submodule "apps/jrny"]
+	path = apps/jrny
+	url = git@github.com:tybl/jrny.git
+[submodule "libs/libargc"]
+	path = libs/libargc
+	url = git@github.com:tybl/libargc.git
+[submodule "libs/libcoord"]
+	path = libs/libcoord
+	url = git@github.com:tybl/libcoord.git
+[submodule "libs/liblynel"]
+	path = libs/liblynel
+	url = git@github.com:tybl/liblynel.git
+[submodule "libs/libpnt"]
+	path = libs/libpnt
+	url = git@github.com:tybl/libpnt.git
+[submodule "libs/libstats"]
+	path = libs/libstats
+	url = git@github.com:tybl/libstats.git
+[submodule "libs/libutil"]
+	path = libs/libutil
+	url = git@github.com:tybl/libutil.git
