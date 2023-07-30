@@ -13,22 +13,10 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
   include(util/cmake/CompilerSettings.cmake)
   include(util/cmake/Linters.cmake)
 endif()
-include(FetchContent)
 
-# Use pugixml to parse XML
-FetchContent_Declare(pugixml
-  GIT_REPOSITORY https://github.com/zeux/pugixml.git
-  GIT_SHALLOW    TRUE
-  GIT_TAG        "v1.10")
-FetchContent_MakeAvailable(pugixml)
-
-# Use pugixml to parse XML
-FetchContent_Declare(date
-  GIT_REPOSITORY https://github.com/HowardHinnant/date.git
-  GIT_SHALLOW    TRUE
-  GIT_TAG        "v3.0.0")
-FetchContent_MakeAvailable(date)
+find_package(date REQUIRED)
+find_package(pugixml REQUIRED)
 
 add_executable(extract_stats)
-target_link_libraries(extract_stats PRIVATE compiler_settings date::date pugixml)
+target_link_libraries(extract_stats PRIVATE compiler_settings date::date pugixml::pugixml)
 target_sources(extract_stats PRIVATE src/main.cpp)
