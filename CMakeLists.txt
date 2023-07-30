@@ -17,13 +17,6 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 endif()
 include(FetchContent)
 
-# Use doctest as unit test framework
-FetchContent_Declare(doctest
-  GIT_REPOSITORY https://github.com/onqtam/doctest.git
-  GIT_SHALLOW    TRUE
-  GIT_TAG        "2.4.1")
-FetchContent_MakeAvailable(doctest)
-
 # Use pugixml to parse XML
 FetchContent_Declare(pugixml
   GIT_REPOSITORY https://github.com/zeux/pugixml.git
@@ -39,7 +32,3 @@ FetchContent_Declare(date
 FetchContent_MakeAvailable(date)
 
 add_subdirectory(app)
-
-if((CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME) OR BUILD_ALL_TESTS)
-  add_subdirectory(test)
-endif()
