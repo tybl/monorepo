@@ -8,8 +8,6 @@ project(MaxRunStats
   DESCRIPTION "Parse TCS files into a CSV file that contains your best time for all distances"
   LANGUAGES CXX)
 
-option(BUILD_ALL_TESTS "Build and run tests as a subproject" OFF)
-
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
   include(CTest)
   include(util/cmake/CompilerSettings.cmake)
@@ -31,4 +29,6 @@ FetchContent_Declare(date
   GIT_TAG        "v3.0.0")
 FetchContent_MakeAvailable(date)
 
-add_subdirectory(app)
+add_executable(extract_stats)
+target_link_libraries(extract_stats PRIVATE compiler_settings date::date pugixml)
+target_sources(extract_stats PRIVATE src/main.cpp)
