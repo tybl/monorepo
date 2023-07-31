@@ -10,6 +10,7 @@ acid
 acidic
 acidity
 acidy
+acing
 acme
 acorn
 acrid
@@ -38,6 +39,7 @@ anon
 anytime
 apogee
 appetite
+arcing
 arctic
 ardor
 aria
@@ -103,7 +105,9 @@ brown
 cache
 cacti
 caddy
+cairn
 came
+canning
 canny
 cape
 captivate
@@ -111,8 +115,9 @@ captive
 carat
 card
 cardiac
+caring
 carry
-carry
+carrying
 cart
 cataract
 catty
@@ -158,8 +163,10 @@ coot
 cootie
 corona
 coronary
+craning
 cranny
 critic
+cyan
 dairy
 darn
 deceit
@@ -336,6 +343,7 @@ hooch
 hope
 hoppy
 iced
+icing
 ideology
 idiotic
 idle
@@ -443,6 +451,7 @@ myna
 nana
 nanny
 nape
+narc
 narco
 narrow
 nary
@@ -506,6 +515,7 @@ paramour
 parlay
 parry
 payee
+payphone
 peace
 peahen
 peat
@@ -534,6 +544,7 @@ prop
 proud
 purr
 rabid
+racing
 racy
 raid
 rail
@@ -550,6 +561,7 @@ rant
 rapid
 rapidly
 ribbon
+ricing
 right
 righting
 rill
@@ -657,4 +669,3 @@ yielded
 yoga
 yogi
 yule
-payphone
