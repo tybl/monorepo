@@ -14,6 +14,7 @@ pkgs.mkShell {
     pkgs.howard-hinnant-date
     pkgs.pugixml
     pkgs.SDL2
+    pkgs.spdlog
     pkgs.tomlplusplus
   ];
 }
