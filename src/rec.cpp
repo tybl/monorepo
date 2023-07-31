@@ -1,3 +1,5 @@
+// License: The Unlicense (https://unlicense.org)
+// vim:ts=2:sts=2:sw=2:et
 #include <algorithm>
 #include <fstream>
 #include <iostream>
@@ -73,20 +75,9 @@ auto main(int argc, char* argv[]) -> int {
   std::cout << "What letters may appear in the word? ";
   std::cin >> optional_letters;
   auto recommendations = receng.get_possibilities(required_letter, optional_letters);
+  int count = 0;
   for (auto const& word : recommendations) {
-    std::cout << word << std::endl;
-    //std::cout << "Try \""<< word << "\". Was it accepted? (y/n) ";
-    //std::cin >> required_letter;
-    //if ('y' == required_letter) {
-    //  correct_word_list.push_back(word);
-    //}
+    std::cout << (count += 1) << " " << word << std::endl;
   }
-  //std::ofstream output("inputs/confirmed_words.txt", std::ios_base::app);
-  //for (auto const& word : correct_word_list) {
-  //  if (output.good()) {
-  //    output << word << std::endl;
-  //  }
-  //}
 }
 
-// vim: ts=2 sts=2 sw=2 et
