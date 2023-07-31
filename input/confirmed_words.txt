@@ -105,8 +105,11 @@ brown
 cache
 cacti
 caddy
+caging
+cagy
 cairn
 came
+canna
 canning
 canny
 cape
@@ -133,6 +136,7 @@ chili
 chill
 ciabatta
 cicada
+cigar
 cite
 cited
 city
@@ -163,9 +167,13 @@ coot
 cootie
 corona
 coronary
+crag
+craggy
 craning
 cranny
+cringy
 critic
+crying
 cyan
 dairy
 darn
@@ -314,6 +322,7 @@ gold
 gone
 goodie
 googol
+gracing
 grit
 gritting
 hall
