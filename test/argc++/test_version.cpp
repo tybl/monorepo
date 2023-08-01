@@ -25,5 +25,4 @@ TEST_CASE("test_help --version") {
     caught_exception = true;
   }
   CHECK(caught_exception);
-
 }
