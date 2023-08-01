@@ -1,38 +1,38 @@
 #include "recommendation_engine.hpp"
 
 #include <algorithm>
+#include <ranges>
 
 static constexpr size_t MIN_WORD_LEN = 4;
 static constexpr size_t MAX_LETTER_CNT = 7;
 
+void tolower_string(std::string& p_str) {
+  std::ranges::transform(p_str, p_str.begin(), [](unsigned char p_ch){ return std::tolower(p_ch); });
+}
+
 recommendation_engine::recommendation_engine(std::vector<std::string> const& p_word_list) {
   std::copy_if(p_word_list.begin(), p_word_list.end(), std::back_inserter(m_word_list),
                [](std::string const& p_word) -> bool { return is_allowed(p_word); });
-  std::for_each(m_word_list.begin(), m_word_list.end(), [](std::string& p_word) {
-    std::transform(p_word.begin(), p_word.end(), p_word.begin(),
-                   [](char p_letter) { return std::tolower(p_letter); });
-  });
+  std::for_each(m_word_list.begin(), m_word_list.end(), tolower_string);
 }
 
-auto recommendation_engine::get_possibilities(char p_required_letter, std::string p_optional_letters) -> std::vector<std::string> {
+auto recommendation_engine::get_possibilities(std::string p_required_letters, std::string p_optional_letters) -> std::vector<std::string> {
 
-  p_required_letter = static_cast<char>(std::tolower(p_required_letter));
+  tolower_string(p_required_letters);
+  tolower_string(p_optional_letters);
+  p_optional_letters.append(p_required_letters);
+  std::ranges::sort(p_optional_letters);
 
   std::vector<std::string> result(m_word_list);
 
 #ifdef __cpp_lib_string_contains
-#warning "Replace 'p_word.find(p_required_letter) == std::string::npos' with 'p_word.contains(p_required_letter)'"
+#warning "Replace 'p_word.find(p_required_letters) == std::string::npos' with 'p_word.contains(p_required_letters)'"
 #endif
   result.erase(std::remove_if(result.begin(), result.end(),
-                              [p_required_letter](std::string const& p_word) {
-                                return p_word.find(p_required_letter) == std::string::npos;
+                              [p_required_letters](std::string const& p_word) {
+                                return p_word.find(p_required_letters) == std::string::npos;
                               }),
                result.end());
-
-  p_optional_letters.push_back(p_required_letter);
-
-  std::transform(p_optional_letters.begin(), p_optional_letters.end(), p_optional_letters.begin(),
-                 [](char p_letter) { return std::tolower(p_letter); });
 
   std::sort(p_optional_letters.begin(), p_optional_letters.end());
 

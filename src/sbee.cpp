@@ -20,14 +20,17 @@ auto main(int argc, char* argv[]) -> int {
     input >> word;
     word_list.push_back(word);
   }
-  char required_letter = '\0';
-  std::string optional_letters;
   recommendation_engine receng(word_list);
-  std::cout << "What letter must be contained in the word? ";
-  std::cin >> required_letter;
+
+  std::string required_letters;
+  std::cout << "What letters must be contained in the word? ";
+  std::cin >> required_letters;
+
+  std::string optional_letters;
   std::cout << "What letters may appear in the word? ";
   std::cin >> optional_letters;
-  auto recommendations = receng.get_possibilities(required_letter, optional_letters);
+
+  auto recommendations = receng.get_possibilities(required_letters, optional_letters);
   int count = 0;
   for (auto const& word : recommendations) {
     std::cout << (count += 1) << " " << word << std::endl;
