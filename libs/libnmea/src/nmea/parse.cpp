@@ -7,8 +7,8 @@
 
 namespace pnt::nmea {
 
-enum class Hour : uint8_t { };
-enum class Minute : uint8_t { };
+enum class Hour : uint8_t {};
+enum class Minute : uint8_t {};
 
 struct TimeOfDay {
   static auto parse(std::string_view& p_input) {
@@ -21,6 +21,7 @@ struct TimeOfDay {
   auto hour() const { return static_cast<Hour>(m_value / 10000); }
   auto minute() const { return static_cast<Minute>(std::fmod(m_value, 10000.0F) / 100); }
   auto second() const { return std::fmod(m_value, 100.0F); }
+
 private:
   float m_value;
 };
@@ -31,23 +32,15 @@ auto parse(std::string_view p_input) -> std::unique_ptr<Sentence> {
     return nullptr;
   }
   auto result = std::make_unique<Sentence>();
-  switch(p_input[2]) {
-    case 'A':
-      result->talker_id = TalkerId::GA; break;
-    case 'B':
-      result->talker_id = TalkerId::GB; break;
-    case 'I':
-      result->talker_id = TalkerId::GI; break;
-    case 'L':
-      result->talker_id = TalkerId::GL; break;
-    case 'N':
-      result->talker_id = TalkerId::GN; break;
-    case 'P':
-      result->talker_id = TalkerId::GP; break;
-    case 'Q':
-      result->talker_id = TalkerId::GQ; break;
-    default:
-      result->talker_id = TalkerId::Unknown; break;
+  switch (p_input[2]) {
+    case 'A': result->talker_id = TalkerId::GA; break;
+    case 'B': result->talker_id = TalkerId::GB; break;
+    case 'I': result->talker_id = TalkerId::GI; break;
+    case 'L': result->talker_id = TalkerId::GL; break;
+    case 'N': result->talker_id = TalkerId::GN; break;
+    case 'P': result->talker_id = TalkerId::GP; break;
+    case 'Q': result->talker_id = TalkerId::GQ; break;
+    default: result->talker_id = TalkerId::Unknown; break;
   }
   p_input = p_input.substr(3);
   if (p_input.starts_with("GGA"sv)) {
