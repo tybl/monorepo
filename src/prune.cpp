@@ -9,11 +9,12 @@ static constexpr size_t MAX_LETTER_CNT = 7;
 
 auto is_allowed(std::string p_word) {
   auto original_length = p_word.size();
-  std::transform(p_word.cbegin(), p_word.cend(), p_word.begin(), [](char p_letter){ return std::toupper(p_letter); });
+  std::transform(p_word.cbegin(), p_word.cend(), p_word.begin(), [](char p_letter) { return std::toupper(p_letter); });
   std::sort(p_word.begin(), p_word.end());
   auto last = std::unique(p_word.begin(), p_word.end());
   p_word.erase(last, p_word.end());
-  return (MIN_WORD_LEN <= original_length) && (p_word.size() <= MAX_LETTER_CNT) && std::all_of(p_word.begin(), p_word.end(), [](char p_letter){ return std::isalpha(p_letter); });
+  return (MIN_WORD_LEN <= original_length) && (p_word.size() <= MAX_LETTER_CNT) &&
+         std::all_of(p_word.begin(), p_word.end(), [](char p_letter) { return std::isalpha(p_letter); });
 }
 
 auto main(int argc, char* argv[]) -> int {
