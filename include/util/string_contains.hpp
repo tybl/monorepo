@@ -9,7 +9,7 @@ namespace tybl::util {
 
 template <typename CharType>
 auto string_contains(std::basic_string<CharType> const& p_str, CharType p_char) {
-   return p_str.find(p_char) != std::string::npos;
+  return p_str.find(p_char) != std::string::npos;
 }
 
 } // namespace tybl::util

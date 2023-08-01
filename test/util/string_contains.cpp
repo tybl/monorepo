@@ -4,10 +4,6 @@
 
 using namespace std::literals;
 
-TEST_CASE("String contains character") {
-   CHECK(tybl::util::string_contains("apples"s, 'a'));
-}
+TEST_CASE("String contains character") { CHECK(tybl::util::string_contains("apples"s, 'a')); }
 
-TEST_CASE("String does not contain character") {
-   CHECK(!tybl::util::string_contains("apples"s, 'b'));
-}
+TEST_CASE("String does not contain character") { CHECK(!tybl::util::string_contains("apples"s, 'b')); }
