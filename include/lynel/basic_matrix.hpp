@@ -12,7 +12,9 @@ constexpr auto is_vec(size_t p_extent, size_t p_rows, size_t p_cols) -> bool {
   return ((p_rows == p_extent) && (1 == p_cols)) || ((p_cols == p_extent) && (1 == p_rows));
 }
 
-constexpr auto is_mat(size_t p_extent, size_t p_rows, size_t p_cols) -> bool { return (p_cols == p_extent) && (1 < p_rows); }
+constexpr auto is_mat(size_t p_extent, size_t p_rows, size_t p_cols) -> bool {
+  return (p_cols == p_extent) && (1 < p_rows);
+}
 
 template <typename T, size_t R, size_t C, typename S = void>
 struct basic_matrix;
@@ -105,7 +107,9 @@ struct basic_matrix<T, M, N, typename std::enable_if_t<is_vec(3, M, N)>> {
     z /= p_s;
     return *this;
   }
-  [[nodiscard]] constexpr auto dot(basic_matrix const& p_v) const -> value_type { return (x * p_v.x) + (y * p_v.y) + (z * p_v.z); }
+  [[nodiscard]] constexpr auto dot(basic_matrix const& p_v) const -> value_type {
+    return (x * p_v.x) + (y * p_v.y) + (z * p_v.z);
+  }
   [[nodiscard]] constexpr auto cross(basic_matrix const& p_v) const -> basic_matrix {
     return basic_matrix{(y * p_v.z) - (z * p_v.y), (z * p_v.x) - (x * p_v.z), (x * p_v.y) - (y * p_v.x)};
   }

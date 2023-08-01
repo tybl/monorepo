@@ -255,8 +255,8 @@ TEST_CASE("Linear Algebra: Theory, Intuition, Code - Practice Problems pg 97") {
 TEST_CASE("Linear Algebra: Theory, Intuition, Code - Practice Problems pg 112") {}
 
 TEST_CASE("Linear Algebra: Theory, Intuition, Code - Practice Problems pg 126") {
-  using tybl::lynel::mat2;
   using tybl::lynel::basic_matrix;
+  using tybl::lynel::mat2;
 
   // A
   mat2<int> a_in0 = {{1, 2}, {1, 3}};
