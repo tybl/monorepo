@@ -39,7 +39,6 @@ target_sources(test_sbeelib
 add_test(NAME sbeelib_test COMMAND test_sbeelib)
 
 add_executable(sbee)
-# TODO(tybl): Utilize std::string::contains(), when cxx_std_23 is available
 target_compile_features(sbee PRIVATE cxx_std_20) # std::span
-target_link_libraries(sbee PRIVATE fmt sbeelib)
+target_link_libraries(sbee PRIVATE fmt::fmt sbeelib)
 target_sources(sbee PRIVATE src/sbee.cpp)
