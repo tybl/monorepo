@@ -23,3 +23,9 @@ TEST_CASE("rec_eng") {
    answers = rex.get_possibilities("bcdefgh", "");
    CHECK(0 == answers.size()); // "abcdefgh" should have been stripped from inputs
 }
+
+TEST_CASE("2023-08-01") {
+   recommendation_engine rex({ "armour", "around", "arum", "aunt", "aura", "aurora", "clue", "clued", "cuddle", "cuddled", "cued", "cull", "culled", "deduce", "deduced", "delude"});
+   auto answers = rex.get_possibilities("u", "indlce");
+   CHECK(10 == answers.size());
+}
