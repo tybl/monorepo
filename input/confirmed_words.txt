@@ -26,6 +26,7 @@ agape
 agog
 airily
 airmail
+airman
 airy
 alive
 allay
@@ -35,6 +36,7 @@ ally
 ambition
 amenity
 amity
+anima
 anion
 anon
 anytime
@@ -398,6 +400,7 @@ idyll
 igloo
 illogic
 illy
+imam
 immortal
 inanity
 incite
@@ -470,14 +473,23 @@ mace
 macho
 mail
 maim
+main
+maintain
 mama
+mamma
 mammary
 manna
+mantra
 many
 maraca
+marina
 marm
 maroon
 marry
+mart
+martian
+martin
+martini
 matey
 meany
 meaty
@@ -490,8 +502,11 @@ mice
 mien
 mine
 mini
+minivan
 mint
 minty
+mirin
+mitt
 moan
 mocha
 mole
@@ -643,6 +658,8 @@ tail
 tailor
 talc
 tale
+tamari
+tamarin
 tape
 tattle
 tatty
@@ -675,6 +692,7 @@ tract
 trail
 trait
 traitor
+tram
 trial
 trig
 trill
@@ -701,6 +719,7 @@ vain
 vale
 valley
 vane
+varmint
 veal
 veggie
 vegging
@@ -717,6 +736,7 @@ vice
 vile
 villa
 vine
+vitamin
 vole
 volley
 wanna
