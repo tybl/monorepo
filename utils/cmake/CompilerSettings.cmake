@@ -5,97 +5,78 @@
 
 include(CheckCXXCompilerFlag)
 
-check_cxx_compiler_flag(-Weverything HAS_COMPILER_WARNING_EVERYTHING)
-if (${HAS_COMPILER_WARNING_EVERYTHING})
+function(add_warning_if_available compiler_flag)
+  check_cxx_compiler_flag(-W${compiler_flag} HAS_COMPILER_FLAG_${COMPILER_FLAG})
+  if (${HAS_COMPILER_FLAG_${COMPILER_FLAG}})
+    add_compile_options(-W${compiler_flag})
+  endif()
+endfunction()
+
+set(ALL_COMPILER_FLAGS
+  address-of-packed-member
+  all
+  analyzer-allocation-size
+  analyzer-deref-before-check
+  analyzer-exposure-through-unint-copy
+  analyzer-fd-access-mode-mismatch
+  analyzer-fd-double-close
+  analyzer-fd-leak
+  analyzer-fd-phase-mismatch
+  analyzer-fd-type-mismatch
+  analyzer-fd-use-after-close
+  analyzer-fd-use-without-check
+  analyzer-imprecise-fp-arithmetic
+  analyzer-infinite-recursion
+  analyzer-jump-through-null
+  analyzer-out-of-bounds
+  analyzer-putenv-of-auto-var
+  analyzer-tainted-assertion
+  analyzer-use-of-uninitialized-value
+  analyzer-write-to-const
+  analyzer-write-to-string-literal
+  arith-conversion
+  array-bounds
+  attribute-alias
+  cast-align
+  class-conversion
+  conversion
+  deprecated-copy
+  deprecated-copy-dtor
+  double-promotion
+  duplicated-branches
+  duplicated-cond
+  effc++
+  extra
+  format-overflow
+  init-list-lifetime
+  lifetime
+  logical-op
+  maybe-uninitialized
+  misleading-indentation
+  mismatched-tags
+  non-virtual-dtor
+  null-dereference
+  old-style-cast
+  overloaded-virtual
+  pedantic
+  redundant-tags
+  restrict
+  return-local-addr
+  shadow
+  sign-conversion
+  stringop-overflow
+  suggest-attribute=const
+  suggest-attribute=pure
+  uninitialized
+  unused
+  useless-cast
+)
+
+check_cxx_compiler_flag(-Weverything HAS_COMPILER_WARNING_everything)
+if (${HAS_COMPILER_WARNING_everything})
   add_compile_options(-Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded)
 else()
-  check_cxx_compiler_flag(-Wall HAS_COMPILER_WARNING_ALL)
-  if (${HAS_COMPILER_WARNING_ALL})
-    add_compile_options(-Wall)
-  endif()
-  check_cxx_compiler_flag(-Wextra HAS_COMPILER_WARNING_EXTRA)
-  if(${HAS_COMPILER_WARNING_EXTRA})
-    add_compile_options(-Wextra)
-  endif()
-  check_cxx_compiler_flag(-Wshadow HAS_COMPILER_WARNING_SHADOW)
-  if(${HAS_COMPILER_WARNING_SHADOW})
-    add_compile_options(-Wshadow)
-  endif()
-  check_cxx_compiler_flag(-Wnon-virtual-dtor HAS_COMPILER_WARNING_NONVIRTUAL_DTOR)
-  if(${HAS_COMPILER_WARNING_NONVIRTUAL_DTOR})
-    add_compile_options(-Wnon-virtual-dtor)
-  endif()
-  check_cxx_compiler_flag(-Wold-style-cast HAS_GCC_WOLD_STYLE_CAST)
-  if(${HAS_GCC_WOLD_STYLE_CAST})
-    add_compile_options(-Wold-style-cast)
-  endif()
-  check_cxx_compiler_flag(-Wcast-align HAS_GCC_WCAST_ALIGN)
-  if(${HAS_GCC_WCAST_ALIGN})
-    add_compile_options(-Wcast-align)
-  endif()
-  check_cxx_compiler_flag(-Wunused HAS_GCC_WUNUSED)
-  if(${HAS_GCC_WUNUSED})
-    add_compile_options(-Wunused)
-  endif()
-  check_cxx_compiler_flag(-Woverloaded-virtual HAS_GCC_WOVERLOADED_VIRTUAL)
-  if(${HAS_GCC_WOVERLOADED_VIRTUAL})
-    add_compile_options(-Woverloaded-virtual)
-  endif()
-  check_cxx_compiler_flag(-Wpedantic HAS_GCC_WPEDANTIC)
-  if(${HAS_GCC_WPEDANTIC})
-    add_compile_options(-Wpedantic)
-  endif()
-  check_cxx_compiler_flag(-Wconversion HAS_GCC_WCONVERSION)
-  if(${HAS_GCC_WCONVERSION})
-    add_compile_options(-Wconversion)
-  endif()
-  check_cxx_compiler_flag(-Wsign-conversion HAS_GCC_WSIGN_CONVERSION)
-  if(${HAS_GCC_WSIGN_CONVERSION})
-    add_compile_options(-Wsign-conversion)
-  endif()
-  check_cxx_compiler_flag(-Wmisleading-indentation HAS_GCC_WMISLEADING_INDENTATION)
-  if(${HAS_GCC_WMISLEADING_INDENTATION})
-    add_compile_options(-Wmisleading-indentation)
-  endif()
-  check_cxx_compiler_flag(-Wduplicated-cond HAS_COMPILER_WARNING_DUPLICATED_COND)
-  if(${HAS_COMPILER_WARNING_DUPLICATED_COND})
-    add_compile_options(-Wduplicated-cond)
-  endif()
-  check_cxx_compiler_flag(-Wduplicated-branches HAS_COMPILER_WARNING_DUPLICATED_BRANCHES)
-  if(${HAS_COMPILER_WARNING_DUPLICATED_BRANCHES})
-    add_compile_options(-Wduplicated-branches)
-  endif()
-  check_cxx_compiler_flag(-Wlogical-op HAS_COMPILER_WARNING_LOGICAL_OP)
-  if(${HAS_COMPILER_WARNING_LOGICAL_OP})
-    add_compile_options(-Wlogical-op)
-  endif()
-  check_cxx_compiler_flag(-Wnull-dereference HAS_COMPILER_WARNING_NULL_DEREFERENCE)
-  if(${HAS_COMPILER_WARNING_NULL_DEREFERENCE})
-    add_compile_options(-Wnull-dereference)
-  endif()
-  check_cxx_compiler_flag(-Wuseless-cast HAS_COMPILER_WARNING_USELESS_CAST)
-  if(${HAS_COMPILER_WARNING_USELESS_CAST})
-    add_compile_options(-Wuseless-cast)
-  endif()
-  check_cxx_compiler_flag(-Wdouble-promotion HAS_COMPILER_WARNING_DOUBLE_PROMOTION)
-  if(${HAS_COMPILER_WARNING_DOUBLE_PROMOTION})
-    add_compile_options(-Wdouble-promotion)
-  endif()
-  check_cxx_compiler_flag(-Wlifetime HAS_COMPILER_WARNING_LIFETIME)
-  if(${HAS_COMPILER_WARNING_LIFETIME})
-    add_compile_options(-Wlifetime)
-  endif()
-  # -Weffc++ can be difficult to please, enable at your own risk
-  #check_cxx_compiler_flag(-Weffc++ HAS_COMPILER_WARNING_EFFCPLUSPLUS)
-  if(${HAS_COMPILER_WARNING_EFFCPLUSPLUS})
-    add_compile_options(-Weffc++)
-  endif()
-  check_cxx_compiler_flag(-Wsuggest-attribute=pure HAS_COMPILER_WARNING_SUGGEST_ATTRIBUTE_PURE)
-  if(${HAS_COMPILER_WARNING_SUGGEST_ATTRIBUTE_PURE})
-    add_compile_options(-Wsuggest-attribute=pure)
-  endif()
-  check_cxx_compiler_flag(-Wsuggest-attribute=const HAS_COMPILER_WARNING_SUGGEST_ATTRIBUTE_CONST)
-  if(${HAS_COMPILER_WARNING_SUGGEST_ATTRIBUTE_CONST})
-    add_compile_options(-Wsuggest-attribute=const)
-  endif()
+  foreach(COMPILER_FLAG ${ALL_COMPILER_FLAGS})
+    add_warning_if_available(${COMPILER_FLAG})
+  endforeach()
 endif()
