@@ -23,14 +23,12 @@ target_sources(util
 		src/util/get_config_path.cpp
 		src/util/get_home_path.cpp)
 
-if(PROJECT_IS_TOP_LEVEL)
-	add_executable(test_libutil)
-	target_link_libraries(test_libutil PRIVATE util doctest::doctest)
-	target_sources(test_libutil
-		PRIVATE
-		test/util/crc32.cpp
-		test/util/main.cpp
-		test/util/string_contains.cpp)
+add_executable(test_libutil)
+target_link_libraries(test_libutil PRIVATE util doctest::doctest)
+target_sources(test_libutil
+	PRIVATE
+	test/util/crc32.cpp
+	test/util/main.cpp
+	test/util/string_contains.cpp)
 
-	add_test(NAME libutil_test COMMAND test_libutil)
-endif()
+add_test(NAME libutil_test COMMAND test_libutil)
