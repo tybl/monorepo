@@ -19,7 +19,7 @@ class crc32 {
 
   uint32_t update(const uint8_t* data, size_t dataLen);
 
-  uint32_t reflect(uint32_t data);
+  [[gnu::const]] static uint32_t reflect(uint32_t data);
 
 public:
   static uint32_t get_crc(const uint8_t* data, size_t dataLen);

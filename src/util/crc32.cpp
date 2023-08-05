@@ -1,3 +1,5 @@
+// License: The Unlicense (https://unlicense.org)
+// vim:ts=2:sts=2:sw=2:et
 #include "util/crc32.hpp"
 
 namespace tybl::util {
@@ -17,27 +19,15 @@ uint32_t crc32::validate(uint8_t const* p_data, size_t p_data_length, uint32_t p
   uint32_t value = get_crc(p_data, p_data_length);
 
   return (value == p_crc_value) ? 0 : value;
-  // They match!
-  // if(value == crcValue)
-  //{
-  //    return 0;
-  // }
-  // They don't match!
-  // else
-  //{
-  //    return value;
-  // }
 }
 
 uint32_t crc32::reflect(uint32_t p_data) {
   unsigned int i;
   uint32_t ret = 0;
-  bool bit;
-
-  bit = (p_data & 0x01);
+  bool lowest_bit = (p_data & 0x01);
 
   // Set the first (will be highest) bit of the return value to the lowest bit of data
-  ret |= bit;
+  ret |= lowest_bit;
 
   // 32 can be assumed here, because we are specifically using a uint32_t (32-bit) field
   for (i = 1; i < 32; i++) {
@@ -45,13 +35,13 @@ uint32_t crc32::reflect(uint32_t p_data) {
     p_data >>= 1;
 
     // Get the lowest bit of data
-    bool bit = (p_data & 0x01);
+    lowest_bit = (p_data & 0x01);
 
     // Push the return value to the left
     ret <<= 1;
 
     // Set the next bit of ret with the lowest bit of data
-    ret |= bit;
+    ret |= lowest_bit;
   }
   return ret;
 }
