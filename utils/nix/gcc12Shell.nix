@@ -2,19 +2,20 @@
 # License: The Unlicense (https://unlicense.org)
 # vim:et:ts=2
 ################################################################################
-{ pkgs ? import <nixpkgs> {} }:
-pkgs.mkShell {
+with import <nixpkgs> {};
+gcc12Stdenv.mkDerivation {
+  name = "dev";
   buildInputs = [
-    pkgs.clang-tools_16
-    pkgs.cmake
+    clang-tools_16
+    cmake
   ];
   nativeBuildInputs = [
-    pkgs.doctest
-    pkgs.fmt
-    pkgs.howard-hinnant-date
-    pkgs.pugixml
-    pkgs.SDL2
-    pkgs.spdlog
-    pkgs.tomlplusplus
+    doctest
+    fmt
+    howard-hinnant-date
+    pugixml
+    SDL2
+    spdlog
+    tomlplusplus
   ];
 }
