@@ -18,11 +18,15 @@ acrid
 acridity
 activate
 active
+adage
 additive
 adorn
 advent
 affect
 agape
+agate
+aged
+agent
 agog
 airily
 airmail
@@ -32,6 +36,7 @@ alive
 allay
 allele
 alley
+alloy
 ally
 ambition
 amenity
@@ -194,7 +199,9 @@ cued
 cull
 culled
 cyan
+daily
 dairy
+dally
 darn
 deceit
 decency
@@ -221,6 +228,7 @@ deviant
 deviate
 deviated
 diacritic
+dial
 diary
 dice
 diced
@@ -233,6 +241,8 @@ diddly
 died
 dildo
 dill
+dilly
+dillydally
 diode
 diva
 divan
@@ -247,6 +257,7 @@ dogie
 doily
 doll
 dollied
+dolly
 donor
 donut
 door
@@ -280,6 +291,7 @@ edict
 eely
 effect
 effected
+egged
 egging
 eject
 ejectable
@@ -328,9 +340,14 @@ feta
 fine
 finite
 gabby
+gadget
 gaga
 gage
 gape
+gate
+gated
+gauge
+gauged
 geek
 geeking
 gelid
@@ -354,6 +371,7 @@ glide
 glided
 glint
 glinting
+gnat
 gold
 gone
 goodie
@@ -361,6 +379,8 @@ googol
 gracing
 grit
 gritting
+gunned
+gutted
 hall
 halve
 happen
@@ -380,7 +400,11 @@ hill
 hilly
 hilt
 hitting
+hold
 hole
+holiday
+holly
+holy
 home
 hone
 honey
@@ -428,6 +452,8 @@ keel
 keen
 keening
 keno
+lady
+laid
 lair
 lard
 late
@@ -516,6 +542,7 @@ moor
 moray
 mudroom
 myna
+nagged
 nana
 nanny
 nape
@@ -550,7 +577,10 @@ nope
 novel
 novelly
 nude
+nudge
+nudged
 nudie
+nugget
 null
 object
 objected
@@ -654,12 +684,14 @@ table
 tablet
 tacit
 tact
+tagged
 tail
 tailor
 talc
 tale
 tamari
 tamarin
+tangent
 tape
 tattle
 tatty
@@ -700,6 +732,7 @@ trilling
 trim
 trimmed
 trophy
+tugged
 tuna
 tundra
 turn
@@ -712,6 +745,7 @@ undue
 unlevel
 unlined
 unlovely
+untagged
 unto
 uproar
 vacate
