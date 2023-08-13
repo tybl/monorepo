@@ -13,8 +13,8 @@ find_package(doctest REQUIRED)
 
 include(CTest)
 include(utils/cmake/CompilerSettings.cmake)
-
 add_subdirectory(utils/doctest)
+
 add_subdirectory(libs/libargc)
 add_subdirectory(libs/liblynel)
 add_subdirectory(libs/libcoord)
