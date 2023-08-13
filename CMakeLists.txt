@@ -10,8 +10,9 @@ project(liblynel
 	LANGUAGES CXX)
 
 if(PROJECT_IS_TOP_LEVEL)
-	find_package(doctest REQUIRED)
 	include(CTest)
+	find_package(doctest REQUIRED)
+	add_subdirectory(util/doctest)
 endif()
 
 add_library(lynel INTERFACE)
@@ -23,10 +24,9 @@ target_sources(lynel
 		include/lynel/quaternion.hpp)
 
 add_executable(test_liblynel)
-target_link_libraries(test_liblynel PRIVATE doctest::doctest lynel)
+target_link_libraries(test_liblynel PRIVATE test_main lynel)
 target_sources(test_liblynel
 	PRIVATE
 		test/books/LinearAlgebra_TheoryIntuitionCode.cpp
-		test/lynel/main.cpp
 		test/lynel/matrix.cpp)
 add_test(NAME liblynel_test COMMAND test_liblynel)
