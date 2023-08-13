@@ -22,14 +22,11 @@ target_sources(lynel
 		include/lynel/matrix.hpp
 		include/lynel/quaternion.hpp)
 
-if(PROJECT_IS_TOP_LEVEL)
-	add_executable(test_liblynel)
-	target_link_libraries(test_liblynel PRIVATE doctest::doctest lynel)
-	target_sources(test_liblynel
-		PRIVATE
-			test/books/LinearAlgebra_TheoryIntuitionCode.cpp
-			test/lynel/main.cpp
-			test/lynel/matrix.cpp)
-
-	add_test(NAME liblynel_test COMMAND test_liblynel)
-endif()
+add_executable(test_liblynel)
+target_link_libraries(test_liblynel PRIVATE doctest::doctest lynel)
+target_sources(test_liblynel
+	PRIVATE
+		test/books/LinearAlgebra_TheoryIntuitionCode.cpp
+		test/lynel/main.cpp
+		test/lynel/matrix.cpp)
+add_test(NAME liblynel_test COMMAND test_liblynel)
