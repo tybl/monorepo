@@ -1,5 +1,5 @@
 #!/bin/sh
-cmake -S utils/dependencies -B build_deps
+cmake -S util/dependencies -B build_deps
 cmake --build build_deps
 cmake -B build_libpnt -DCMAKE_PREFIX_PATH=build_deps
 cmake --build build_libpnt

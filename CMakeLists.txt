@@ -12,15 +12,17 @@ project(pnt
 if(PROJECT_IS_TOP_LEVEL)
 	include(CTest)
   find_package(doctest)
-	add_subdirectory(utils/doctest)
+	add_subdirectory(util/doctest)
 endif()
 
-# Define C++ dialect
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_EXTENSIONS OFF)
+add_library(libnmea)
+target_compile_features(libnmea PRIVATE cxx_std_20)
+target_compile_options(libnmea PUBLIC $<$<CONFIG:Debug>:-fsanitize=address,undefined>)
+target_include_directories(libnmea PUBLIC include)
+target_sources(libnmea PRIVATE src/nmea/parse.cpp)
 
-# Prepare dependencies
-set(CMAKE_PREFIX_PATH deps)
-
-# Define build
-add_subdirectory(libs)
+add_executable(test_libnmea)
+target_link_libraries(test_libnmea PRIVATE libnmea test_main)
+target_link_options(test_libnmea PRIVATE $<$<CONFIG:Debug>:-fsanitize=address,undefined>)
+target_sources(test_libnmea PRIVATE test/nmea/parse.cpp)
+add_test(NAME libnmea_test COMMAND test_libnmea)
