@@ -45,6 +45,7 @@ alone
 ambition
 amenity
 amity
+anaconda
 anal
 anally
 analyze
@@ -140,6 +141,7 @@ caging
 cagy
 cairn
 came
+candor
 canna
 canning
 canny
@@ -159,6 +161,7 @@ catty
 cava
 cede
 ceded
+cell
 cello
 check
 cheek
@@ -185,6 +188,7 @@ coed
 coke
 cold
 colic
+collie
 coma
 comb
 come
@@ -195,10 +199,17 @@ commit
 committed
 committee
 commode
+compel
+compile
+concordant
+condor
 cooed
 cool
 coot
 cootie
+cope
+cord
+cordon
 corona
 coronary
 crag
@@ -218,6 +229,7 @@ daily
 dairy
 dally
 darn
+dart
 dean
 deceit
 decency
@@ -260,6 +272,7 @@ dill
 dilly
 dillydally
 diode
+ditty
 diva
 divan
 dive
@@ -268,6 +281,7 @@ divide
 divided
 dividend
 divvied
+doctor
 doggie
 dogie
 doily
@@ -284,6 +298,7 @@ dour
 drab
 dram
 drama
+drat
 drill
 drip
 drippy
@@ -317,6 +332,7 @@ elate
 eleven
 elide
 elided
+elope
 elude
 eluded
 emcee
@@ -332,6 +348,7 @@ entice
 enticed
 entity
 epee
+epic
 evade
 evaded
 even
@@ -490,6 +507,7 @@ levee
 level
 levelly
 liar
+lice
 lidded
 lied
 liege
@@ -498,10 +516,13 @@ lifeline
 lilt
 lilting
 lily
+lime
 line
 lined
 lint
 lion
+liquid
+liquidity
 live
 lively
 loan
@@ -554,6 +575,7 @@ melee
 meme
 mice
 mien
+mile
 mine
 mini
 minivan
@@ -567,9 +589,11 @@ mole
 mooch
 moon
 moor
+mope
 moray
 mudroom
 myna
+nada
 nagged
 nana
 nanny
@@ -655,7 +679,9 @@ payphone
 peace
 peahen
 peat
+peel
 peen
+peep
 penny
 peon
 peony
@@ -666,9 +692,15 @@ phone
 phooey
 piccata
 piece
+pile
 pillar
+pimple
+pipe
 pizza
+poem
+pole
 poor
+pope
 poppa
 poppy
 pour
@@ -679,9 +711,15 @@ promo
 prop
 proud
 purr
+quid
+quill
+quilt
+quit
 rabid
 racing
 racy
+radar
+radon
 raid
 rail
 rain
@@ -743,6 +781,8 @@ thing
 thinning
 thrill
 thrilling
+tidily
+tidy
 tiling
 till
 tilling
@@ -784,6 +824,7 @@ unlovely
 untagged
 unto
 uproar
+utility
 vacate
 vain
 vale
