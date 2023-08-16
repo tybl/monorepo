@@ -2,10 +2,6 @@
 # License: The Unlicense (https://unlicense.org)
 ################################################################################
 
-add_executable(cli)
-target_link_libraries(cli PRIVATE compiler_settings ttt tttai)
-target_sources(cli
-        PRIVATE
-        src/game.cpp
-        src/main.cpp
-        )
+add_library(test_main)
+target_link_libraries(test_main PUBLIC doctest::doctest)
+target_sources(test_main PRIVATE src/main.cpp)
