@@ -2,6 +2,6 @@
 #ifndef GOON_EVENTHANDLER_HPP
 #define GOON_EVENTHANDLER_HPP
 
-void SetUpEvents(void);
+void set_up_events(void);
 
 #endif // GOON_EVENTHANDLER_HPP

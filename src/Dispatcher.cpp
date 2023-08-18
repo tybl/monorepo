@@ -3,22 +3,22 @@
 
 #include <cstdio>
 
-Dispatcher::Dispatcher(void)
-  : mKeyboardListeners()
-  , mWindowListeners()
-  , mKeepRunning(true) {
-  OptOutEvents();
+dispatcher::dispatcher(void)
+  : m_keyboard_listeners()
+  , m_window_listeners()
+  , m_keep_running(true) {
+  opt_out_events();
 }
 
-bool Dispatcher::KeepRunning(void) const { return mKeepRunning; }
+bool dispatcher::keep_running(void) const { return m_keep_running; }
 
-void Dispatcher::ProcessEvents(void) {
+void dispatcher::process_events(void) {
   SDL_Event e;
   while (0 != SDL_PollEvent(&e)) {
     switch (e.type) {
-      case SDL_QUIT: mKeepRunning = false; break;
+      case SDL_QUIT: m_keep_running = false; break;
       case SDL_WINDOWEVENT:
-        for (auto f : mWindowListeners) {
+        for (auto f : m_window_listeners) {
           f(e.window);
         }
         break;
@@ -28,7 +28,7 @@ void Dispatcher::ProcessEvents(void) {
           case SDLK_UP:
           case SDLK_LEFT:
           case SDLK_RIGHT:
-            for (auto f : mKeyboardListeners) {
+            for (auto f : m_keyboard_listeners) {
               f(e.key.keysym.sym);
             }
             break;
@@ -37,16 +37,20 @@ void Dispatcher::ProcessEvents(void) {
             break;
         }
         break;
-      default: printf("Something happened!\n"); break;
+      default: std::printf("Something happened!\n"); break;
     } // switch
   }   // while
 }
 
-void Dispatcher::AddKeyboardListener(std::function<void(SDL_Keycode)> func) { mKeyboardListeners.push_back(func); }
+void dispatcher::add_keyboard_listener(std::function<void(SDL_Keycode)> p_func) {
+  m_keyboard_listeners.push_back(p_func);
+}
 
-void Dispatcher::AddWindowListener(std::function<void(SDL_WindowEvent)> func) { mWindowListeners.push_back(func); }
+void dispatcher::add_window_listener(std::function<void(SDL_WindowEvent)> p_func) {
+  m_window_listeners.push_back(p_func);
+}
 
-void Dispatcher::OptOutEvents(void) {
+void dispatcher::opt_out_events(void) {
   SDL_EventState(SDL_APP_TERMINATING, SDL_IGNORE);
   SDL_EventState(SDL_APP_LOWMEMORY, SDL_IGNORE);
   SDL_EventState(SDL_APP_WILLENTERBACKGROUND, SDL_IGNORE);

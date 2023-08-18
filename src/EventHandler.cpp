@@ -3,9 +3,9 @@
 
 #include <SDL2/SDL.h>
 
-int EventFilter(void* userData, SDL_Event* event);
+int event_filter(void* p_user_data, SDL_Event* p_event);
 
-void SetUpEvents(void) {
+void set_up_events(void) {
   SDL_EventState(SDL_APP_TERMINATING, SDL_IGNORE);
   SDL_EventState(SDL_APP_LOWMEMORY, SDL_IGNORE);
   SDL_EventState(SDL_APP_WILLENTERBACKGROUND, SDL_IGNORE);
@@ -48,16 +48,16 @@ void SetUpEvents(void) {
   SDL_EventState(SDL_TEXTEDITING, SDL_IGNORE);
   SDL_EventState(SDL_TEXTINPUT, SDL_IGNORE);
   SDL_EventState(SDL_USEREVENT, SDL_IGNORE);
-  SDL_SetEventFilter(EventFilter, nullptr);
+  SDL_SetEventFilter(event_filter, nullptr);
 }
 
-int EventFilter(void*, SDL_Event* event) {
+int event_filter(void*, SDL_Event* p_event) {
   int result = 0;
-  switch (event->type) {
+  switch (p_event->type) {
     case SDL_QUIT:
     case SDL_WINDOWEVENT: result = 1; break;
     case SDL_KEYDOWN:
-      switch (event->key.keysym.sym) {
+      switch (p_event->key.keysym.sym) {
         case SDLK_DOWN:
         case SDLK_UP:
         case SDLK_LEFT:

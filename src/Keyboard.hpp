@@ -3,12 +3,13 @@
 #define GOON_KEYBOARD_HPP
 
 #include <SDL2/SDL.h>
+
 #include <cstdio>
 
-class Keyboard {
+class keyboard {
 public:
-  void ProcessEvent(const SDL_Event& event) {
-    switch (event.key.keysym.sym) {
+  void process_event(const SDL_Event& p_event) {
+    switch (p_event.key.keysym.sym) {
       case SDLK_0: printf("0"); break;
       case SDLK_1: printf("1"); break;
       case SDLK_2: printf("2"); break;

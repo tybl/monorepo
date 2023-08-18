@@ -4,10 +4,11 @@
 #include "Window.hpp"
 
 #include <SDL2/SDL.h>
+
 #include <cstdio>
 
 // The window renderer
-static SDL_Renderer* gRenderer = nullptr;
+static SDL_Renderer* g_renderer = nullptr;
 
 int main(int argc, char* argv[]) {
   static_cast<void>(argc);
@@ -24,36 +25,36 @@ int main(int argc, char* argv[]) {
     printf("Warning: Linear texture filtering not enabled!");
   }
 
-  Window window;
-  Dispatcher dispatch;
+  window window;
+  dispatcher dispatch;
 
   // Create vsynced renderer for window
-  gRenderer = window.CreateRenderer();
-  if (gRenderer == nullptr) {
-    printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
+  g_renderer = window.create_renderer();
+  if (g_renderer == nullptr) {
+    std::printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
     return -1;
   }
-  Widget ownship(gRenderer);
-  dispatch.AddKeyboardListener([&](SDL_Keycode key) { ownship.HandleKeyboardEvent(key); });
-  dispatch.AddWindowListener([&](SDL_WindowEvent e) { ownship.HandleWindowEvent(e); });
+  widget ownship(g_renderer);
+  dispatch.add_keyboard_listener([&](SDL_Keycode p_key) { ownship.handle_keyboard_event(p_key); });
+  dispatch.add_window_listener([&](SDL_WindowEvent p_e) { ownship.handle_window_event(p_e); });
 
-  while (dispatch.KeepRunning()) {
-    dispatch.ProcessEvents();
+  while (dispatch.keep_running()) {
+    dispatch.process_events();
 
-    SDL_SetRenderTarget(gRenderer, nullptr);
+    SDL_SetRenderTarget(g_renderer, nullptr);
     // Clear screen
-    SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 0);
-    SDL_RenderClear(gRenderer);
+    SDL_SetRenderDrawColor(g_renderer, 0, 0, 0, 0);
+    SDL_RenderClear(g_renderer);
 
-    ownship.Render(gRenderer);
+    ownship.render(g_renderer);
 
     // Update screen
-    SDL_RenderPresent(gRenderer);
+    SDL_RenderPresent(g_renderer);
   } // while (keep_running)
 
   // Destroy window
-  SDL_DestroyRenderer(gRenderer);
-  gRenderer = nullptr;
+  SDL_DestroyRenderer(g_renderer);
+  g_renderer = nullptr;
 
   // Quit SDL subsystems
   SDL_Quit();

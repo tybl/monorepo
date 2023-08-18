@@ -1,25 +1,25 @@
 // License: The Unlicense (https://unlicense.org)
 #include <SDL2/SDL.h>
 
-struct Widget {
-  Widget(SDL_Renderer* renderer);
+struct widget {
+  widget(SDL_Renderer* p_renderer);
 
-  void Render(SDL_Renderer* renderer);
+  void render(SDL_Renderer* p_renderer);
 
-  void HandleKeyboardEvent(SDL_Keycode key);
-  void HandleWindowEvent(SDL_WindowEvent key);
-
-private:
-  void MoveForward(void);
+  void handle_keyboard_event(SDL_Keycode p_key);
+  void handle_window_event(SDL_WindowEvent p_key);
 
 private:
-  double mXPos;
-  double mXVelocity;
-  double mYPos;
-  double mYVelocity;
-  double mAngle;
-  double mAngleMomentum;
-  int mWindowWidth;
-  int mWindowHeight;
-  SDL_Texture* mTexture;
+  void move_forward(void);
+
+private:
+  double m_x_pos;
+  double m_x_vel;
+  double m_y_pos;
+  double m_y_vel;
+  double m_angle;
+  double m_angle_momentum;
+  int m_window_width;
+  int m_window_height;
+  SDL_Texture* m_texture;
 };
