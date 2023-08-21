@@ -1,3 +1,4 @@
+// License: The Unlicense (https://unlicense.org)
 #include "util/get_config_path.hpp"
 
 #include "util/get_home_path.hpp"

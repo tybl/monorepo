@@ -1,3 +1,4 @@
+// License: The Unlicense (https://unlicense.org)
 #include "util/crc32.hpp"
 
 #include <doctest/doctest.h>

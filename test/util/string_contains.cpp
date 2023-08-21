@@ -1,3 +1,4 @@
+// License: The Unlicense (https://unlicense.org)
 #include "util/string_contains.hpp"
 
 #include <doctest/doctest.h>
