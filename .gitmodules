@@ -16,6 +16,9 @@
 [submodule "apps/solver"]
 	path = apps/solver
 	url = ../solver.git
+[submodule "apps/TicTacToe"]
+	path = apps/TicTacToe
+	url = ../TicTacToe.git
 [submodule "apps/stacks"]
 	path = apps/stacks
 	url = ../stacks.git

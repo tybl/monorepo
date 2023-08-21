@@ -8,11 +8,15 @@ gcc13Stdenv.mkDerivation {
   buildInputs = [
     clang-tools_16
     cmake
+    cmake-language-server
+    lldb_16
   ];
   nativeBuildInputs = [
+    boost182.dev
     doctest
     fmt
     howard-hinnant-date
+    nlohmann_json
     pugixml
     SDL2
     spdlog
