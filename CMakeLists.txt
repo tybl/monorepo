@@ -24,11 +24,13 @@ target_sources(util
 		src/util/get_config_path.cpp
 		src/util/get_home_path.cpp)
 
-add_executable(test_libutil)
-target_link_libraries(test_libutil PRIVATE test_main util)
-target_sources(test_libutil
-	PRIVATE
-		test/util/crc32.cpp
-		test/util/string_contains.cpp)
+if(TARGET test_main)
+	add_executable(test_libutil)
+	target_link_libraries(test_libutil PRIVATE test_main util)
+	target_sources(test_libutil
+		PRIVATE
+			test/util/crc32.cpp
+			test/util/string_contains.cpp)
 
-add_test(NAME libutil_test COMMAND test_libutil)
+	add_test(NAME libutil_test COMMAND test_libutil)
+endif()
