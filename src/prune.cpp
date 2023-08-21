@@ -1,3 +1,4 @@
+// License: The Unlicense (https://unlicense.org)
 #include <algorithm>
 #include <fstream>
 #include <iostream>

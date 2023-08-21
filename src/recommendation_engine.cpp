@@ -1,3 +1,4 @@
+// License: The Unlicense (https://unlicense.org)
 #include "recommendation_engine.hpp"
 
 #include <algorithm>
