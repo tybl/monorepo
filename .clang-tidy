@@ -12,26 +12,30 @@ CheckOptions:
   cert-str34-c.DiagnoseSignedUnsignedCharComparisons: 'false'
   cppcoreguidelines-non-private-member-variables-in-classes.IgnoreClassesWithAllMemberVariablesBeingPublic: 'true'
   google-readability-braces-around-statements.ShortStatementLines: '1'
+  google-readability-function-size.StatementThreshold: '800'
   google-readability-namespace-comments.ShortNamespaceLines: '10'
   google-readability-namespace-comments.SpacesBeforeComments: '2'
-  google-readability-function-size.StatementThreshold: '800'
   llvm-else-after-return.WarnOnConditionVariables: 'false'
   llvm-else-after-return.WarnOnUnfixable: 'false'
   llvm-qualified-auto.AddConstToQualified: 'false'
-  modernize-loop-convert.MinConfidence: reasonable
-  modernize-replace-auto-ptr.IncludeStyle: llvm
   modernize-loop-convert.MaxCopySize: '16'
-  modernize-pass-by-value.IncludeStyle: llvm
-  modernize-use-nullptr.NullMacros: 'NULL'
+  modernize-loop-convert.MinConfidence: reasonable
   modernize-loop-convert.NamingStyle: CamelCase
+  modernize-pass-by-value.IncludeStyle: llvm
+  modernize-replace-auto-ptr.IncludeStyle: llvm
+  modernize-use-nullptr.NullMacros: 'NULL'
   readability-identifier-naming.ClassCase: 'lower_case'
+  readability-identifier-naming.ConstantCase: 'UPPER_CASE'
   readability-identifier-naming.FunctionCase: 'lower_case'
   readability-identifier-naming.LocalPointerSuffix: '_p'
   readability-identifier-naming.MemberCase: 'lower_case'
   readability-identifier-naming.MethodCase: 'lower_case'
   readability-identifier-naming.ParameterCase: 'lower_case'
   readability-identifier-naming.ParameterPrefix: 'p_'
+  readability-identifier-naming.PrivateMemberCase: 'lower_case'
   readability-identifier-naming.PrivateMemberPrefix: 'm_'
+  readability-identifier-naming.StaticConstantCase: 'UPPER_CASE'
   readability-identifier-naming.StructCase: 'lower_case'
+  readability-identifier-naming.VariableCase: 'lower_case'
 ...
 
