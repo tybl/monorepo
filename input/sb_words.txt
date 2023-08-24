@@ -12222,7 +12222,6 @@ Arita
 arite
 arith
 arythmia
-arithmic
 Ariton
 arium
 Arius
@@ -125162,13 +125161,9 @@ mythopoet
 mythos
 Mithra
 Mithraea
-Mithraic
 Mithraism
 Mithraist
-Mithraitic
 Mithras
-Mithratic
-Mithriac
 myths
 mythus
 MITI
@@ -146842,7 +146837,6 @@ Peterus
 peterwort
 Petes
 Petfi
-petful
 pether
 pethidine
 Peti
@@ -150613,7 +150607,6 @@ pluckily
 pluckless
 plucks
 plud
-pluff
 pluffer
 pluffy
 plug
@@ -156472,7 +156465,6 @@ puffinet
 puffing
 puffins
 Puffinus
-pufflet
 puffs
 pufftn
 puffwig
@@ -195860,7 +195852,6 @@ teewhaap
 Teferi
 teff
 teffs
-Tefft
 tefillin
 TEFLON
 Tega
@@ -197507,8 +197498,6 @@ textus
 Tezcucan
 Tezel
 tezkere
-TFLAP
-TFTP
 TGWU
 Thach
 Thacher
@@ -204573,10 +204562,8 @@ tueiron
 Tues
 Tuesday
 Tuesdays
-tufa
 tufan
 tufas
-tuff
 tuffet
 tuffets
 tuffing
@@ -204584,7 +204571,6 @@ tuffoon
 tuffs
 tufoli
 tuft
-tuftaffeta
 tufted
 tufter
 tufters
@@ -204595,7 +204581,6 @@ tuftier
 tuftiest
 tuftily
 tufting
-tuftlet
 Tufts
 tugboat
 tugboats
@@ -212029,7 +212014,6 @@ upfill
 upflame
 upflare
 upflash
-upflee
 upfly
 upfling
 upflinging
@@ -212203,7 +212187,6 @@ uppropped
 uppropping
 upprops
 Uppsala
-uppuff
 uppull
 uppush
 upquiver

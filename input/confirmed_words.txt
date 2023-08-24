@@ -64,6 +64,8 @@ anon
 anytime
 apogee
 appetite
+arch
+archaic
 arcing
 arctic
 ardor
@@ -77,6 +79,7 @@ armour
 army
 aroma
 around
+arthritic
 arum
 atoll
 atrophy
@@ -176,6 +179,7 @@ carry
 carrying
 cart
 cataract
+cathartic
 cattle
 catty
 cava
@@ -184,6 +188,9 @@ ceded
 cell
 cello
 challah
+char
+charm
+chart
 check
 cheek
 chemo
@@ -249,6 +256,7 @@ cotton
 count
 crag
 craggy
+cram
 craning
 cranny
 cringy
@@ -521,11 +529,14 @@ grit
 gritting
 gunned
 gutted
+hair
 hall
 halve
 happen
+haram
 harm
 harmful
+hart
 heal
 heap
 heavily
@@ -714,6 +725,7 @@ manna
 mantra
 many
 maraca
+march
 marina
 marm
 maroon
@@ -723,6 +735,7 @@ martian
 martin
 martini
 matey
+matriarch
 mead
 meal
 meany
@@ -764,6 +777,7 @@ minivan
 mint
 minty
 mirin
+mirth
 mitt
 mixed
 moan
@@ -940,7 +954,9 @@ rani
 rant
 rapid
 rapidly
+ratatat
 ribbon
+rich
 ricing
 right
 righting
