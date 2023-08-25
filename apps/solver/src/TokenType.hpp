@@ -1,0 +1,53 @@
+//
+// Created by tybl on 1/5/23.
+//
+
+#ifndef SOLVE_TOKENTYPE_HPP
+#define SOLVE_TOKENTYPE_HPP
+
+enum class TokenType {
+  LEFT_PAREN,
+  RIGHT_PAREN,
+  LEFT_BRACE,
+  RIGHT_BRACE,
+  COMMA,
+  DOT,
+  MINUS,
+  PLUS,
+  SEMICOLON,
+  SLASH,
+  STAR,
+
+  BANG,
+  BANG_EQUAL,
+  EQUAL,
+  EQUAL_EQUAL,
+  GREATER,
+  GREATER_EQUAL,
+  LESS,
+  LESS_EQUAL,
+
+  IDENTIFIER,
+  STRING,
+  NUMBER,
+
+  AND,
+  CLASS,
+  ELSE,
+  FALSE,
+  FUN,
+  FOR,
+  IF,
+  NIL,
+  OR,
+  PRINT,
+  RETURN,
+  SUPER,
+  THIS,
+  TRUE,
+  VAR,
+  WHILE,
+
+  END_OF_FILE
+};
+#endif // SOLVE_TOKENTYPE_HPP
