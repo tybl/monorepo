@@ -13,91 +13,91 @@
 
 namespace ogre {
 
-auto Option::add_help(std::string_view help) -> Option& {
-  mHelp = help;
+auto option::add_help(std::string_view p_help) -> option& {
+  m_help = p_help;
   return *this;
 }
 
-void Option::parse(std::span<std::string_view> args, Parameters& params) {
-  if (args.empty()) {
+void option::parse(std::span<std::string_view> p_args, parameters& p_params) {
+  if (p_args.empty()) {
     throw std::runtime_error("Error: Unknown option");
   }
-  if (!is_invoked_option(args.front())) {
+  if (!is_invoked_option(p_args.front())) {
     throw std::runtime_error("Error: Invoked command with different name");
   }
-  for (auto name : mNames) {
-    params.Options[name] = "true";
+  for (auto name : m_names) {
+    p_params.options[name] = "true";
   }
 }
 
-auto Option::names() const -> std::vector<std::string_view> const& {
-  return mNames;
+auto option::names() const -> std::vector<std::string_view> const& {
+  return m_names;
 }
 
-[[nodiscard]] inline auto Option::is_invoked_option(std::string_view name) const
+[[nodiscard]] inline auto option::is_invoked_option(std::string_view p_name) const
     -> bool {
-  return mNames.end() != std::find(mNames.begin(), mNames.end(), name);
+  return m_names.end() != std::find(m_names.begin(), m_names.end(), p_name);
 }
 
-Command::~Command() = default;
+command::~command() = default;
 
-auto Command::add_help(std::string_view help) -> Command& {
-  // mHelp = help;
+auto command::add_help(std::string_view /*p_help*/) -> command& {
+  //m_help = p_help;
   return *this;
 }
 
-auto Command::add_action(callback action) -> Command& {
-  mAction = std::move(action);
+auto command::add_action(callback p_action) -> command& {
+  m_action = std::move(p_action);
   return *this;
 }
 
-auto Command::get_subcommand(std::string_view sv) -> Command& {
-  return *std::get<command_iter>(mStrToParamMap.at(sv));
+auto command::get_subcommand(std::string_view p_sv) -> command& {
+  return *std::get<command_iter>(m_str_to_param_map.at(p_sv));
 }
 
-auto Command::get_option(std::string_view sv) -> Option& {
-  return *std::get<option_iter>(mStrToParamMap.at(sv));
+auto command::get_option(std::string_view p_sv) -> option& {
+  return *std::get<option_iter>(m_str_to_param_map.at(p_sv));
 }
 
 // parse() constructs an Action object containing the callable object
 // and the parameters to provide to it. All parameters are provided as
 // strings on the command line, so they are provided as strings to the
 // callable object.
-auto Command::run(std::span<std::string_view> args) -> int {
-  Parameters params;
-  auto action = parse(args, params);
+auto command::run(std::span<std::string_view> p_args) -> int {
+  parameters params;
+  auto action = parse(p_args, params);
   return action(params);
 }
 
 [[nodiscard]] inline auto
-Command::is_invoked_command(std::string_view name) const -> bool {
-  return names().end() != std::find(names().begin(), names().end(), name);
+command::is_invoked_command(std::string_view p_name) const -> bool {
+  return names().end() != std::find(names().begin(), names().end(), p_name);
 }
 
-auto Command::parse(std::span<std::string_view> args, Parameters& params)
-    -> Command::callback& {
-  if (args.empty()) {
+auto command::parse(std::span<std::string_view> p_args, parameters& p_params)
+    -> command::callback& {
+  if (p_args.empty()) {
     throw std::runtime_error("Error: Unknown command");
   }
-  if (!is_invoked_command(args.front())) {
+  if (!is_invoked_command(p_args.front())) {
     throw std::runtime_error("Error: Command invoked with incorrect name");
   }
-  args = args.subspan(1);
-  while (!args.empty()) {
-    auto sub = mStrToParamMap.find(args.front());
-    if (mStrToParamMap.end() != sub) {
+  p_args = p_args.subspan(1);
+  while (!p_args.empty()) {
+    auto sub = m_str_to_param_map.find(p_args.front());
+    if (m_str_to_param_map.end() != sub) {
       // The argument is an option or subcommand
       if (std::holds_alternative<command_iter>(sub->second)) {
-        return std::get<command_iter>(sub->second)->parse(args, params);
+        return std::get<command_iter>(sub->second)->parse(p_args, p_params);
       }
       // assert(std::holds_alternative<option_iter>(sub->second));
-      std::get<option_iter>(sub->second)->parse(args, params);
+      std::get<option_iter>(sub->second)->parse(p_args, p_params);
     } else {
-      params.Arguments.push_back(args.front());
+      p_params.arguments.push_back(p_args.front());
     }
-    args = args.subspan(1);
+    p_args = p_args.subspan(1);
   }
-  return mAction;
+  return m_action;
 }
 
 } // namespace ogre

@@ -11,14 +11,14 @@
 #include <string>
 #include <utility>
 
-class Token {
-  TokenType type;
-  std::string lexeme;
-  Object literal;
-  int line;
+class token {
+  TokenType m_type;
+  std::string m_lexeme;
+  Object m_literal;
+  int m_line;
 
 public:
-  Token(TokenType type, std::string lexeme, Object literal, int line);
+  token(TokenType p_type, std::string p_lexeme, Object p_literal, int p_line);
 
   [[nodiscard]] auto to_string() const -> std::string;
 };

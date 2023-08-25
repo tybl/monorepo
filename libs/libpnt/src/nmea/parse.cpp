@@ -10,9 +10,9 @@ namespace pnt::nmea {
 enum class Hour : uint8_t {};
 enum class Minute : uint8_t {};
 
-struct TimeOfDay {
+struct time_of_day {
   static auto parse(std::string_view& p_input) {
-    TimeOfDay result{};
+    time_of_day result{};
     auto fcr = std::from_chars(p_input.begin(), p_input.end(), result.m_value);
     auto delta = fcr.ptr - p_input.begin();
     p_input = p_input.substr(delta);
@@ -40,7 +40,7 @@ auto parse(std::string_view p_input) -> std::unique_ptr<Sentence> {
     case 'N': result->talker_id = TalkerId::GN; break;
     case 'P': result->talker_id = TalkerId::GP; break;
     case 'Q': result->talker_id = TalkerId::GQ; break;
-    default: result->talker_id = TalkerId::Unknown; break;
+    default: result->talker_id = TalkerId::UNKNOWN; break;
   }
   p_input = p_input.substr(3);
   if (p_input.starts_with("GGA"sv)) {
@@ -56,7 +56,7 @@ auto parse(std::string_view p_input) -> std::unique_ptr<Sentence> {
   }
   assert(',' == p_input.at(3));
   p_input = p_input.substr(4);
-  auto tod = TimeOfDay::parse(p_input);
+  auto tod = time_of_day::parse(p_input);
   result->hour = static_cast<uint8_t>(tod.hour());
   result->minute = static_cast<uint8_t>(tod.minute());
   result->second = tod.second();
