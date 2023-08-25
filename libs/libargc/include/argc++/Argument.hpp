@@ -23,7 +23,7 @@ struct argument {
 
 private:
   // Type definitions
-  friend class Application;
+  friend struct application;
 
   // Private methods
   // For printing usage

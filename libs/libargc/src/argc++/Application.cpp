@@ -17,14 +17,14 @@
 
 namespace tybl::argcpp {
 
-Application::Application(std::string p_name, std::string p_version)
+application::application(std::string p_name, std::string p_version)
   : m_name(std::move(p_name))
   , m_version(std::move(p_version)) {
   add_argument("-h", "--help").help("Print this message and exit").action([this]() { throw_help_message(); });
   add_argument("--version").help("Print version information and exit").action([this]() { throw_version_message(); });
 }
 
-auto Application::run(int p_argc, char const** p_argv) -> int {
+auto application::run(int p_argc, char const** p_argv) -> int {
   parse_arguments(std::span(p_argv, static_cast<size_t>(p_argc)));
   // TODO(tybl):
   // 1. Parse arguments
@@ -32,7 +32,7 @@ auto Application::run(int p_argc, char const** p_argv) -> int {
   return 0;
 }
 
-void Application::parse_arguments(std::span<char const*> const& p_args) {
+void application::parse_arguments(std::span<char const*> const& p_args) {
   using namespace std::ranges;
   for (auto const& arg : p_args) {
     auto const& arg_it = m_argument_map.find(arg);
@@ -51,14 +51,14 @@ void Application::parse_arguments(std::span<char const*> const& p_args) {
 }
 
 // For printing usage
-auto Application::longest_argument_length() const -> size_t {
+auto application::longest_argument_length() const -> size_t {
   return std::accumulate(m_argument_map.cbegin(), m_argument_map.cend(), 0ULL,
                          [](size_t p_max_length, auto const& p_argument_entry) {
                            return std::max(p_max_length, p_argument_entry.second->length());
                          });
 }
 
-void Application::throw_help_message() const {
+void application::throw_help_message() const {
   auto msg = fmt::format("Usage: {} [options]\n\nOptional arguments:\n", m_name);
   for (auto const& arg : m_arguments) {
     for (auto const& name : arg.m_names) {
@@ -69,11 +69,11 @@ void Application::throw_help_message() const {
   throw std::runtime_error(msg);
 }
 
-void Application::throw_version_message() const {
+void application::throw_version_message() const {
   throw std::runtime_error(fmt::format("{} version {}", m_name, m_version));
 }
 
-void Application::index_argument(list_iterator p_argument_iterator) {
+void application::index_argument(list_iterator p_argument_iterator) {
   for (auto const& name : p_argument_iterator->m_names) {
     m_argument_map.insert_or_assign(name, p_argument_iterator);
   }

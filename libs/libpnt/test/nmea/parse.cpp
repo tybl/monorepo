@@ -7,7 +7,7 @@ TEST_CASE("Is a nmea sentence") {
   using namespace std::literals;
   auto result = pnt::nmea::parse("$GCGSV,\r\n"sv);
   CHECK(result);
-  CHECK(pnt::nmea::TalkerId::Unknown == result->talker_id);
+  CHECK(pnt::nmea::TalkerId::UNKNOWN == result->talker_id);
 }
 
 TEST_CASE("Isn't a nmea sentence") {
@@ -20,13 +20,13 @@ TEST_CASE("TalkerIds") {
   using namespace std::literals;
   auto result = pnt::nmea::parse("$GAVTG,\r\n"sv);
   REQUIRE(result);
-  CHECK(pnt::nmea::TalkerId::Galileo == result->talker_id);
+  CHECK(pnt::nmea::TalkerId::GALILEO == result->talker_id);
   result = pnt::nmea::parse("$GBRMC,\r\n");
   REQUIRE(result);
-  CHECK(pnt::nmea::TalkerId::BeiDou == result->talker_id);
+  CHECK(pnt::nmea::TalkerId::BEI_DOU == result->talker_id);
   result = pnt::nmea::parse("$GIRMC,\r\n");
   REQUIRE(result);
-  CHECK(pnt::nmea::TalkerId::NavIC == result->talker_id);
+  CHECK(pnt::nmea::TalkerId::NAV_IC == result->talker_id);
   result = pnt::nmea::parse("$GLRMC,\r\n");
   REQUIRE(result);
   CHECK(pnt::nmea::TalkerId::GLONASS == result->talker_id);
@@ -45,7 +45,7 @@ TEST_CASE("SentenceTypes") {
   using namespace std::literals;
   auto result = pnt::nmea::parse("$GPRGB,\r\n"sv);
   REQUIRE(result);
-  CHECK(pnt::nmea::SentenceType::Unknown == result->sentence_type);
+  CHECK(pnt::nmea::SentenceType::UNKNOWN == result->sentence_type);
   result = pnt::nmea::parse("$GPGGA,\r\n");
   REQUIRE(result);
   CHECK(pnt::nmea::SentenceType::GGA == result->sentence_type);

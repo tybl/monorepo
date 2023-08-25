@@ -158,7 +158,7 @@ auto ttt::board::dot_node_label() const -> std::string {
   return result;
 }
 
-auto ttt::board::dot_cell(uint16_t row, uint16_t col) const -> char {
-  auto val = m_board.at(static_cast<unsigned>(row * NUM_COLS + col));
+auto ttt::board::dot_cell(uint16_t p_row, uint16_t p_col) const -> char {
+  auto val = m_board.at(static_cast<unsigned>(p_row * NUM_COLS + p_col));
   return (ttt::cell::value::Empty == val) ? '_' : static_cast<char>(val);
 }
