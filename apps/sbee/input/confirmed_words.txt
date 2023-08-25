@@ -69,10 +69,12 @@ archaic
 arcing
 arctic
 ardor
+arhat
 aria
 arid
 armada
 armband
+armchair
 armor
 armory
 armour
@@ -82,7 +84,9 @@ around
 arthritic
 arum
 atoll
+atria
 atrophy
+attar
 attentive
 attic
 attract
@@ -124,12 +128,31 @@ beep
 beet
 beetle
 begem
+beginning
 begone
+being
 belate
+belie
+belittle
+belittling
 belt
+belting
+benign
+betting
+bible
+bill
+billet
+billeting
+billing
 billion
 bind
+binge
+binging
+binning
 bird
+bite
+biting
+bling
 blini
 bloke
 boba
@@ -179,6 +202,7 @@ carry
 carrying
 cart
 cataract
+catarrh
 cathartic
 cattle
 catty
@@ -187,6 +211,7 @@ cede
 ceded
 cell
 cello
+chair
 challah
 char
 charm
@@ -201,8 +226,11 @@ chyme
 ciabatta
 cicada
 cigar
+circa
+cirri
 cite
 cited
+citric
 city
 civet
 clam
@@ -376,6 +404,7 @@ dulled
 dune
 durum
 each
+ebbing
 ebon
 ebony
 echo
@@ -499,6 +528,7 @@ gene
 genome
 geoid
 ghee
+gibing
 giddily
 giddy
 gigged
@@ -513,6 +543,7 @@ gilled
 gilt
 girth
 give
+glib
 glide
 glided
 glint
@@ -532,6 +563,7 @@ gutted
 hair
 hall
 halve
+hamartia
 happen
 haram
 harm
@@ -816,6 +848,8 @@ nene
 neon
 netty
 network
+nibble
+nibbling
 nice
 nifty
 night
@@ -944,6 +978,7 @@ raid
 rail
 rain
 rainbow
+raita
 rally
 ramada
 ramp
@@ -993,6 +1028,9 @@ tamari
 tamarin
 tangent
 tape
+tarmac
+tart
+tartar
 tattle
 tattoo
 tatty
@@ -1015,6 +1053,7 @@ thing
 thinning
 thrill
 thrilling
+tiara
 tidily
 tidy
 tight
@@ -1045,6 +1084,7 @@ trail
 trait
 traitor
 tram
+tramcar
 trial
 trig
 trill
