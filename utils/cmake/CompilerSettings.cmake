@@ -34,11 +34,11 @@ set(ALL_COMPILER_FLAGS
   analyzer-use-of-uninitialized-value
   analyzer-write-to-const
   analyzer-write-to-string-literal
-  #arith-conversion
-  #array-bounds
-  #attribute-alias
-  #cast-align
-  #class-conversion
+  arith-conversion
+  array-bounds
+  attribute-alias
+  cast-align
+  class-conversion
   #conversion
   deprecated-copy
   deprecated-copy-dtor
@@ -57,13 +57,13 @@ set(ALL_COMPILER_FLAGS
   #non-virtual-dtor
   #null-dereference
   old-style-cast
-  #overloaded-virtual
+  overloaded-virtual
   pedantic
-  #redundant-tags
+  redundant-tags
   restrict
   return-local-addr
   shadow
-  #sign-conversion
+  sign-conversion
   stringop-overflow
   #suggest-attribute=const
   #suggest-attribute=pure
