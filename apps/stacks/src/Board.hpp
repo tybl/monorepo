@@ -28,6 +28,8 @@ struct Board : public i_node {
 
   explicit Board(std::istream& p_input);
 
+  Board(Board const& p_other);
+
   Board(Board const& p_o, edge const& p_e);
 
   ~Board() override;

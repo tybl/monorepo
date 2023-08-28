@@ -33,6 +33,15 @@ Board::Board(std::istream& p_input)
   m_stats->m_boards.insert(*this);
 }
 
+Board::Board(Board const& p_other)
+  : m_contents(p_other.m_contents)
+  , m_priority(p_other.m_priority)
+  , m_stats(p_other.m_stats)
+  , m_id(p_other.m_id)
+  , m_parent(p_other.m_parent)
+  , m_distance(p_other.m_distance) {
+}
+
 Board::Board(Board const& p_o, edge const& p_e)
   : m_contents(p_o.m_contents)
   , m_stats(p_o.m_stats)
