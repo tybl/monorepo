@@ -9,7 +9,9 @@
 #include <algorithm>
 #include <iostream>
 
-ttt::board::board() = default;
+ttt::board::board()
+   : m_history()
+   , m_board() {}
 
 void ttt::board::display() const {
   for (uint16_t row = 0; row < NUM_ROWS; ++row) {

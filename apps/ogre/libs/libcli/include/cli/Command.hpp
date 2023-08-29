@@ -15,6 +15,7 @@
 namespace ogre {
 
 struct parameters {
+  //parameters();
   std::map<std::string_view, std::string_view> options;
   std::vector<std::string_view> arguments;
 }; // struct Parameters

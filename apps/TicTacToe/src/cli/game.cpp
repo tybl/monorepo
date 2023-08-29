@@ -7,6 +7,9 @@
 #include <iostream>
 #include <string>
 
+game::game()
+   : m_board() {}
+
 void game::run() {
   std::string name;
   std::cout << "Welcome to tic tac toe. Please enter your name: ";
