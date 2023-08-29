@@ -38,7 +38,7 @@ public:
 
   void parse(std::span<std::string_view> p_args, parameters& p_params);
 
-  auto names() const -> std::vector<std::string_view> const&;
+  [[gnu::const]] auto names() const -> std::vector<std::string_view> const&;
 
   [[nodiscard]] inline auto is_invoked_option(std::string_view p_name) const
       -> bool;
@@ -59,7 +59,7 @@ class command : public option {
   // std::vector<std::string_view> mNames;
 
   // - mHelp: A description of how to use the command
-  // std::string_view mHelp;
+  std::string_view m_help;
 
   callback m_action;
 

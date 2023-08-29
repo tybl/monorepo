@@ -41,8 +41,8 @@ auto option::names() const -> std::vector<std::string_view> const& {
 
 command::~command() = default;
 
-auto command::add_help(std::string_view /*p_help*/) -> command& {
-  //m_help = p_help;
+auto command::add_help(std::string_view p_help) -> command& {
+  m_help = p_help;
   return *this;
 }
 
