@@ -66,7 +66,7 @@ set(ALL_COMPILER_FLAGS
   sign-conversion
   stringop-overflow
   suggest-attribute=const
-  #suggest-attribute=pure
+  suggest-attribute=pure
   uninitialized
   unused
   useless-cast
