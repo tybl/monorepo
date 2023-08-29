@@ -34,7 +34,7 @@ struct Board : public i_node {
 
   ~Board() override;
 
-  auto is_solved() const -> bool override;
+  [[gnu::pure]] auto is_solved() const -> bool override;
 
   auto generate_steps() const -> std::vector<edge> override;
 
@@ -44,20 +44,20 @@ struct Board : public i_node {
 
   void print_steps() const override;
 
-  auto priority() const -> size_t override;
+  [[gnu::pure]] auto priority() const -> size_t override;
 
-  auto distance() const -> size_t override;
+  [[gnu::pure]] auto distance() const -> size_t override;
 
-  auto operator<(Board const& p_o) const -> bool;
+  [[gnu::pure]] auto operator<(Board const& p_o) const -> bool;
 
-  auto num_found() const -> size_t override;
+  [[gnu::pure]] auto num_found() const -> size_t override;
 
   void apply(edge const& p_e);
-  static auto count_suffix_matching(std::string_view p_s, char p_c) -> size_t;
-  auto calc_priority() const -> size_t;
-  auto is_full(std::string_view p_s) const -> bool;
-  auto is_full_and_homogeneous(std::string const& p_s) const -> bool;
-  static auto is_homogeneous(std::string const& p_s) -> bool;
+  [[gnu::pure]] static auto count_suffix_matching(std::string_view p_s, char p_c) -> size_t;
+  [[gnu::pure]] auto calc_priority() const -> size_t;
+  [[gnu::pure]] auto is_full(std::string_view p_s) const -> bool;
+  [[gnu::pure]] auto is_full_and_homogeneous(std::string const& p_s) const -> bool;
+  [[gnu::pure]] static auto is_homogeneous(std::string const& p_s) -> bool;
   auto is_valid(edge const& p_e) const -> bool;
 };
 

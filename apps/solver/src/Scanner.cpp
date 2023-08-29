@@ -21,7 +21,7 @@ void scanner::add_token(TokenType p_type, Object p_literal) {
 
 char scanner::advance() { return m_source.at(m_current++); }
 
-[[nodiscard]] bool scanner::is_at_end() const { return m_source.length() <= m_current; }
+[[nodiscard, gnu::pure]] bool scanner::is_at_end() const { return m_source.length() <= m_current; }
 
 void scanner::scan_token() {
   char c = advance();

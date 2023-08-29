@@ -38,7 +38,7 @@ public:
 
   [[nodiscard]] auto apply(move p_move) const -> board;
 
-  auto has_ended() const -> bool;
+  [[gnu::pure]] auto has_ended() const -> bool;
 
   [[gnu::pure, nodiscard]] auto has_winner() const -> bool;
 
