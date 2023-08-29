@@ -74,6 +74,7 @@ appetite
 arch
 archaic
 arcing
+arco
 arctic
 ardor
 aria
@@ -120,6 +121,7 @@ baptize
 bard
 barn
 baron
+barrack
 bate
 battle
 beach
@@ -227,6 +229,7 @@ cape
 captivate
 captive
 carat
+carb
 card
 cardboard
 cardiac
@@ -321,6 +324,7 @@ craning
 cranny
 cringy
 critic
+croak
 crock
 crying
 cuddle
@@ -1095,6 +1099,7 @@ roan
 roar
 robin
 rock
+rococo
 roil
 romp
 room
