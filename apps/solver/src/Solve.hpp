@@ -7,20 +7,20 @@
 
 #include <string>
 
-class Solve {
+class solve {
   bool m_had_error = false;
 
 public:
-  void error(int line, std::string const& message);
+  void error(int p_line, std::string const& p_message);
 
-  void report(int line, std::string const& where, std::string const& message);
+  void report(int p_line, std::string const& p_where, std::string const& p_message);
 
-  void run_file(std::string const& path) const;
+  void run_file(std::string const& p_path) const;
 
   void run_prompt();
 
 private:
-  static void run(std::string const& input);
+  static void run(std::string const& p_input);
 };
 
 #endif // SOLVE_SOLVE_HPP

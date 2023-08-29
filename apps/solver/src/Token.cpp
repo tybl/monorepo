@@ -4,10 +4,10 @@
 
 #include "Token.hpp"
 
-Token::Token(TokenType type, std::string lexeme, Object literal, int line)
-  : type(type)
-  , lexeme(std::move(lexeme))
-  , literal(literal)
-  , line(line) {}
+token::token(TokenType p_type, std::string p_lexeme, Object p_literal, int p_line)
+  : m_type(p_type)
+  , m_lexeme(std::move(p_lexeme))
+  , m_literal(p_literal)
+  , m_line(p_line) {}
 
-[[nodiscard]] auto Token::to_string() const -> std::string { return lexeme; }
+[[nodiscard]] auto token::to_string() const -> std::string { return m_lexeme; }

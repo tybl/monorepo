@@ -6,13 +6,13 @@
 namespace pnt::nmea {
 
 enum class TalkerId {
-  Unknown,
+  UNKNOWN,
   GA,
-  Galileo = GA,
+  GALILEO = GA,
   GB,
-  BeiDou = GB,
+  BEI_DOU = GB,
   GI,
-  NavIC = GI,
+  NAV_IC = GI,
   GL,
   GLONASS = GL,
   GN,

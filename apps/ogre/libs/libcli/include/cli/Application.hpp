@@ -8,28 +8,28 @@
 
 namespace ogre {
 
-class Application {
-  Command mCommand;
-  std::string_view mVersion;
+class application {
+  command m_command;
+  std::string_view m_version;
 
 public:
-  Application(std::string_view name, std::string_view version)
-      : mCommand(name)
-      , mVersion(version) {
+  application(std::string_view p_name, std::string_view p_version)
+      : m_command(p_name)
+      , m_version(p_version) {
     // The ctor receives the app name and version. It doesn't receive the
     // command-line arguments. As such, it is not aware of any overridden
     // configuration values.
-    mCommand.add_option("-v", "--version")
+    m_command.add_option("-v", "--version")
         .add_help("Displays the version and exits");
-    mCommand.add_subcommand("add").add_help("").add_action(
-        [](Parameters const&) -> int { return 0; });
+    m_command.add_subcommand("add").add_help("").add_action(
+        [](parameters const&) -> int { return 0; });
   }
 
-  auto run(int argc, char const* argv[]) -> int {
-    std::vector<std::string_view> args(argv, argv + argc);
-    return mCommand.run(args);
+  auto run(int p_argc, char const* p_argv[]) -> int {
+    std::vector<std::string_view> args(p_argv, p_argv + p_argc);
+    return m_command.run(args);
   }
 
-}; // class Application
+}; // class application
 
 } // namespace ogre

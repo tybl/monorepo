@@ -11,7 +11,7 @@
 #include <vector>
 
 int main(int argc, char* argv[]) {
-  Solve solver;
+  solve solver;
   if (2 < argc) {
     return -1;
   } else if (2 == argc) {

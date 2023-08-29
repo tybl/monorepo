@@ -25,8 +25,12 @@ CheckOptions:
   modernize-replace-auto-ptr.IncludeStyle: llvm
   modernize-use-nullptr.NullMacros: 'NULL'
   readability-identifier-naming.ClassCase: 'lower_case'
-  readability-identifier-naming.ConstantCase: 'UPPER_CASE'
+  readability-identifier-naming.ClassConstantCase: 'UPPER_CASE'
+  readability-identifier-naming.ConstexprVariableCase: 'UPPER_CASE'
+  readability-identifier-naming.EnumConstantCase: 'UPPER_CASE'
   readability-identifier-naming.FunctionCase: 'lower_case'
+  readability-identifier-naming.GlobalConstantCase: 'UPPER_CASE'
+  readability-identifier-naming.LocalConstantCase: 'lower_case'
   readability-identifier-naming.LocalPointerSuffix: '_p'
   readability-identifier-naming.MemberCase: 'lower_case'
   readability-identifier-naming.MethodCase: 'lower_case'

@@ -9,9 +9,9 @@
 #include <iostream>
 #include <span>
 
-auto does_file_exist(std::string const& filename) {
+auto does_file_exist(std::string const& p_filename) {
   struct stat buffer;
-  return (stat(filename.c_str(), &buffer) == 0);
+  return (stat(p_filename.c_str(), &buffer) == 0);
 }
 
 auto main(int argc, const char* argv[]) -> int {
@@ -31,8 +31,8 @@ auto main(int argc, const char* argv[]) -> int {
   auto now = std::chrono::system_clock::now();
   const std::time_t t_c = std::chrono::system_clock::to_time_t(now);
   std::cout << std::put_time(std::localtime(&t_c), "%F %T:");
-  for (auto arg : args) {
-    std::cout << " " << arg;
+  for (auto arg_p : args) {
+    std::cout << " " << arg_p;
   }
   std::string filename = config["journal"]["filename"].value_or("");
   std::cout << " > " << filename << std::endl;

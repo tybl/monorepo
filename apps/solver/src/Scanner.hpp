@@ -10,22 +10,22 @@
 #include <string>
 #include <vector>
 
-class Scanner {
+class scanner {
   std::string m_source;
-  std::vector<Token> tokens;
-  int start = 0;
-  int current = 0;
-  int line = 1;
+  std::vector<token> m_tokens;
+  int m_start = 0;
+  int m_current = 0;
+  int m_line = 1;
 
 public:
-  explicit Scanner(std::string source);
+  explicit scanner(std::string p_source);
 
-  std::vector<Token> scan_tokens();
+  std::vector<token> scan_tokens();
 
 private:
-  void add_token(TokenType type);
+  void add_token(TokenType p_type);
 
-  void add_token(TokenType type, Object literal);
+  void add_token(TokenType p_type, Object p_literal);
 
   char advance();
 
@@ -33,7 +33,7 @@ private:
 
   void scan_token();
 
-  bool match(char expected);
+  bool match(char p_expected);
 
   char peek();
 };

@@ -5,30 +5,30 @@
 #include <fstream>
 #include <iostream>
 
-void Solve::error(int line, std::string const& message) { report(line, "", message); }
+void solve::error(int p_line, std::string const& p_message) { report(p_line, "", p_message); }
 
-void Solve::report(int line, std::string const& where, std::string const& message) {
-  std::cerr << "[line " << line << "] Error" << where << ": " << message << std::endl;
+void solve::report(int p_line, std::string const& p_where, std::string const& p_message) {
+  std::cerr << "[line " << p_line << "] Error" << p_where << ": " << p_message << std::endl;
   m_had_error = true;
 }
 
-void Solve::run(std::string const& input) {
-  Scanner scanner(input);
+void solve::run(std::string const& p_input) {
+  scanner scanner(p_input);
   auto tokens = scanner.scan_tokens();
   for (auto const& token : tokens) {
     std::cout << token.to_string() << std::endl;
   }
 }
 
-void Solve::run_file(std::string const& path) const {
-  std::ifstream file(path);
+void solve::run_file(std::string const& p_path) const {
+  std::ifstream file(p_path);
   std::string input(std::istreambuf_iterator<char>{file}, {});
   run(input);
   if (m_had_error)
     exit(65);
 }
 
-void Solve::run_prompt() {
+void solve::run_prompt() {
   std::string input;
   while (true) {
     std::cout << "> ";

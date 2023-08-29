@@ -12,9 +12,9 @@
 
 namespace tybl::argcpp {
 
-struct Application {
+struct application {
 
-  Application(std::string p_name, std::string p_version);
+  application(std::string p_name, std::string p_version);
 
   // Ref: https://www.modernescpp.com/index.php/c-core-guidelines-rules-for-variadic-templates
   template <typename... Args>
@@ -50,11 +50,11 @@ private:
   // TODO(tybl): Investigate performance characteristics compared to std::unordered_map
   std::map<std::string_view, list_iterator> m_argument_map;
 
-}; // class Application
+}; // class application
 
 // Ref: https://www.modernescpp.com/index.php/c-core-guidelines-rules-for-variadic-templates
 template <typename... Args>
-auto Application::add_argument(Args&&... p_args) -> argument& {
+auto application::add_argument(Args&&... p_args) -> argument& {
   auto arg_it = m_arguments.emplace(std::cend(m_arguments), std::forward<Args>(p_args)...);
   index_argument(arg_it);
   return *arg_it;

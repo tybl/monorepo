@@ -6,7 +6,7 @@
 namespace pnt::nmea {
 
 enum class SentenceType {
-  Unknown,
+  UNKNOWN,
   GGA,
   GSA,
   GSV,

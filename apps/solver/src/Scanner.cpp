@@ -1,29 +1,29 @@
 #include "Scanner.hpp"
 
-Scanner::Scanner(std::string source)
-  : m_source(std::move(source)) {}
+scanner::scanner(std::string p_source)
+  : m_source(std::move(p_source)) {}
 
-std::vector<Token> Scanner::scan_tokens() {
+std::vector<token> scanner::scan_tokens() {
   while (!is_at_end()) {
-    start = current;
+    m_start = m_current;
     scan_token();
   }
-  tokens.emplace_back(TokenType::END_OF_FILE, "", Object(), line);
-  return tokens;
+  m_tokens.emplace_back(TokenType::END_OF_FILE, "", Object(), m_line);
+  return m_tokens;
 }
 
-void Scanner::add_token(TokenType type) { add_token(type, Object()); }
+void scanner::add_token(TokenType p_type) { add_token(p_type, Object()); }
 
-void Scanner::add_token(TokenType type, Object literal) {
-  std::string text = m_source.substr(start, current);
-  tokens.emplace_back(type, text, literal, line);
+void scanner::add_token(TokenType p_type, Object p_literal) {
+  std::string text = m_source.substr(m_start, m_current);
+  m_tokens.emplace_back(p_type, text, p_literal, m_line);
 }
 
-char Scanner::advance() { return m_source.at(current++); }
+char scanner::advance() { return m_source.at(m_current++); }
 
-[[nodiscard]] bool Scanner::is_at_end() const { return m_source.length() <= current; }
+[[nodiscard]] bool scanner::is_at_end() const { return m_source.length() <= m_current; }
 
-void Scanner::scan_token() {
+void scanner::scan_token() {
   char c = advance();
   switch (c) {
     using enum TokenType;
@@ -52,22 +52,22 @@ void Scanner::scan_token() {
     case ' ':
     case '\r':
     case '\t': break;
-    case '\n': line++; break;
+    case '\n': m_line++; break;
     default: break;
   }
 }
 
-bool Scanner::match(char expected) {
+bool scanner::match(char p_expected) {
   if (is_at_end())
     return false;
-  if (m_source.at(current) != expected)
+  if (m_source.at(m_current) != p_expected)
     return false;
-  current++;
+  m_current++;
   return true;
 }
 
-char Scanner::peek() {
+char scanner::peek() {
   if (is_at_end())
     return '\0';
-  return m_source.at(current);
+  return m_source.at(m_current);
 }
