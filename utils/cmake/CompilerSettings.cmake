@@ -55,7 +55,7 @@ set(ALL_COMPILER_FLAGS
   misleading-indentation
   mismatched-tags
   #non-virtual-dtor
-  #null-dereference
+  null-dereference
   old-style-cast
   overloaded-virtual
   pedantic
