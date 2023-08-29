@@ -47,14 +47,14 @@ set(ALL_COMPILER_FLAGS
   duplicated-cond
   #effc++
   extra
-  #format-overflow
-  #init-list-lifetime
+  format-overflow
+  init-list-lifetime
   lifetime
   logical-op
   maybe-uninitialized
   misleading-indentation
   mismatched-tags
-  #non-virtual-dtor
+  non-virtual-dtor
   null-dereference
   old-style-cast
   overloaded-virtual
@@ -65,7 +65,7 @@ set(ALL_COMPILER_FLAGS
   shadow
   sign-conversion
   stringop-overflow
-  #suggest-attribute=const
+  suggest-attribute=const
   #suggest-attribute=pure
   uninitialized
   unused
