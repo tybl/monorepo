@@ -14,7 +14,7 @@ struct time_of_day {
   static auto parse(std::string_view& p_input) {
     time_of_day result{};
     auto fcr = std::from_chars(p_input.begin(), p_input.end(), result.m_value);
-    auto delta = fcr.ptr - p_input.begin();
+    auto delta = static_cast<size_t>(fcr.ptr - p_input.begin());
     p_input = p_input.substr(delta);
     return result;
   }

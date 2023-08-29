@@ -16,7 +16,8 @@ void ttt::board::display() const {
     if (0 != row) {
       fmt::print("---|---|---\n");
     }
-    fmt::print(" {:1} | {:1} | {:1}\n", static_cast<char>(m_board.at(row * NUM_COLS + 0)),
+    fmt::print(" {:1} | {:1} | {:1}\n",
+               static_cast<char>(m_board.at(static_cast<unsigned>(row * NUM_COLS + 0))),
                static_cast<char>(m_board.at(static_cast<unsigned>(row * NUM_COLS + 1))),
                static_cast<char>(m_board.at(static_cast<unsigned>(row * NUM_COLS + 2))));
   }
@@ -94,7 +95,8 @@ auto ttt::board::to_string() const -> std::string {
     if (0 != row) {
       result.append(fmt::format("---|---|---\n"));
     }
-    result.append(fmt::format(" {:1} | {:1} | {:1}\n", static_cast<char>(m_board.at(row * NUM_COLS + 0)),
+    result.append(fmt::format(" {:1} | {:1} | {:1}\n",
+                              static_cast<char>(m_board.at(static_cast<unsigned>(row * NUM_COLS + 0))),
                               static_cast<char>(m_board.at(static_cast<unsigned>(row * NUM_COLS + 1))),
                               static_cast<char>(m_board.at(static_cast<unsigned>(row * NUM_COLS + 2)))));
   }

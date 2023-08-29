@@ -13,7 +13,7 @@
 class scanner {
   std::string m_source;
   std::vector<token> m_tokens;
-  int m_start = 0;
+  size_t m_start = 0;
   size_t m_current = 0;
   int m_line = 1;
 

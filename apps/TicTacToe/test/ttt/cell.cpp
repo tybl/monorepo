@@ -17,12 +17,12 @@ TEST_CASE("Limit the range of ttt::cell::position's row and columns") {
   CHECK_NOTHROW(ttt::cell::position(2,2));
   CHECK_THROWS_AS(ttt::cell::position(0,3), ttt::bad_move);
   CHECK_THROWS_AS(ttt::cell::position(3,0), ttt::bad_move);
-  CHECK_THROWS_AS(ttt::cell::position(0,-1), ttt::bad_move);
-  CHECK_THROWS_AS(ttt::cell::position(-1,0), ttt::bad_move);
+  CHECK_THROWS_AS(ttt::cell::position(0,static_cast<uint16_t>(-1)), ttt::bad_move);
+  CHECK_THROWS_AS(ttt::cell::position(static_cast<uint16_t>(-1),0), ttt::bad_move);
 }
 
 TEST_CASE("Limit the range of ttt::cell::position's index") {
-  CHECK_THROWS_AS(ttt::cell::position(-1), ttt::bad_move);
+  CHECK_THROWS_AS(ttt::cell::position(static_cast<uint16_t>(-1)), ttt::bad_move);
   CHECK_NOTHROW(ttt::cell::position(0));
   CHECK_NOTHROW(ttt::cell::position(1));
   CHECK_NOTHROW(ttt::cell::position(2));
