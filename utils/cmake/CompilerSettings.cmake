@@ -45,7 +45,7 @@ set(ALL_COMPILER_FLAGS
   double-promotion
   duplicated-branches
   duplicated-cond
-  #effc++
+  effc++
   extra
   format-overflow
   init-list-lifetime
