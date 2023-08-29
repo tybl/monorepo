@@ -39,7 +39,7 @@ set(ALL_COMPILER_FLAGS
   attribute-alias
   cast-align
   class-conversion
-  #conversion
+  conversion
   deprecated-copy
   deprecated-copy-dtor
   double-promotion
