@@ -109,7 +109,7 @@ auto ttt::board::encode(ttt::cell::value p_player) const -> uint16_t {
     for (size_t col = 0; col < 3; ++col) {
       auto cell = m_board.at(row * 3 + col);
       const uint16_t digit = (cell != cell::value::Empty) ? ((cell == p_player) ? 1 : 2) : 0;
-      result = static_cast<uint16_t>(result * 3) + digit;
+      result = static_cast<uint16_t>(static_cast<uint16_t>(result * 3) + digit);
     }
   }
   return result;

@@ -10,7 +10,7 @@
 
 TEST_CASE("tasklib/cli/Command") {
   // Setup
-  std::srand(std::time(nullptr));
+  std::srand(static_cast<unsigned>(std::time(nullptr)));
   int result = rand();
   //  Command
   ogre::command cmd("git");
