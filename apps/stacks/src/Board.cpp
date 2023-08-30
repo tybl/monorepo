@@ -41,8 +41,7 @@ Board::Board(Board const& p_other)
   , m_stats(p_other.m_stats)
   , m_id(p_other.m_id)
   , m_parent(p_other.m_parent)
-  , m_distance(p_other.m_distance) {
-}
+  , m_distance(p_other.m_distance) {}
 
 auto Board::operator=(Board p_other) -> Board& {
   std::swap(m_contents, p_other.m_contents);

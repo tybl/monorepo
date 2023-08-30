@@ -20,15 +20,8 @@ class board {
   static constexpr auto NUM_CELLS = static_cast<size_t>(NUM_ROWS * NUM_COLS);
   std::vector<move> m_history;
   std::array<cell::value, NUM_CELLS> m_board = {
-      cell::value::Empty,
-      cell::value::Empty,
-      cell::value::Empty,
-      cell::value::Empty,
-      cell::value::Empty,
-      cell::value::Empty,
-      cell::value::Empty,
-      cell::value::Empty,
-      cell::value::Empty,
+      cell::value::Empty, cell::value::Empty, cell::value::Empty, cell::value::Empty, cell::value::Empty,
+      cell::value::Empty, cell::value::Empty, cell::value::Empty, cell::value::Empty,
   };
 
 public:

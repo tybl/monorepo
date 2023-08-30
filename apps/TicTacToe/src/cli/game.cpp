@@ -8,7 +8,7 @@
 #include <string>
 
 game::game()
-   : m_board() {}
+  : m_board() {}
 
 void game::run() {
   std::string name;
@@ -21,7 +21,8 @@ void game::run() {
     display_board();
     auto mov = tttai::get_best_move(m_board);
     if (mov.has_value()) {
-      std::cout << "I will now take a turn and place my piece on row " << mov->row() << ", column " << mov->col() << ".\n";
+      std::cout << "I will now take a turn and place my piece on row " << mov->row() << ", column " << mov->col()
+                << ".\n";
       m_board = m_board.apply({*mov, ttt::cell::value::OH});
       display_board();
     }

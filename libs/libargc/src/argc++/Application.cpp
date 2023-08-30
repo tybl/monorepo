@@ -23,8 +23,7 @@ application::application(std::string p_name, std::string p_version)
   , m_description()
   , m_epilog()
   , m_arguments()
-  , m_argument_map()
-{
+  , m_argument_map() {
   add_argument("-h", "--help").help("Print this message and exit").action([this]() { throw_help_message(); });
   add_argument("--version").help("Print version information and exit").action([this]() { throw_version_message(); });
 }

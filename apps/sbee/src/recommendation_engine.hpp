@@ -16,4 +16,3 @@ public:
 private:
   std::vector<std::string> m_word_list;
 }; // class WordSearch
-

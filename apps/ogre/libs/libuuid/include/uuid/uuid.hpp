@@ -16,7 +16,7 @@ public:
 
   [[nodiscard]] auto operator<=>(uuid const&) const = default;
 
-  [[nodiscard,gnu::const]] auto to_string() const -> std::string const&;
+  [[nodiscard, gnu::const]] auto to_string() const -> std::string const&;
 
 private:
   static constexpr const auto uuid_file = "/proc/sys/kernel/random/uuid";

@@ -14,8 +14,8 @@ class server {
   endpoint m_endpoint;
   static constexpr size_t MAX_LEN = 1024;
   std::array<char, MAX_LEN> m_data = {};
-public:
 
+public:
   server(io_context& p_context, uint16_t p_port);
 
   void do_receive();
