@@ -22,7 +22,10 @@ struct a_star_search {
     }
   }; // struct node_weight
 
-  explicit a_star_search(Node p_start) {
+  explicit a_star_search(Node p_start)
+    : m_found()
+    , m_work_queue()
+  {
     auto res = m_found.insert(p_start);
     m_work_queue.push_back(res.first);
   }

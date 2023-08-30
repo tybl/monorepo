@@ -14,6 +14,7 @@
 struct Board;
 
 struct shared_stats {
+  shared_stats() : m_boards(), m_max_stack_height() {}
   std::set<Board> m_boards;
   size_t m_max_stack_height = 0;
 }; // struct shared_stats
@@ -29,6 +30,8 @@ struct Board : public i_node {
   explicit Board(std::istream& p_input);
 
   Board(Board const& p_other);
+
+  auto operator=(Board p_other) -> Board&;
 
   Board(Board const& p_o, edge const& p_e);
 

@@ -10,8 +10,7 @@
 #include <iostream>
 
 ttt::board::board()
-   : m_history()
-   , m_board() {}
+   : m_history() {}
 
 void ttt::board::display() const {
   for (uint16_t row = 0; row < NUM_ROWS; ++row) {

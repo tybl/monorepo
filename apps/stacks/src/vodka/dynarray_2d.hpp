@@ -45,6 +45,13 @@ public:
 
   ~dynarray_2d() = default;
 
+  auto operator=(dynarray_2d p_other) -> dynarray_2d& {
+    std::swap(m_data, p_other.m_data);
+    std::swap(m_rows, p_other.m_rows);
+    std::swap(m_cols, p_other.m_cols);
+    return *this;
+  }
+
   auto operator()(size_t p_r, size_t p_c) const -> const_reference { return m_data[m_cols * p_r + p_c]; }
 
   auto operator()(size_t p_r, size_t p_c) -> reference { return m_data[m_cols * p_r + p_c]; }

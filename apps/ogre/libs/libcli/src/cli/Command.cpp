@@ -13,6 +13,10 @@
 
 namespace ogre {
 
+parameters::parameters()
+  : options()
+  , arguments() {}
+
 auto option::add_help(std::string_view p_help) -> option& {
   m_help = p_help;
   return *this;

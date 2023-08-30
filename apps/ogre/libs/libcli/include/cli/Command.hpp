@@ -15,7 +15,7 @@
 namespace ogre {
 
 struct parameters {
-  //parameters();
+  parameters();
   std::map<std::string_view, std::string_view> options;
   std::vector<std::string_view> arguments;
 }; // struct Parameters
@@ -31,7 +31,8 @@ class option {
 public:
   template <typename... Args>
   option(Args... p_names)
-      : m_names{p_names...} {}
+      : m_names{p_names...}
+      , m_help() {}
 
   virtual ~option() = default;
 
@@ -71,7 +72,12 @@ class command : public option {
 public:
   template <typename... Args>
   command(Args... p_names)
-      : option{p_names...} {}
+      : option{p_names...}
+      , m_help()
+      , m_action()
+      , m_subcommands()
+      , m_options()
+      , m_str_to_param_map() {}
 
   virtual ~command();
 

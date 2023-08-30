@@ -16,7 +16,9 @@ auto string_contains(std::basic_string<CharType> const& p_str, CharType p_char) 
   return p_str.find(p_char) != std::string::npos;
 }
 
-recommendation_engine::recommendation_engine(std::vector<std::string> const& p_word_list) {
+recommendation_engine::recommendation_engine(std::vector<std::string> const& p_word_list)
+  : m_word_list()
+{
   std::copy_if(p_word_list.begin(), p_word_list.end(), std::back_inserter(m_word_list),
                [](std::string const& p_word) -> bool { return is_allowed(p_word); });
   std::for_each(m_word_list.begin(), m_word_list.end(), tolower_string);

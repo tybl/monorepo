@@ -1,7 +1,8 @@
 #include "Scanner.hpp"
 
 scanner::scanner(std::string p_source)
-  : m_source(std::move(p_source)) {}
+  : m_source(std::move(p_source))
+  , m_tokens() {}
 
 std::vector<token> scanner::scan_tokens() {
   while (!is_at_end()) {
