@@ -1,6 +1,6 @@
 // License: The Unlicense (https://unlicense.org)
 // vim:ts=2:sts=2:sw=2:et
-#include "recommendation_engine.hpp"
+#include "sbee/recommendation_engine.hpp"
 
 #include <fstream>
 #include <iostream>
