@@ -12,7 +12,9 @@ struct argument {
   // Ref: https://stackoverflow.com/questions/13978916/inserting-a-variadic-argument-list-into-a-vector
   template <typename... Args>
   argument(Args... p_arguments)
-    : m_names{p_arguments...} {}
+    : m_names{p_arguments...}
+    , m_help()
+    , m_action() {}
 
   // For printing usage
   auto help(std::string_view p_help) -> argument&;

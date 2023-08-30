@@ -22,13 +22,13 @@ struct matrix {
 
   std::array<Type, Rows * Cols> m_array;
 
-  [[nodiscard]] constexpr auto operator()(size_t p_i, size_t p_j) const -> const_reference {
+  [[nodiscard, gnu::pure]] constexpr auto operator()(size_t p_i, size_t p_j) const -> const_reference {
     assert(p_i < Rows);
     assert(p_j < Cols);
     return m_array.at(p_i * Cols + p_j);
   }
 
-  constexpr auto operator()(size_t p_i, size_t p_j) -> reference {
+  [[gnu::pure]] constexpr auto operator()(size_t p_i, size_t p_j) -> reference {
     assert(p_i < Rows);
     assert(p_j < Cols);
     return m_array.at(p_i * Cols + p_j);

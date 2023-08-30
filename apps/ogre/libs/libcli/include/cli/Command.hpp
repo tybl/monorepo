@@ -15,6 +15,7 @@
 namespace ogre {
 
 struct parameters {
+  parameters();
   std::map<std::string_view, std::string_view> options;
   std::vector<std::string_view> arguments;
 }; // struct Parameters
@@ -30,7 +31,8 @@ class option {
 public:
   template <typename... Args>
   option(Args... p_names)
-      : m_names{p_names...} {}
+    : m_names{p_names...}
+    , m_help() {}
 
   virtual ~option() = default;
 
@@ -38,10 +40,9 @@ public:
 
   void parse(std::span<std::string_view> p_args, parameters& p_params);
 
-  auto names() const -> std::vector<std::string_view> const&;
+  [[gnu::const]] auto names() const -> std::vector<std::string_view> const&;
 
-  [[nodiscard]] inline auto is_invoked_option(std::string_view p_name) const
-      -> bool;
+  [[nodiscard]] inline auto is_invoked_option(std::string_view p_name) const -> bool;
 
 }; // class Option
 
@@ -59,7 +60,7 @@ class command : public option {
   // std::vector<std::string_view> mNames;
 
   // - mHelp: A description of how to use the command
-  // std::string_view mHelp;
+  std::string_view m_help;
 
   callback m_action;
 
@@ -70,7 +71,12 @@ class command : public option {
 public:
   template <typename... Args>
   command(Args... p_names)
-      : option{p_names...} {}
+    : option{p_names...}
+    , m_help()
+    , m_action()
+    , m_subcommands()
+    , m_options()
+    , m_str_to_param_map() {}
 
   virtual ~command();
 
@@ -78,16 +84,14 @@ public:
 
   template <typename... Args>
   auto add_subcommand(Args&&... p_names) -> command& {
-    auto new_subcommand =
-        m_subcommands.emplace(m_subcommands.cend(), std::forward<Args>(p_names)...);
+    auto new_subcommand = m_subcommands.emplace(m_subcommands.cend(), std::forward<Args>(p_names)...);
     index_parameter(new_subcommand);
     return m_subcommands.back();
   }
 
   template <typename... Args>
   auto add_option(Args&&... p_names) -> option& {
-    auto new_option =
-        m_options.emplace(std::cend(m_options), std::forward<Args>(p_names)...);
+    auto new_option = m_options.emplace(std::cend(m_options), std::forward<Args>(p_names)...);
     index_parameter(new_option);
     return m_options.back();
   }
@@ -105,8 +109,7 @@ public:
   int run(std::span<std::string_view> p_args);
 
 private:
-  [[nodiscard]] inline auto is_invoked_command(std::string_view p_name) const
-      -> bool;
+  [[nodiscard]] inline auto is_invoked_command(std::string_view p_name) const -> bool;
 
   callback& parse(std::span<std::string_view> p_args, parameters& p_params);
 

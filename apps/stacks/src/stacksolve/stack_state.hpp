@@ -18,6 +18,16 @@ public:
   explicit stack_state(vodka::dynarray_2d<char>&& p_contents)
     : m_contents(std::move(p_contents)) {}
 
+  stack_state(stack_state const& p_other)
+    : m_contents(p_other.m_contents)
+    , m_parent(p_other.m_parent) {}
+
+  auto operator=(stack_state p_other) -> stack_state& {
+    std::swap(m_contents, p_other.m_contents);
+    std::swap(m_parent, p_other.m_parent);
+    return *this;
+  }
+
   [[nodiscard]] auto distance_from_start() const -> size_t {
     return m_parent != nullptr ? (m_parent->distance_from_start() + 1) : 0;
   }

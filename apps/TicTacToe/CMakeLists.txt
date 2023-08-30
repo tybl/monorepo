@@ -66,6 +66,8 @@ target_sources(cli
         src/cli/main.cpp
         )
 
+#[[
+# TODO(tybl): boost asio appears to have a null dereference
 add_executable(toe)
 target_link_libraries(toe
         PRIVATE
@@ -78,6 +80,7 @@ target_sources(toe
         src/toe/main.cpp
         src/toe/server.cpp
         )
+]]
 
 add_executable(test_search)
 target_link_libraries(test_search PRIVATE stats test_main ttt)

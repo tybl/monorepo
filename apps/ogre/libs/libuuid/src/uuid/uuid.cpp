@@ -7,14 +7,14 @@
 namespace vodka::util {
 
 uuid::uuid()
-    : mValue(nil) {}
+  : mValue(nil) {}
 
 auto uuid::Create() -> uuid { return uuid(GenerateStr()); }
 
 auto uuid::to_string() const -> std::string const& { return mValue; }
 
 uuid::uuid(std::string p_value)
-    : mValue(std::move(p_value)) {}
+  : mValue(std::move(p_value)) {}
 
 auto uuid::GenerateStr() -> std::string {
   std::string result;

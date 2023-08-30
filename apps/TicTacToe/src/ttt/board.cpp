@@ -9,14 +9,15 @@
 #include <algorithm>
 #include <iostream>
 
-ttt::board::board() = default;
+ttt::board::board()
+  : m_history() {}
 
 void ttt::board::display() const {
   for (uint16_t row = 0; row < NUM_ROWS; ++row) {
     if (0 != row) {
       fmt::print("---|---|---\n");
     }
-    fmt::print(" {:1} | {:1} | {:1}\n", static_cast<char>(m_board.at(row * NUM_COLS + 0)),
+    fmt::print(" {:1} | {:1} | {:1}\n", static_cast<char>(m_board.at(static_cast<unsigned>(row * NUM_COLS + 0))),
                static_cast<char>(m_board.at(static_cast<unsigned>(row * NUM_COLS + 1))),
                static_cast<char>(m_board.at(static_cast<unsigned>(row * NUM_COLS + 2))));
   }
@@ -36,11 +37,12 @@ auto ttt::board::apply(move p_move) const -> board {
 }
 
 auto ttt::board::has_ended() const -> bool {
-  return has_winner() || std::all_of(m_board.begin(), m_board.end(), [](cell::value p_val){ return p_val != cell::value::Empty; });
+  return has_winner() ||
+         std::all_of(m_board.begin(), m_board.end(), [](cell::value p_val) { return p_val != cell::value::Empty; });
 }
 
 auto ttt::board::has_winner() const -> bool {
-  //using enum ttt::cell::value;
+  // using enum ttt::cell::value;
   return (m_board[0] != cell::value::Empty && m_board[0] == m_board[1] && m_board[1] == m_board[2]) ||
          (m_board[3] != cell::value::Empty && m_board[3] == m_board[4] && m_board[4] == m_board[5]) ||
          (m_board[6] != cell::value::Empty && m_board[6] == m_board[7] && m_board[7] == m_board[8]) ||
@@ -81,20 +83,21 @@ auto ttt::board::is_empty(ttt::cell::position p_pos) const -> bool {
 }
 
 auto ttt::board::to_dot_string() const -> std::string {
-  return fmt::format(R"({} [fontname="mono" fontcolor="{}" {}label="{}"];)",
-                     dot_node_name(), dot_node_fontcolor(), dot_node_shape(), dot_node_label());
+  return fmt::format(R"({} [fontname="mono" fontcolor="{}" {}label="{}"];)", dot_node_name(), dot_node_fontcolor(),
+                     dot_node_shape(), dot_node_label());
 }
 
 auto ttt::board::to_string() const -> std::string {
   std::string result;
-  //for (auto mov : m_history) {
-  //result.append(fmt::format("({},{}): {}\n", mov.pos().row(), mov.pos().col(), static_cast<char>(mov.value())));
-  //}
+  // for (auto mov : m_history) {
+  // result.append(fmt::format("({},{}): {}\n", mov.pos().row(), mov.pos().col(), static_cast<char>(mov.value())));
+  // }
   for (uint16_t row = 0; row < NUM_ROWS; ++row) {
     if (0 != row) {
       result.append(fmt::format("---|---|---\n"));
     }
-    result.append(fmt::format(" {:1} | {:1} | {:1}\n", static_cast<char>(m_board.at(row * NUM_COLS + 0)),
+    result.append(fmt::format(" {:1} | {:1} | {:1}\n",
+                              static_cast<char>(m_board.at(static_cast<unsigned>(row * NUM_COLS + 0))),
                               static_cast<char>(m_board.at(static_cast<unsigned>(row * NUM_COLS + 1))),
                               static_cast<char>(m_board.at(static_cast<unsigned>(row * NUM_COLS + 2)))));
   }
@@ -107,15 +110,14 @@ auto ttt::board::encode(ttt::cell::value p_player) const -> uint16_t {
     for (size_t col = 0; col < 3; ++col) {
       auto cell = m_board.at(row * 3 + col);
       const uint16_t digit = (cell != cell::value::Empty) ? ((cell == p_player) ? 1 : 2) : 0;
-      result = static_cast<uint16_t>(result * 3) + digit;
+      result = static_cast<uint16_t>(static_cast<uint16_t>(result * 3) + digit);
     }
   }
   return result;
 }
 
-
 auto ttt::board::decode(ttt::cell::value p_player, uint16_t p_value) -> ttt::board {
-  //using enum ttt::cell::value;
+  // using enum ttt::cell::value;
   ttt::board result;
   const ttt::cell::value opponent = (cell::value::EX == p_player) ? cell::value::OH : cell::value::EX;
   for (size_t row = 2; row < 3; --row) {
@@ -139,13 +141,9 @@ auto ttt::board::dot_node_name() const -> std::string {
   return result;
 }
 
-auto ttt::board::dot_node_fontcolor() const -> std::string {
-  return "black";
-}
+auto ttt::board::dot_node_fontcolor() const -> std::string { return "black"; }
 
-auto ttt::board::dot_node_shape() const -> std::string {
-  return has_ended() ? "" : "shape=none ";
-}
+auto ttt::board::dot_node_shape() const -> std::string { return has_ended() ? "" : "shape=none "; }
 
 auto ttt::board::dot_node_label() const -> std::string {
   std::string result;
@@ -153,7 +151,7 @@ auto ttt::board::dot_node_label() const -> std::string {
     if (0 != row) {
       result.append("\\n");
     }
-    result.append(fmt::format("{:1}{:1}{:1}", dot_cell(row,0), dot_cell(row, 1), dot_cell(row, 2)));
+    result.append(fmt::format("{:1}{:1}{:1}", dot_cell(row, 0), dot_cell(row, 1), dot_cell(row, 2)));
   }
   return result;
 }

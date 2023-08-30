@@ -12,7 +12,9 @@
 #include <iostream>
 
 Board::Board(std::istream& p_input)
-  : m_stats(std::make_shared<shared_stats>())
+  : m_contents()
+  , m_priority()
+  , m_stats(std::make_shared<shared_stats>())
   , m_id(0)
   , m_parent(nullptr)
   , m_distance(0) {
@@ -31,6 +33,24 @@ Board::Board(std::istream& p_input)
   }
   m_priority = calc_priority();
   m_stats->m_boards.insert(*this);
+}
+
+Board::Board(Board const& p_other)
+  : m_contents(p_other.m_contents)
+  , m_priority(p_other.m_priority)
+  , m_stats(p_other.m_stats)
+  , m_id(p_other.m_id)
+  , m_parent(p_other.m_parent)
+  , m_distance(p_other.m_distance) {}
+
+auto Board::operator=(Board p_other) -> Board& {
+  std::swap(m_contents, p_other.m_contents);
+  std::swap(m_priority, p_other.m_priority);
+  std::swap(m_stats, p_other.m_stats);
+  std::swap(m_id, p_other.m_id);
+  std::swap(m_parent, p_other.m_parent);
+  std::swap(m_distance, p_other.m_distance);
+  return *this;
 }
 
 Board::Board(Board const& p_o, edge const& p_e)

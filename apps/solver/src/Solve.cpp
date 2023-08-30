@@ -4,6 +4,7 @@
 
 #include <fstream>
 #include <iostream>
+#include <sstream>
 
 void solve::error(int p_line, std::string const& p_message) { report(p_line, "", p_message); }
 
@@ -22,10 +23,12 @@ void solve::run(std::string const& p_input) {
 
 void solve::run_file(std::string const& p_path) const {
   std::ifstream file(p_path);
-  std::string input(std::istreambuf_iterator<char>{file}, {});
-  run(input);
-  if (m_had_error)
+  std::stringstream buffer;
+  buffer << file.rdbuf();
+  run(buffer.str());
+  if (m_had_error) {
     exit(65);
+  }
 }
 
 void solve::run_prompt() {

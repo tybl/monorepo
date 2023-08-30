@@ -17,7 +17,7 @@ auto argument::action(std::function<void()> p_action) -> argument& {
   return *this;
 }
 
-[[nodiscard]] auto argument::length() const -> size_t {
+[[nodiscard, gnu::pure]] auto argument::length() const -> size_t {
   return std::accumulate(std::begin(m_names), std::end(m_names), size_t(0),
                          [](const auto& p_sum, const auto& p_string) {
                            return p_sum + p_string.size() + 1; // +1 for space between names

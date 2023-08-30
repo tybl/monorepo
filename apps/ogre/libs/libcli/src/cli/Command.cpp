@@ -13,6 +13,10 @@
 
 namespace ogre {
 
+parameters::parameters()
+  : options()
+  , arguments() {}
+
 auto option::add_help(std::string_view p_help) -> option& {
   m_help = p_help;
   return *this;
@@ -30,19 +34,16 @@ void option::parse(std::span<std::string_view> p_args, parameters& p_params) {
   }
 }
 
-auto option::names() const -> std::vector<std::string_view> const& {
-  return m_names;
-}
+auto option::names() const -> std::vector<std::string_view> const& { return m_names; }
 
-[[nodiscard]] inline auto option::is_invoked_option(std::string_view p_name) const
-    -> bool {
+[[nodiscard]] inline auto option::is_invoked_option(std::string_view p_name) const -> bool {
   return m_names.end() != std::find(m_names.begin(), m_names.end(), p_name);
 }
 
 command::~command() = default;
 
-auto command::add_help(std::string_view /*p_help*/) -> command& {
-  //m_help = p_help;
+auto command::add_help(std::string_view p_help) -> command& {
+  m_help = p_help;
   return *this;
 }
 
@@ -69,13 +70,11 @@ auto command::run(std::span<std::string_view> p_args) -> int {
   return action(params);
 }
 
-[[nodiscard]] inline auto
-command::is_invoked_command(std::string_view p_name) const -> bool {
+[[nodiscard]] inline auto command::is_invoked_command(std::string_view p_name) const -> bool {
   return names().end() != std::find(names().begin(), names().end(), p_name);
 }
 
-auto command::parse(std::span<std::string_view> p_args, parameters& p_params)
-    -> command::callback& {
+auto command::parse(std::span<std::string_view> p_args, parameters& p_params) -> command::callback& {
   if (p_args.empty()) {
     throw std::runtime_error("Error: Unknown command");
   }
