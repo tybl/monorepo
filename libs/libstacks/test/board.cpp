@@ -1,5 +1,5 @@
 // License: The Unlicense (https://unlicense.org)
-#include "Board.hpp"
+#include "stacks/board.hpp"
 
 #include <doctest/doctest.h>
 

@@ -1,6 +1,6 @@
 // License: The Unlicense (https://unlicense.org)
-#include "stacksolve/stack_state.hpp"
-#include "Board.hpp"
+#include "stacks/stack_state.hpp"
+#include "stacks/board.hpp"
 
 #include <doctest/doctest.h>
 

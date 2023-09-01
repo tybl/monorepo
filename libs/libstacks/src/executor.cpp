@@ -1,7 +1,7 @@
 // License: The Unlicense (https://unlicense.org)
-#include "executor.hpp"
+#include "stacks/executor.hpp"
 
-#include "Board.hpp"
+#include "stacks/board.hpp"
 
 #include <cassert>
 #include <iostream>

@@ -13,37 +13,6 @@ find_package(Boost REQUIRED)
 find_package(fmt REQUIRED)
 find_package(nlohmann_json REQUIRED)
 
-add_library(ttt)
-target_include_directories(ttt PUBLIC include)
-target_link_libraries(ttt PRIVATE fmt)
-target_sources(ttt
-	PRIVATE
-		src/ttt/board.cpp
-		src/ttt/cell.cpp
-		src/ttt/move.cpp)
-
-add_executable(test_libttt)
-target_link_libraries(test_libttt PRIVATE fmt test_main ttt)
-target_sources(test_libttt
-	PRIVATE
-		test/ttt/board.cpp
-		test/ttt/cell.cpp)
-add_test(NAME libttt_test COMMAND test_libttt)
-
-add_library(tttai)
-target_include_directories(tttai PUBLIC include)
-target_link_libraries(tttai PRIVATE fmt ttt)
-target_sources(tttai
-	PRIVATE
-		src/tttai/get_best_move.cpp)
-
-add_executable(test_libtttai)
-target_link_libraries(test_libtttai PRIVATE fmt test_main ttt tttai)
-target_sources(test_libtttai
-	PRIVATE
-		test/tttai/get_best_move.cpp)
-add_test(NAME libtttai_test COMMAND test_libtttai)
-
 add_executable(cli)
 target_link_libraries(cli PRIVATE ttt tttai)
 target_sources(cli
