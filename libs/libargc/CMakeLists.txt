@@ -9,10 +9,6 @@ project(argcplusplus
 	DESCRIPTION "To(o) advance(d) parameter passing for C++ programs"
 	LANGUAGES CXX)
 
-if(PROJECT_IS_TOP_LEVEL)
-	include(CTest)
-	find_package(doctest REQUIRED)
-endif()
 find_package(fmt REQUIRED)
 
 add_library(argcplusplus)
@@ -27,14 +23,11 @@ target_sources(argcplusplus
 		src/argc++/Application.cpp
 		src/argc++/Argument.cpp)
 
-if(PROJECT_IS_TOP_LEVEL)
-	# TODO(tybl): Create unit tests
-	add_executable(test_argcplusplus)
-	target_link_libraries(test_argcplusplus PRIVATE argcplusplus doctest::doctest)
-	target_sources(test_argcplusplus
-		PRIVATE
-			test/argc++/main.cpp
-			test/argc++/test_help.cpp
-			test/argc++/test_version.cpp)
-	add_test(NAME argcplusplus_test COMMAND test_argcplusplus)
-endif()
+add_executable(test_argcplusplus)
+target_link_libraries(test_argcplusplus PRIVATE argcplusplus doctest::doctest)
+target_sources(test_argcplusplus
+	PRIVATE
+		test/argc++/main.cpp
+		test/argc++/test_help.cpp
+		test/argc++/test_version.cpp)
+add_test(NAME argcplusplus_test COMMAND test_argcplusplus)

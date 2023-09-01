@@ -22,7 +22,7 @@ TEST_CASE("test_help --help") {
       "Optional arguments:\n"
       "-h, --help, Print this message and exit\n"
       "--version, Print version information and exit\n";
-  tybl::argcpp::Application app("app", "1.0.0");
+  tybl::argcpp::application app("app", "1.0.0");
 
   const int argc = 2;
   SUBCASE("'-h' alone results in help message") {
