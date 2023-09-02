@@ -1,11 +1,17 @@
+################################################################################
+# License: The Unlicense (https://unlicense.org)
+# vim:noet
+################################################################################
 cmake_minimum_required(VERSION 3.22)
 
-project(solve LANGUAGES CXX)
+project(solve
+    VERSION 0.0.0
+    DESCRIPTION "CLI math solver"
+    LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_EXTENSIONS OFF)
-
+# TODO(tybl): Create library with unit tests
 add_executable(solve)
+target_compile_features(solve PRIVATE cxx_std_20)
 target_sources(solve
     PRIVATE
         src/Scanner.cpp

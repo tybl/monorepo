@@ -9,13 +9,12 @@ project(TaskOgre
   DESCRIPTION "Taskwarrior clone"
   LANGUAGES CXX)
 
-find_package(doctest REQUIRED)
-find_package(fmt REQUIRED)
-
-if(PROJECT_IS_TOP_LEVEL)
-  include(CTest)
-
-  add_subdirectory(utils/doctest)
-endif()
-
-add_subdirectory(apps)
+add_executable(task)
+target_compile_definitions(task
+  PRIVATE
+    -DPROJECT_NAME="${CMAKE_PROJECT_NAME}"
+    -DPROJECT_VERSION="${CMAKE_PROJECT_VERSION}")
+target_link_libraries(task PRIVATE libcli libuuid)
+target_sources(task
+  PRIVATE
+    apps/task/src/main.cpp)

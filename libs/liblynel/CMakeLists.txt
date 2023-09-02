@@ -9,12 +9,6 @@ project(liblynel
 	DESCRIPTION "Linear algebra libary"
 	LANGUAGES CXX)
 
-if(PROJECT_IS_TOP_LEVEL)
-	include(CTest)
-	find_package(doctest REQUIRED)
-	add_subdirectory(util/doctest)
-endif()
-
 add_library(lynel INTERFACE)
 target_include_directories(lynel INTERFACE include)
 target_sources(lynel

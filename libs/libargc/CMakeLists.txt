@@ -24,10 +24,9 @@ target_sources(argcplusplus
 		src/argc++/Argument.cpp)
 
 add_executable(test_argcplusplus)
-target_link_libraries(test_argcplusplus PRIVATE argcplusplus doctest::doctest)
+target_link_libraries(test_argcplusplus PRIVATE argcplusplus test_main)
 target_sources(test_argcplusplus
 	PRIVATE
-		test/argc++/main.cpp
 		test/argc++/test_help.cpp
 		test/argc++/test_version.cpp)
 add_test(NAME argcplusplus_test COMMAND test_argcplusplus)
