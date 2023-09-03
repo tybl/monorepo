@@ -5,6 +5,7 @@
 #include <doctest/doctest.h>
 
 #include <iostream>
+
 // #include <optional>
 
 auto get_expected_value(ttt::board const& p_board, ttt::move p_move) -> float {

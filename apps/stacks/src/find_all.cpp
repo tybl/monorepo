@@ -16,8 +16,11 @@ class vector_set {
 
 public:
   vector_set() { m_data.reserve(226800); }
+
   size_t size() const { return m_data.size(); }
+
   bool contains(T const& t) const { return std::binary_search(m_data.begin(), m_data.end(), t); }
+
   void insert(T t) {
     auto i = std::upper_bound(m_data.begin(), m_data.end(), t);
     m_data.insert(i, t);
@@ -121,6 +124,7 @@ private:
     m_contents.at(to).push_back(m_contents.at(from).back());
     m_contents.at(from).pop_back();
   }
+
   bool is_valid(uint8_t to, uint8_t from) const {
     return (from != to) && (!m_contents.at(from).empty()) && (m_contents.at(to).size() != m_height);
   }

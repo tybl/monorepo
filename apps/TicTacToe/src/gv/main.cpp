@@ -65,16 +65,21 @@ public:
   [[gnu::pure, nodiscard]] auto is_tie() const -> bool;
   [[nodiscard]] auto get_cell(cell::position p_pos) const -> cell::value;
   [[nodiscard]] auto is_empty(cell::position p_pos) const -> bool;
+
   [[nodiscard]] auto last_move() const -> move { return m_history.back(); }
+
   [[nodiscard]] auto num_moves() const -> size_t { return m_history.size(); }
+
   auto get_next_turn() const -> cell::value {
     if (m_history.empty()) {
       return cell::value::EX;
     }
     return next(m_history.back().value());
   }
+
   auto encode() const -> uint16_t;
   auto to_string() const -> std::string;
+
   auto operator<(board const& other) const -> bool { return m_board < other.m_board; }
 }; // class board
 

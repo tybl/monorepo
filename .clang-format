@@ -12,5 +12,6 @@ ConstructorInitializerIndentWidth: 2
 IndentCaseLabels:                  true
 PointerAlignment:                  Left
 QualifierAlignment:                Right
+SeparateDefinitionBlocks:          Always
 SpacesInContainerLiterals:         false
 ...

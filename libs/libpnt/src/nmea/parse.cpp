@@ -18,8 +18,11 @@ struct time_of_day {
     p_input = p_input.substr(delta);
     return result;
   }
+
   auto hour() const { return static_cast<Hour>(m_value / 10000); }
+
   auto minute() const { return static_cast<Minute>(std::fmod(m_value, 10000.0F) / 100); }
+
   auto second() const { return std::fmod(m_value, 100.0F); }
 
 private:

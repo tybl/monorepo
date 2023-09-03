@@ -163,6 +163,7 @@ private:
       return false;
     }
   };
+
   SignalLink* mCallbackRing; // linked ring of callback nodes
   ProtoSignal(ProtoSignal const&) = delete;
   ProtoSignal& operator=(ProtoSignal const&) = delete;
@@ -232,6 +233,7 @@ public:
   } // Emit(Args... args)
 };  // class ProtoSignal<R (Args...), Collector>
 } // namespace Lib
+
 // namespace Simple
 
 /**
@@ -254,6 +256,7 @@ template <typename SignalSignature,
 struct Signal /*final*/ : Lib::ProtoSignal<SignalSignature, Collector> {
   typedef Lib::ProtoSignal<SignalSignature, Collector> ProtoSignal;
   typedef typename ProtoSignal::CbFunction CbFunction;
+
   /// Signal constructor, supports a default callback as argument.
   Signal(CbFunction const& method = CbFunction())
     : ProtoSignal(method) {
@@ -277,6 +280,7 @@ std::function<R(Args...)> slot(Class* object, R (Class::*method)(Args...)) {
 template <typename Result>
 struct CollectorUntil0 {
   typedef Result CollectorResult;
+
   explicit CollectorUntil0(void)
     : mResult() {
     // Intentionally left blank
@@ -340,6 +344,7 @@ private:
 #include <string>
 
 static std::string string_printf(char const* format, ...) __attribute__((__format__(__printf__, 1, 2)));
+
 static std::string string_printf(char const* format, ...) {
   std::string result;
   char* str = NULL;
@@ -441,6 +446,7 @@ public:
     assert(accu == expected);
   }
 };
+
 std::string BasicSignalTests::accu;
 
 class TestCollectorVector {
@@ -503,17 +509,21 @@ public:
 
 class TestCollectorWhile0 {
   bool check1, check2;
+
   TestCollectorWhile0()
     : check1(0)
     , check2(0) {}
+
   bool handler_0() {
     check1 = true;
     return false;
   }
+
   bool handler_1() {
     check2 = true;
     return true;
   }
+
   bool handler_abort() { abort(); }
 
 public:
