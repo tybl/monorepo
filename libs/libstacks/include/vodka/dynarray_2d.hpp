@@ -76,8 +76,8 @@ public:
 
   [[nodiscard]] auto rows() const -> size_type { return m_rows; }
 
-  [[nodiscard]] auto row(size_t p_r) const -> std::span<const value_type> {
-    return std::span<const value_type>(m_data.get() + (m_cols * p_r), m_cols);
+  [[nodiscard]] auto row(size_t p_r) const -> std::span<value_type const> {
+    return std::span<value_type const>(m_data.get() + (m_cols * p_r), m_cols);
   }
 
 }; // struct dynarray_2d

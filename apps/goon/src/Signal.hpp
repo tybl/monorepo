@@ -63,7 +63,7 @@ struct CollectorDefault<void> {
 /// CollectorInvocation specialisation for regular signals.
 template <class Collector, class R, class... Args>
 struct CollectorInvocation<Collector, R(Args...)> {
-  inline bool invoke(Collector& collector, const std::function<R(Args...)>& cbf, Args... args) {
+  inline bool invoke(Collector& collector, std::function<R(Args...)> const& cbf, Args... args) {
     return collector(cbf(args...));
   }
 };
@@ -71,7 +71,7 @@ struct CollectorInvocation<Collector, R(Args...)> {
 /// CollectorInvocation specialisation for signals with void return type.
 template <class Collector, class... Args>
 struct CollectorInvocation<Collector, void(Args...)> {
-  inline bool invoke(Collector& collector, const std::function<void(Args...)>& cbf, Args... args) {
+  inline bool invoke(Collector& collector, std::function<void(Args...)> const& cbf, Args... args) {
     cbf(args...);
     return collector();
   }
@@ -93,7 +93,7 @@ private:
     CbFunction mFunction;
     int mReferenceCount;
 
-    explicit SignalLink(const CbFunction& cbf)
+    explicit SignalLink(CbFunction const& cbf)
       : mNext(NULL)
       , mPrev(NULL)
       , mFunction(cbf)
@@ -129,7 +129,7 @@ private:
       // leave intact ->mNext, ->mPrev for stale iterators
     }
 
-    size_t add_before(const CbFunction& cb) {
+    size_t add_before(CbFunction const& cb) {
       SignalLink* link = new SignalLink(cb);
       link->mPrev = mPrev; // link to last
       link->mNext = this;
@@ -139,7 +139,7 @@ private:
       return size_t(link);
     }
 
-    bool deactivate(const CbFunction& cbf) {
+    bool deactivate(CbFunction const& cbf) {
       if (cbf == mFunction) {
         mFunction = NULL; // deactivate static head
         return true;
@@ -164,8 +164,8 @@ private:
     }
   };
   SignalLink* mCallbackRing; // linked ring of callback nodes
-  ProtoSignal(const ProtoSignal&) = delete;
-  ProtoSignal& operator=(const ProtoSignal&) = delete;
+  ProtoSignal(ProtoSignal const&) = delete;
+  ProtoSignal& operator=(ProtoSignal const&) = delete;
 
   void EnsureRing(void) {
     if (!mCallbackRing) {
@@ -178,7 +178,7 @@ private:
 
 public:
   /// ProtoSignal constructor, connects default callback if non-NULL.
-  ProtoSignal(const CbFunction& method)
+  ProtoSignal(CbFunction const& method)
     : mCallbackRing(NULL) {
     if (method != NULL) {
       EnsureRing();
@@ -199,7 +199,7 @@ public:
   }
 
   /// Operator to add a new function or lambda as signal handler, returns a handler connection ID.
-  size_t operator+=(const CbFunction& cb) {
+  size_t operator+=(CbFunction const& cb) {
     EnsureRing();
     return mCallbackRing->add_before(cb);
   }
@@ -217,7 +217,7 @@ public:
     link->IncrementReference();
     do {
       if (link->mFunction != NULL) {
-        const bool continue_emission = this->invoke(collector, link->mFunction, args...);
+        bool const continue_emission = this->invoke(collector, link->mFunction, args...);
         if (!continue_emission) {
           break;
         }
@@ -255,7 +255,7 @@ struct Signal /*final*/ : Lib::ProtoSignal<SignalSignature, Collector> {
   typedef Lib::ProtoSignal<SignalSignature, Collector> ProtoSignal;
   typedef typename ProtoSignal::CbFunction CbFunction;
   /// Signal constructor, supports a default callback as argument.
-  Signal(const CbFunction& method = CbFunction())
+  Signal(CbFunction const& method = CbFunction())
     : ProtoSignal(method) {
     // Intentionally left blank
   }
@@ -282,7 +282,7 @@ struct CollectorUntil0 {
     // Intentionally left blank
   }
 
-  const CollectorResult& result(void) { return mResult; }
+  CollectorResult const& result(void) { return mResult; }
 
   inline bool operator()(Result r) {
     mResult = r;
@@ -303,7 +303,7 @@ struct CollectorWhile0 {
     // Intentionally left blank
   }
 
-  const CollectorResult& result(void) { return mResult; }
+  CollectorResult const& result(void) { return mResult; }
 
   inline bool operator()(Result r) {
     mResult = r;
@@ -319,7 +319,7 @@ template <typename Result>
 struct CollectorVector {
   typedef std::vector<Result> CollectorResult;
 
-  const CollectorResult& result(void) { return mResult; }
+  CollectorResult const& result(void) { return mResult; }
 
   inline bool operator()(Result r) {
     mResult.push_back(r);
@@ -339,8 +339,8 @@ private:
 #include <stdarg.h>
 #include <string>
 
-static std::string string_printf(const char* format, ...) __attribute__((__format__(__printf__, 1, 2)));
-static std::string string_printf(const char* format, ...) {
+static std::string string_printf(char const* format, ...) __attribute__((__format__(__printf__, 1, 2)));
+static std::string string_printf(char const* format, ...) {
   std::string result;
   char* str = NULL;
   va_list args;
@@ -400,7 +400,7 @@ public:
       accu += string_printf("int: %d\n", i);
       return 0;
     };
-    size_t id3 = sig1 += [](float, int, const std::string& s) {
+    size_t id3 = sig1 += [](float, int, std::string const& s) {
       accu += string_printf("string: %s\n", s.c_str());
       return 0;
     };
@@ -430,7 +430,7 @@ public:
 
     accu += "DONE";
 
-    const char* expected =
+    char const* expected =
         "float: 0.30\n"
         "int: 4\n"
         "string: huhu\n"
@@ -496,7 +496,7 @@ public:
     sig_until0 += Simple::slot(self, &TestCollectorUntil0::handler_false);
     sig_until0 += Simple::slot(self, &TestCollectorUntil0::handler_abort);
     assert(!self.check1 && !self.check2);
-    const bool result = sig_until0.Emit();
+    bool const result = sig_until0.Emit();
     assert(!result && self.check1 && self.check2);
   }
 };
@@ -524,7 +524,7 @@ public:
     sig_while0 += Simple::slot(self, &TestCollectorWhile0::handler_1);
     sig_while0 += Simple::slot(self, &TestCollectorWhile0::handler_abort);
     assert(!self.check1 && !self.check2);
-    const bool result = sig_while0.Emit();
+    bool const result = sig_while0.Emit();
     assert(result == true && self.check1 && self.check2);
   }
 };
@@ -565,7 +565,7 @@ void TestCounter::set(uint64_t v) { test_counter_var = v; }
 
 void TestCounter::add2(void*, uint64_t v) { test_counter_var += v; }
 
-int main(int, const char*[]) {
+int main(int, char const*[]) {
   printf("Signal/Basic Tests: ");
   BasicSignalTests::run();
   printf("OK\n");

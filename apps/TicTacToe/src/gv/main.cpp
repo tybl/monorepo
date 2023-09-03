@@ -78,7 +78,7 @@ public:
   auto operator<(board const& other) const -> bool { return m_board < other.m_board; }
 }; // class board
 
-auto minimax(const board& p_board, bool p_maximize) -> float;
+auto minimax(board const& p_board, bool p_maximize) -> float;
 
 auto get_best_move(board const& p_board) -> cell::position;
 

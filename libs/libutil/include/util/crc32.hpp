@@ -18,14 +18,14 @@ class crc32 {
 
   uint32_t finalize(void);
 
-  uint32_t update(const uint8_t* data, size_t dataLen);
+  uint32_t update(uint8_t const* data, size_t dataLen);
 
   [[gnu::const]] static uint32_t reflect(uint32_t data);
 
 public:
-  static uint32_t get_crc(const uint8_t* data, size_t dataLen);
+  static uint32_t get_crc(uint8_t const* data, size_t dataLen);
 
-  static uint32_t validate(const uint8_t* data, size_t dataLen, uint32_t crcValue);
+  static uint32_t validate(uint8_t const* data, size_t dataLen, uint32_t crcValue);
 };
 
 } // namespace tybl::util

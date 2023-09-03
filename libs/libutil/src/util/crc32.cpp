@@ -52,7 +52,7 @@ uint32_t crc32::finalize(void) {
   return m_crc;
 }
 
-uint32_t crc32::update(const uint8_t* p_data, size_t p_data_length) {
+uint32_t crc32::update(uint8_t const* p_data, size_t p_data_length) {
   unsigned int i;
   bool bit;
   unsigned char c;
