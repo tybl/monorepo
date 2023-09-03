@@ -11,5 +11,6 @@ ColumnLimit:                       120
 ConstructorInitializerIndentWidth: 2
 IndentCaseLabels:                  true
 PointerAlignment:                  Left
+QualifierAlignment:                Right
 SpacesInContainerLiterals:         false
 ...
