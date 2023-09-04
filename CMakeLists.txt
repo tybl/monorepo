@@ -9,7 +9,7 @@ project(monorepo
 	DESCRIPTION "Collection of C++ libraries, applications and tools written by me"
 	LANGUAGES CXX)
 
-find_package(doctest REQUIRED)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 include(CTest)
 include(utils/cmake/CompilerSettings.cmake)

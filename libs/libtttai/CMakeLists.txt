@@ -2,12 +2,6 @@
 # License: The Unlicense (https://unlicense.org)
 # vim:noet
 ################################################################################
-cmake_minimum_required(VERSION 3.21)
-
-project(libtttai
-	VERSION 1.0.0
-	DESCRIPTION "Command-line Tic-Tac-Toe"
-	LANGUAGES CXX)
 
 find_package(fmt REQUIRED)
 
@@ -19,7 +13,7 @@ target_sources(tttai
 		src/get_best_move.cpp)
 
 add_executable(test_libtttai)
-target_link_libraries(test_libtttai PRIVATE fmt test_main ttt tttai)
+target_link_libraries(test_libtttai PRIVATE fmt::fmt test_main ttt tttai)
 target_sources(test_libtttai
 	PRIVATE
 		test/get_best_move.cpp)

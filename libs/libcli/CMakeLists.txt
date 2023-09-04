@@ -1,5 +1,6 @@
 ################################################################################
 # License: The Unlicense (https://unlicense.org)
+# vim:noet
 ################################################################################
 
 add_library(libcli)
@@ -12,10 +13,7 @@ target_sources(libcli
     include/cli/Command.hpp)
 
 add_executable(test_libcli)
-target_link_libraries(test_libcli
-  PRIVATE
-    libcli
-    test_main)
+target_link_libraries(test_libcli PRIVATE libcli test_main)
 target_sources(test_libcli
   PRIVATE
     test/cli/Command.cpp)

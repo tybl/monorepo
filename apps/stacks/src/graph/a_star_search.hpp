@@ -3,6 +3,7 @@
 #ifndef TYBL_GRAPH_ASTARSEARCH_HPP
 #define TYBL_GRAPH_ASTARSEARCH_HPP
 
+#include <algorithm>
 #include <set>
 #include <vector>
 

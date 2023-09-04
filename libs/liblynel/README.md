@@ -1,1 +1,3 @@
 # liblynel
+
+Linear algebra libary
