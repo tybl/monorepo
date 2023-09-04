@@ -13,7 +13,7 @@
 
 struct executor {
   std::vector<i_node const*> m_nodes;
-  std::unique_ptr<const i_node> m_root;
+  std::unique_ptr<i_node const> m_root;
 
   explicit executor(std::ifstream& p_file);
 

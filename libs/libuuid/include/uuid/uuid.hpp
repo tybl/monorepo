@@ -19,9 +19,9 @@ public:
   [[nodiscard, gnu::const]] auto to_string() const -> std::string const&;
 
 private:
-  static constexpr const auto uuid_file = "/proc/sys/kernel/random/uuid";
+  static constexpr auto const uuid_file = "/proc/sys/kernel/random/uuid";
 
-  static constexpr const auto nil = "00000000-0000-0000-0000-000000000000";
+  static constexpr auto const nil = "00000000-0000-0000-0000-000000000000";
 
   explicit uuid(std::string value);
 

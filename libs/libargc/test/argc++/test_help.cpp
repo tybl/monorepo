@@ -24,9 +24,9 @@ TEST_CASE("test_help --help") {
       "--version, Print version information and exit\n";
   tybl::argcpp::application app("app", "1.0.0");
 
-  const int argc = 2;
+  int const argc = 2;
   SUBCASE("'-h' alone results in help message") {
-    const char* argv[] = {"app", "-h", nullptr};
+    char const* argv[] = {"app", "-h", nullptr};
     try {
       app.run(argc, argv);
     } catch (std::runtime_error& err) {
@@ -37,7 +37,7 @@ TEST_CASE("test_help --help") {
   } // SUBCASE
 
   SUBCASE("'--help' alone results in help message") {
-    const char* argv[] = {"app", "--help", nullptr};
+    char const* argv[] = {"app", "--help", nullptr};
     try {
       app.run(argc, argv);
     } catch (std::runtime_error& err) {
