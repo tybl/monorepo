@@ -2,12 +2,6 @@
 # License: The Unlicense (https://unlicense.org)
 # vim:noet:ts=2
 ################################################################################
-cmake_minimum_required(VERSION 3.21...3.25)
-
-project(libutil
-	VERSION 0.1.0
-	DESCRIPTION "Reusable code that I couldn't find another library for"
-	LANGUAGES CXX)
 
 add_library(util)
 add_library(libutil::util ALIAS util)
@@ -16,7 +10,12 @@ target_sources(util
 	PRIVATE
 		src/util/crc32.cpp
 		src/util/get_config_path.cpp
-		src/util/get_home_path.cpp)
+		src/util/get_home_path.cpp
+	PUBLIC
+		include/util/crc32.hpp
+		include/util/get_config_path.hpp
+		include/util/get_home_path.hpp
+		include/util/string_contains.hpp)
 
 add_executable(test_libutil)
 target_link_libraries(test_libutil PRIVATE test_main util)

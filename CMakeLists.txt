@@ -11,8 +11,6 @@ project(monorepo
 
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-find_package(doctest REQUIRED)
-
 include(CTest)
 include(utils/cmake/CompilerSettings.cmake)
 add_subdirectory(utils/doctest)

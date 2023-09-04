@@ -1,0 +1,3 @@
+# Solver
+
+CLI math solver

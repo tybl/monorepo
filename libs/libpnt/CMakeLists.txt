@@ -2,12 +2,6 @@
 # License: The Unlicense (https://unlicense.org)
 # vim:noet:ts=2
 ################################################################################
-cmake_minimum_required(VERSION 3.13)
-
-project(pnt
-	VERSION 0.0.0
-	DESCRIPTION "A collection of libraries and utilities for manipulating position, navigation, and time data"
-	LANGUAGES CXX)
 
 add_library(libnmea)
 target_compile_features(libnmea PUBLIC cxx_std_20)

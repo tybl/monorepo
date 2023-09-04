@@ -2,12 +2,6 @@
 # License: The Unlicense (https://unlicense.org)
 # vim:noet
 ################################################################################
-cmake_minimum_required(VERSION 3.18)
-
-project(libstacks
-	VERSION 1.0.0
-	DESCRIPTION ""
-	LANGUAGES CXX)
 
 find_package(fmt REQUIRED)
 find_package(spdlog REQUIRED)

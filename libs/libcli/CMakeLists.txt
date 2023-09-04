@@ -2,13 +2,6 @@
 # License: The Unlicense (https://unlicense.org)
 # vim:noet
 ################################################################################
-cmake_minimum_required(VERSION 3.13)
-
-# TODO(tybl): Evaluate against libargc++
-project(libcli
-  VERSION 0.0.1
-  DESCRIPTION "Command-line argument parser"
-  LANGUAGES CXX)
 
 add_library(libcli)
 target_compile_features(libcli PUBLIC cxx_std_20)

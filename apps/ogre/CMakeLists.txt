@@ -2,12 +2,6 @@
 # License: The Unlicense (https://unlicense.org)
 # vim:noet
 ################################################################################
-cmake_minimum_required(VERSION 3.21)
-
-project(TaskOgre
-  VERSION 0.0.0
-  DESCRIPTION "Taskwarrior clone"
-  LANGUAGES CXX)
 
 add_executable(task)
 target_compile_definitions(task
