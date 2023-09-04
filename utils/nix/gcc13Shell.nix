@@ -13,6 +13,7 @@ gcc13Stdenv.mkDerivation {
   ];
   nativeBuildInputs = [
     boost182.dev
+    cppzmq
     doctest
     fmt
     howard-hinnant-date
