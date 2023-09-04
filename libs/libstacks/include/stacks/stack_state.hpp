@@ -60,11 +60,11 @@ public:
 
   [[nodiscard]] auto is_empty(size_t p_row) const -> bool { return '0' == m_contents(p_row, 0); }
 
-  [[nodiscard]] static auto is_full_and_homogeneous(std::span<const char> p_row) -> bool {
+  [[nodiscard]] static auto is_full_and_homogeneous(std::span<char const> p_row) -> bool {
     return std::ranges::all_of(p_row.begin(), p_row.end(), [p_row](auto p_c) { return p_c == p_row.front(); });
   }
 
-  static auto num_to_move(std::span<const char> p_row) -> size_t {
+  static auto num_to_move(std::span<char const> p_row) -> size_t {
     size_t result = 0;
     for (auto c : p_row) {
       result += static_cast<size_t>(p_row.front() != c);

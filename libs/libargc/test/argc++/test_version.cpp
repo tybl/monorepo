@@ -16,8 +16,8 @@ TEST_CASE("test_help --version") {
   const std::string expected_msg = "app version 1.0.0";
   tybl::argcpp::application app("app", "1.0.0");
 
-  const int argc = 2;
-  const char* argv[] = {"app", "--version", nullptr};
+  int const argc = 2;
+  char const* argv[] = {"app", "--version", nullptr};
   try {
     app.run(argc, argv);
   } catch (std::runtime_error& err) {

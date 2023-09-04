@@ -12,7 +12,7 @@ window::window(void)
   assert(nullptr != m_window);
 }
 
-void window::process_event(const SDL_Event& p_event) {
+void window::process_event(SDL_Event const& p_event) {
   switch (p_event.window.event) {
     case SDL_WINDOWEVENT_SHOWN: printf("Window has been shown\n"); break;
     case SDL_WINDOWEVENT_HIDDEN: printf("Window has been hidden\n"); break;

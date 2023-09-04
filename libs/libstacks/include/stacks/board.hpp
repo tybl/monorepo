@@ -17,6 +17,7 @@ struct shared_stats {
   shared_stats()
     : m_boards()
     , m_max_stack_height() {}
+
   std::set<Board> m_boards;
   size_t m_max_stack_height = 0;
 }; // struct shared_stats

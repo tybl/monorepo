@@ -51,27 +51,33 @@ template <typename T, size_t M, size_t N>
 struct basic_matrix<T, M, N, typename std::enable_if_t<is_vec(2, M, N)>> {
   using value_type = T;
   value_type x, y;
+
   constexpr auto operator==(basic_matrix const& p_v) const -> bool { return (x == p_v.x) && (y == p_v.y); }
+
   constexpr auto operator+=(basic_matrix const& p_v) -> basic_matrix& {
     x += p_v.x;
     y += p_v.y;
     return *this;
   }
+
   constexpr auto operator-=(basic_matrix const& p_v) -> basic_matrix& {
     x -= p_v.x;
     y -= p_v.y;
     return *this;
   }
+
   constexpr auto operator*=(value_type p_s) -> basic_matrix& {
     x *= p_s;
     y *= p_s;
     return *this;
   }
+
   constexpr auto operator/=(value_type p_s) -> basic_matrix& {
     x /= p_s;
     y /= p_s;
     return *this;
   }
+
   [[nodiscard]] constexpr auto dot(basic_matrix const& p_v) const -> value_type { return (x * p_v.x) + (y * p_v.y); }
 };
 
@@ -80,36 +86,43 @@ template <typename T, size_t M, size_t N>
 struct basic_matrix<T, M, N, typename std::enable_if_t<is_vec(3, M, N)>> {
   using value_type = T;
   value_type x, y, z;
+
   constexpr auto operator==(basic_matrix const& p_v) const -> bool {
     return (x == p_v.x) && (y == p_v.y) && (z == p_v.z);
   }
+
   constexpr auto operator+=(basic_matrix const& p_v) -> basic_matrix& {
     x += p_v.x;
     y += p_v.y;
     z += p_v.z;
     return *this;
   }
+
   constexpr auto operator-=(basic_matrix const& p_v) -> basic_matrix& {
     x -= p_v.x;
     y -= p_v.y;
     z -= p_v.z;
     return *this;
   }
+
   constexpr auto operator*=(value_type p_s) -> basic_matrix& {
     x *= p_s;
     y *= p_s;
     z *= p_s;
     return *this;
   }
+
   constexpr auto operator/=(value_type p_s) -> basic_matrix& {
     x /= p_s;
     y /= p_s;
     z /= p_s;
     return *this;
   }
+
   [[nodiscard]] constexpr auto dot(basic_matrix const& p_v) const -> value_type {
     return (x * p_v.x) + (y * p_v.y) + (z * p_v.z);
   }
+
   [[nodiscard]] constexpr auto cross(basic_matrix const& p_v) const -> basic_matrix {
     return basic_matrix{(y * p_v.z) - (z * p_v.y), (z * p_v.x) - (x * p_v.z), (x * p_v.y) - (y * p_v.x)};
   }
@@ -120,9 +133,11 @@ template <typename T, size_t M, size_t N>
 struct basic_matrix<T, M, N, typename std::enable_if_t<is_vec(4, M, N)>> {
   using value_type = T;
   value_type x, y, z, w;
+
   constexpr auto operator==(basic_matrix const& p_v) const -> bool {
     return (x == p_v.x) && (y == p_v.y) && (z == p_v.z) && (w == p_v.w);
   }
+
   constexpr auto operator+=(basic_matrix const& p_v) -> basic_matrix& {
     x += p_v.x;
     y += p_v.y;
@@ -130,6 +145,7 @@ struct basic_matrix<T, M, N, typename std::enable_if_t<is_vec(4, M, N)>> {
     w += p_v.w;
     return *this;
   }
+
   constexpr auto operator-=(basic_matrix const& p_v) -> basic_matrix& {
     x -= p_v.x;
     y -= p_v.y;
@@ -137,6 +153,7 @@ struct basic_matrix<T, M, N, typename std::enable_if_t<is_vec(4, M, N)>> {
     w -= p_v.w;
     return *this;
   }
+
   constexpr auto operator*=(value_type p_s) -> basic_matrix& {
     x *= p_s;
     y *= p_s;
@@ -144,6 +161,7 @@ struct basic_matrix<T, M, N, typename std::enable_if_t<is_vec(4, M, N)>> {
     w *= p_s;
     return *this;
   }
+
   constexpr auto operator/=(value_type p_s) -> basic_matrix& {
     x /= p_s;
     y /= p_s;
@@ -151,6 +169,7 @@ struct basic_matrix<T, M, N, typename std::enable_if_t<is_vec(4, M, N)>> {
     w /= p_s;
     return *this;
   }
+
   [[nodiscard]] constexpr auto dot(basic_matrix const& p_v) const -> value_type {
     return (x * p_v.x) + (y * p_v.y) + (z * p_v.z) + (w * p_v.w);
   }
@@ -161,23 +180,29 @@ template <typename T>
 struct basic_matrix<T, 1, 1, void> {
   using value_type = T;
   value_type x;
+
   constexpr auto operator==(basic_matrix const& p_v) const -> bool { return (x == p_v.x); }
+
   constexpr auto operator+=(basic_matrix const& p_v) -> basic_matrix& {
     x += p_v.x;
     return *this;
   }
+
   constexpr auto operator-=(basic_matrix const& p_v) -> basic_matrix& {
     x -= p_v.x;
     return *this;
   }
+
   constexpr auto operator*=(value_type p_s) -> basic_matrix& {
     x *= p_s;
     return *this;
   }
+
   constexpr auto operator/=(value_type p_s) -> basic_matrix& {
     x /= p_s;
     return *this;
   }
+
   constexpr auto dot(basic_matrix const& p_v) const -> value_type { return (x * p_v.x); }
 };
 
@@ -186,22 +211,27 @@ template <typename T, size_t M, size_t N>
 struct basic_matrix<T, M, N, typename std::enable_if_t<is_mat(2, M, N)>> {
   using value_type = T;
   cvec<value_type, M> x, y;
+
   constexpr auto operator==(basic_matrix const& p_v) const -> bool { return (x == p_v.x) && (y == p_v.y); }
+
   constexpr auto operator+=(basic_matrix const& p_v) -> basic_matrix& {
     x += p_v.x;
     y += p_v.y;
     return *this;
   }
+
   constexpr auto operator-=(basic_matrix const& p_v) -> basic_matrix& {
     x -= p_v.x;
     y -= p_v.y;
     return *this;
   }
+
   constexpr auto operator*=(value_type p_s) -> basic_matrix& {
     x *= p_s;
     y *= p_s;
     return *this;
   }
+
   constexpr auto operator/=(value_type p_s) -> basic_matrix& {
     x /= p_s;
     y /= p_s;
@@ -214,27 +244,32 @@ template <typename T, size_t M, size_t N>
 struct basic_matrix<T, M, N, typename std::enable_if_t<is_mat(3, M, N)>> {
   using value_type = T;
   cvec<value_type, M> x, y, z;
+
   constexpr auto operator==(basic_matrix const& p_v) const -> bool {
     return (x == p_v.x) && (y == p_v.y) && (z == p_v.z);
   }
+
   constexpr auto operator+=(basic_matrix const& p_v) -> basic_matrix& {
     x += p_v.x;
     y += p_v.y;
     z += p_v.z;
     return *this;
   }
+
   constexpr auto operator-=(basic_matrix const& p_v) -> basic_matrix& {
     x -= p_v.x;
     y -= p_v.y;
     z -= p_v.z;
     return *this;
   }
+
   constexpr auto operator*=(value_type p_s) -> basic_matrix& {
     x *= p_s;
     y *= p_s;
     z *= p_s;
     return *this;
   }
+
   constexpr auto operator/=(value_type p_s) -> basic_matrix& {
     x /= p_s;
     y /= p_s;
@@ -248,27 +283,32 @@ template <typename T, size_t M, size_t N>
 struct basic_matrix<T, M, N, typename std::enable_if_t<is_mat(4, M, N)>> {
   using value_type = T;
   cvec<value_type, M> x, y, z, w;
+
   constexpr auto operator==(basic_matrix const& p_v) const -> bool {
     return (x == p_v.x) && (y == p_v.y) && (z == p_v.z);
   }
+
   constexpr auto operator+=(basic_matrix const& p_v) -> basic_matrix& {
     x += p_v.x;
     y += p_v.y;
     z += p_v.z;
     return *this;
   }
+
   constexpr auto operator-=(basic_matrix const& p_v) -> basic_matrix& {
     x -= p_v.x;
     y -= p_v.y;
     z -= p_v.z;
     return *this;
   }
+
   constexpr auto operator*=(value_type p_s) -> basic_matrix& {
     x *= p_s;
     y *= p_s;
     z *= p_s;
     return *this;
   }
+
   constexpr auto operator/=(value_type p_s) -> basic_matrix& {
     x /= p_s;
     y /= p_s;
@@ -281,6 +321,7 @@ template <typename T, size_t M, size_t N>
 constexpr auto operator+(basic_matrix<T, M, N> p_lhs, basic_matrix<T, M, N> const& p_rhs) -> basic_matrix<T, M, N> {
   return p_lhs += p_rhs;
 }
+
 template <typename T, size_t M, size_t N>
 constexpr auto operator-(basic_matrix<T, M, N> p_lhs, basic_matrix<T, M, N> const& p_rhs) -> basic_matrix<T, M, N> {
   return p_lhs -= p_rhs;
@@ -291,36 +332,44 @@ template <typename T, size_t M, size_t N>
 constexpr auto operator*(T p_s, basic_matrix<T, M, N> p_v) -> basic_matrix<T, M, N> {
   return p_v *= p_s;
 }
+
 template <typename T, size_t M, size_t N>
 constexpr auto operator*(basic_matrix<T, M, N> p_v, T p_s) -> basic_matrix<T, M, N> {
   return p_v *= p_s;
 }
+
 template <typename T, size_t M>
 constexpr auto operator*(basic_matrix<T, M, 1> const& p_lhs, cvec<T, 1> const& p_rhs) -> cvec<T, M> {
   return p_lhs * p_rhs.x;
 }
+
 template <typename T, size_t M>
 constexpr auto operator*(basic_matrix<T, M, 2> const& p_lhs, cvec<T, 2> const& p_rhs) -> cvec<T, M> {
   return p_lhs.x * p_rhs.x + p_lhs.y * p_rhs.y;
 }
+
 template <typename T, size_t M>
 constexpr auto operator*(basic_matrix<T, M, 3> const& p_lhs, cvec<T, 3> const& p_rhs) -> cvec<T, M> {
   return p_lhs.x * p_rhs.x + p_lhs.y * p_rhs.y + p_lhs.z * p_rhs.z;
 }
+
 template <typename T, size_t M>
 constexpr auto operator*(basic_matrix<T, M, 4> const& p_lhs, cvec<T, 4> const& p_rhs) -> cvec<T, M> {
   return p_lhs.x * p_rhs.x + p_lhs.y * p_rhs.y + p_lhs.z * p_rhs.z + p_lhs.w * p_rhs.w;
 }
+
 template <typename T, size_t M, size_t N>
 constexpr auto operator*(basic_matrix<T, M, N> const& p_lhs, basic_matrix<T, N, 2> const& p_rhs)
     -> basic_matrix<T, M, 2> {
   return {p_lhs * p_rhs.x, p_lhs * p_rhs.y};
 }
+
 template <typename T, size_t M, size_t N>
 constexpr auto operator*(basic_matrix<T, M, N> const& p_lhs, basic_matrix<T, N, 3> const& p_rhs)
     -> basic_matrix<T, M, 3> {
   return {p_lhs * p_rhs.x, p_lhs * p_rhs.y, p_lhs * p_rhs.z};
 }
+
 template <typename T, size_t M, size_t N>
 constexpr auto operator*(basic_matrix<T, M, N> const& p_lhs, basic_matrix<T, N, 4> const& p_rhs)
     -> basic_matrix<T, M, 4> {

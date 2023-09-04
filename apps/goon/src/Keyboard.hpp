@@ -8,7 +8,7 @@
 
 class keyboard {
 public:
-  void process_event(const SDL_Event& p_event) {
+  void process_event(SDL_Event const& p_event) {
     switch (p_event.key.keysym.sym) {
       case SDLK_0: printf("0"); break;
       case SDLK_1: printf("1"); break;

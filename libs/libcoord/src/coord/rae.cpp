@@ -13,10 +13,10 @@ rae_t::rae_t(double p_range, double p_azimuth, double p_elevation)
   , m_elevation(p_elevation) {}
 
 auto rae_t::to_frd() const -> frd_t {
-  const auto hypotenuse = std::cos(elevation()) * range();
-  const auto front = std::sin(azimuth()) * hypotenuse;
-  const auto right = std::cos(azimuth()) * hypotenuse;
-  const auto down = std::sin(elevation()) * range();
+  auto const hypotenuse = std::cos(elevation()) * range();
+  auto const front = std::sin(azimuth()) * hypotenuse;
+  auto const right = std::cos(azimuth()) * hypotenuse;
+  auto const down = std::sin(elevation()) * range();
   return {front, right, down};
 }
 

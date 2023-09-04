@@ -5,8 +5,8 @@
 #include <cmath>
 #include <cstdio>
 
-static const int TEXTURE_WIDTH = 90;
-static const int TEXTURE_HEIGHT = 90;
+static int const TEXTURE_WIDTH = 90;
+static int const TEXTURE_HEIGHT = 90;
 
 widget::widget(SDL_Renderer* p_renderer)
   : m_x_pos(0)

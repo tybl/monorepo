@@ -1,6 +1,6 @@
 // License: The Unlicense (https://unlicense.org)
-#include "stacks/executor.hpp"
 #include "graph/a_star_search.hpp"
+#include "stacks/executor.hpp"
 #include "stacks/stack_state.hpp"
 
 #include <chrono>
