@@ -1,9 +1,10 @@
 ################################################################################
 # License: The Unlicense (https://unlicense.org)
+# vim:noet
 ################################################################################
 
 add_library(libuuid)
-target_compile_features(libuuid PRIVATE cxx_std_20)
+target_compile_features(libuuid PRIVATE cxx_std_20) # operator<=>
 target_include_directories(libuuid PUBLIC include)
 target_sources(libuuid
   PRIVATE
