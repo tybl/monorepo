@@ -46,6 +46,7 @@ airy
 alarm
 alchemy
 alfalfa
+alibi
 alit
 alive
 allay
@@ -60,6 +61,7 @@ alone
 alto
 ambition
 amenity
+amiable
 amiably
 amicably
 amid
@@ -128,6 +130,8 @@ backboard
 backdoor
 baggage
 baggy
+bail
+bailee
 bait
 ballet
 balloon
@@ -202,6 +206,7 @@ bite
 biting
 bitten
 blabby
+blimp
 blin
 bling
 blini
@@ -697,6 +702,7 @@ hall
 halo
 halve
 hamartia
+hamate
 happen
 haram
 harm
@@ -744,6 +750,8 @@ hora
 horal
 hormonal
 hymen
+iamb
+iambi
 iced
 icily
 icing
@@ -765,6 +773,8 @@ illogic
 illy
 imam
 immortal
+impale
+impalpable
 inanity
 incite
 incited
@@ -813,6 +823,9 @@ keno
 knob
 koala
 kowtow
+labia
+labial
+labile
 lace
 lacy
 lady
@@ -852,6 +865,7 @@ levee
 level
 leveling
 levelly
+liable
 liar
 libel
 libelee
@@ -868,10 +882,12 @@ lilt
 lilting
 lily
 lima
+limb
 lime
 limeade
 limed
 limo
+limp
 line
 lined
 linocut
@@ -927,8 +943,10 @@ madam
 madame
 made
 mafia
+mahatma
 maid
 mail
+mailable
 mailed
 maim
 maimed
@@ -957,6 +975,7 @@ martian
 martin
 martini
 match
+matcha
 matchmake
 mate
 matey
@@ -1152,6 +1171,7 @@ pace
 pact
 page
 pageboy
+pail
 pair
 papa
 papaya
@@ -1186,12 +1206,16 @@ phooey
 piccata
 piece
 pile
+pill
 pillar
+pimp
 pimple
 pipe
 pizza
 plateful
 pled
+pliable
+plie
 plum
 plume
 plumed
