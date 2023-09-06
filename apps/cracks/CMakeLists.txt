@@ -13,4 +13,13 @@ target_sources(sbee PRIVATE src/sbee.cpp)
 
 add_executable(stacks)
 target_link_libraries(stacks PRIVATE stacksolvelib)
+target_link_options(stacks PRIVATE $<$<CONFIG:Debug>:-fsanitize=address,undefined>)
 target_sources(stacks PRIVATE src/stacks.cpp)
+
+add_executable(tactic)
+target_link_libraries(tactic PRIVATE ttt tttai)
+target_link_options(tactic PRIVATE $<$<CONFIG:Debug>:-fsanitize=address,undefined>)
+target_sources(tactic
+	PRIVATE
+		src/tactic/game.cpp
+		src/tactic/main.cpp)
